@@ -1,29 +1,26 @@
 import './App.css';
-import { useState, useEffect} from "react";
+import InitiativesList from '../src/initiatives.json';
 
-function InitiativeDashboard({ ticket_id }) {
-  return (
-    <div>
-      <p>{ticket_id}</p>
-    </div>
-  )
-}
 function App() {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    fetch(
-      `./public/Initiatives.json`
-    )
-      .then((response) => response.json())
-      .then(setData);
-  }, []);
-  if (data) 
-    return (
-      <InitiativeDashboard ticket_id={data.ticket_id/>
-    );
+  console.log(InitiativesList)
   return (
     <div className="App">
       <h1>Initiative Dashboard</h1>
+
+      {
+        InitiativesList && InitiativesList.map( initiatives => {
+          return(
+            <div className="table">
+              { initiatives.ticket_id }
+              { initiatives.initiative}
+              { initiatives.description }
+              { initiatives.submit_date }
+              { initiatives.owner }
+              { initiatives.ice_score}
+            </div>
+          )
+        })
+      }
     </div>
   );
 }
