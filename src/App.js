@@ -1,27 +1,27 @@
-import './App.css';
-import InitiativesList from '../src/initiatives.json';
+import React from "react";
+import "../src/App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
 
-function App() {
-  console.log(InitiativesList)
+// Pages
+import NavigationBar from "./components/NavigationBar";
+import Initiatives from "./components/Initiatives.js";
+import NoMatch from "./components/NoMatch";
+
+
+function App () {
   return (
-    <div className="App">
-      <h1>Initiative Dashboard</h1>
-
-      {
-        InitiativesList && InitiativesList.map( initiatives => {
-          return(
-            <div className="table">
-              { initiatives.ticket_id }
-              { initiatives.initiative}
-              { initiatives.description }
-              { initiatives.submit_date }
-              { initiatives.owner }
-              { initiatives.ice_score}
-            </div>
-          )
-        })
-      }
-    </div>
+    <React.Fragment>
+      <Layout>
+        <Router>
+          <NavigationBar />
+          <Routes>
+            <Route exact path="/" element={<Initiatives/>} />
+            <Route element={<NoMatch />} />
+          </Routes>
+        </Router>
+      </Layout>
+    </React.Fragment>
   );
 }
 
