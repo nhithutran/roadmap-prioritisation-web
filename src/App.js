@@ -5,22 +5,24 @@ import Layout from "./components/Layout";
 
 // Pages
 import NavigationBar from "./components/NavigationBar";
-import Initiatives from "./components/Initiatives.js";
+import Dashboard from "./components/Dashboard.js";
 import NoMatch from "./components/NoMatch";
+import InitiativeTopPanel from "./components/InitiativeTopPanel";
 
 
 function App () {
   return (
     <React.Fragment>
-      <Layout>
-        <Router>
-          <NavigationBar />
-          <Routes>
-            <Route exact path="/" element={<Initiatives/>} />
-            <Route element={<NoMatch />} />
-          </Routes>
-        </Router>
-      </Layout>
+      <NavigationBar />
+      <InitiativeTopPanel />
+        <Layout>
+          <Router>
+            <Routes>
+              <Route exact path="/" element={<Dashboard />} />
+              <Route element={<NoMatch />} />
+            </Routes>
+          </Router>
+        </Layout>
     </React.Fragment>
   );
 }

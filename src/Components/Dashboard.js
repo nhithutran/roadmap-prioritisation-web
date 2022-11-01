@@ -1,8 +1,7 @@
 import React from "react";
 import InitiativesMockUp from "../initiativesList.json";
 
-function Initiatives() {
-    return (
+const Dashboard = () => (
       <div>
         {
           InitiativesMockUp && InitiativesMockUp.map((initiatives, i)  => {
@@ -19,7 +18,6 @@ function Initiatives() {
           })
         }
       </div>
-    );
-  }
+);
   
-  export default Initiatives;
+export default Dashboard;

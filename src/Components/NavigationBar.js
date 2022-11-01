@@ -1,46 +1,42 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
 import { Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
 
 const Styles = styled.div`
   .navbar {
-    background-color: #222;
+    background-color: #7D7D7D;
   }
 
   .navbar-brand, .navbar-nav, nav-link {
-    color: #7D7D7D;
+    color: #white;
 
     &:hover {
       color: black;
     }
   }
+
 `;
 
-const NavigationBar = () => {
+const NavigationBar = () => (
   <Styles>
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="/">
+        <img src="../assets/logo.jpg" alt="Canva logo" width="10px height=10px"></img>
       </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          <Nav.Link href="/">Dashboard</Nav.Link>
+          <Nav.Link href="/estimation">Estimation</Nav.Link>
+          <Nav.Link href="/roadmap">Roadmap</Nav.Link>
+          <Nav.Link href="/reports">Reports</Nav.Link>
+          <Nav.Link href="/logout">
+            <button className="logout-button">Log Out</button>
+          </Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
     </Navbar>  
   </Styles>
-  return (
-
-            <img
-              src=".src/components/assets/logo.jpg"
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-              alt="Canva logo"
-            />
-          <Nav className="me-auto">
-            <Nav.Link href="#Dashboard">Dashboard</Nav.Link>
-            <Nav.Link href="#link">Estimation</Nav.Link>
-            <Nav.Link href="#link">Roadmap</Nav.Link>
-          </Nav>
-        </Container>
-    </Navbar>
-  );
-};
+);
 
 export default NavigationBar;

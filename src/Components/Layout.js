@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 
 const Layout = (PropTypes) => (
     <Container>
-        {PropTypes.children};
+        {PropTypes.children}
     </Container>
 );
     
