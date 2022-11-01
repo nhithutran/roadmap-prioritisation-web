@@ -22,7 +22,7 @@ const InitiativeTopPanel = () => (
         <div className="boxed">
             <div className="text">
             <h3>Initiative</h3>
-            <p>When we succed, we suceed because of our individual initiative, but also beacause we do things together.</p>
+            <p>When we succeed, we succeed because of our individual initiative, but also beacause we do things together.</p>
             <p>Barack Obama</p>
             </div>
         </div>
