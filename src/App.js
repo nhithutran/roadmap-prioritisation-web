@@ -1,5 +1,5 @@
 import React from "react";
-import "../src/App.css";
+import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Pages
@@ -22,6 +22,9 @@ function App () {
               <Route element={<NoMatch />} />
             </Routes>
           </Router>
+          <div className="footer">
+            <p>©2022, made by Anthony Chung and Nhi Tran</p>
+          </div>
         </Layout>
     </React.Fragment>
   );
