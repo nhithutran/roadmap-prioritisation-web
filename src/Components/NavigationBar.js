@@ -4,24 +4,29 @@ import styled from "styled-components";
 
 const Styles = styled.div`
   .navbar {
-    background-color: #7D7D7D;
+    background-color: #7d7d7d;
   }
 
-  .navbar-brand, .navbar-nav, nav-link {
+  .navbar-brand,
+  .navbar-nav,
+  nav-link {
     color: #white;
 
     &:hover {
       color: black;
     }
   }
-
 `;
 
 const NavigationBar = () => (
   <Styles>
     <Navbar bg="light" expand="lg">
       <Navbar.Brand href="/">
-        <img src="../assets/logo.jpg" alt="Canva logo" width="10px height=10px"></img>
+        <img
+          src="../assets/logo.jpg"
+          alt="Canva logo"
+          width="10px height=10px"
+        ></img>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -35,7 +40,7 @@ const NavigationBar = () => (
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
-    </Navbar>  
+    </Navbar>
   </Styles>
 );
 
