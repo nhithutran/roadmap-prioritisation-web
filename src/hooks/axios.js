@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const axiosAddress = axios.create({
+export const axiosInstance = ()=>{console.log('inside'); return axios.create({
   base: "http://localhost:5000",
 });
-
-export default axiosAddress;
+}

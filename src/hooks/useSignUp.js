@@ -1,6 +1,7 @@
 import { useState } from "react";
+import axios from "axios"
 //import { useAuthContext } from "./userAuthContext";
-import axiosAddress from "./axios";
+//import {axiosInstance} from "./axios";
 
 export const useSignUp = () => {
   const [signUpError, setSignUpError] = useState(null);
@@ -12,8 +13,10 @@ export const useSignUp = () => {
     setSignUpError(null);
     //const json = null;
 
-    axiosAddress
-      .post("/register", { firstName, lastName, password, email })
+    const axiosInstance = axios.create({baseURL: 'http://localhost:5000'})
+    
+    axiosInstance
+      .post("/api/v1/auth/register", { firstName, lastName, password, email })
       .then(function (response) {
         setIsLoading(false);
         console.log(response.data);
