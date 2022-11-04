@@ -1,5 +1,5 @@
 import React from "react";
-import JsonData from "../initiativesList.json";
+import InitiativesMockUp from "../initiativesList.json";
 import styled from "styled-components";
 import { Dropdown, Table } from "react-bootstrap";
 
@@ -94,42 +94,37 @@ function Dashboard() {
         </Dropdown.Menu>
       </Dropdown>
 
-      <Table>
-        {/* <thead>
+      <Table responsive>
+        <thead>
           <tr>
-            {Array.from({ length: 6 }).map((initiatives, index) => (
-              <th key={index}>{ initiatives }</th>
-            ))}
+            <th> Ticket</th>
+            <th>Initiative</th>
+            <th>Description</th>
+            <th>Submit Date</th>
+            <th>Owner</th>
+            <th>I.C.E score</th>
           </tr>
-        </thead> */}
-        <tbody>
-       {
-          JsonData.map((initiatives, index) => {
-            <div>
-            <h1>Hello</h1>
-            <tr key={index}>
-              <td>{initiatives.ticket_id}</td>
-              <td>{initiatives.initiative}</td>
-              <td>{initiatives.description}</td>
-              <td>{initiatives.submit_date}</td>
-            </tr>
-            </div>
-         })
-       }
-          {/* // <tr>
-          //   {JsonData.from({ length: 6 }).map((initiatives, index) => ( */}
-          {/* //     <td key={index} className="InitiativeTable">
-          //       Table cell {index}
-          //     </td>
-          //   ))}
-          // </tr> */}
+        </thead>
 
+        <tbody>
+          {InitiativesMockUp.map((initiative, i) => {
+            return (
+              <tr key={i}>
+                <td>{initiative.ticket_id}</td>
+                <td>{initiative.initiative}</td>
+                <td>{initiative.description}</td>
+                <td>{initiative.submit_date}</td>
+                <td>{initiative.owner}</td>
+                <td>{initiative.ice_score}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
 
       <div className="initative-table">
-        {JsonData &&
-          JsonData.map((initiatives, i) => {
+        {InitiativesMockUp &&
+          InitiativesMockUp.map((initiatives, i) => {
             return (
               <div key={i} className="InitiativeTable">
                 {initiatives.ticket_id}
