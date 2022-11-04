@@ -94,10 +94,10 @@ function Dashboard() {
         </Dropdown.Menu>
       </Dropdown>
 
-      <Table responsive>
+      <Table responsive striped hover>
         <thead>
           <tr>
-            <th> Ticket</th>
+            <th>Ticket</th>
             <th>Initiative</th>
             <th>Description</th>
             <th>Submit Date</th>
