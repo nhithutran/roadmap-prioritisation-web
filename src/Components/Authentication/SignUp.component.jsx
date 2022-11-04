@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import {
+  Alert,
   Button,
   Col,
   Container,
@@ -36,17 +37,23 @@ const SignUp = () => {
   };
 
   const [formFields, setFormFields] = useState(defaultFormFields);
-
   const { firstName, lastName, email, password, confirmPassword } = formFields;
 
+  const [alertPassword, setAlertPassword] = useState(false);
+
   /***** Handler *****/
-  const handlerSubmit = async (event) => {
-    event.preventDefault();
-  };
-  console.log(formFields);
   const handleFieldsChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
+  };
+
+  const handlerSubmit = async (event) => {
+    event.preventDefault();
+
+    if (password != confirmPassword || password.length < 6) {
+      setAlertPassword(true);
+      event.stopPropagation();
+    }
   };
   /***** End Handler *****/
 
@@ -54,7 +61,7 @@ const SignUp = () => {
     <Container>
       <Row style={mainRowStyle}>
         <Col xs={6} style={mainColStyle}>
-          <h1>Hello world</h1>
+          <h1>Sign Up</h1>
         </Col>
         <Col xs={6} style={mainColStyle}>
           <Row className="mb-3">
@@ -109,6 +116,11 @@ const SignUp = () => {
                   value={password}
                   onChange={handleFieldsChange}
                 />
+                {password.length > 0 && password.length < 6 && (
+                  <Form.Text muted>
+                    Password must be longer than 6 characters
+                  </Form.Text>
+                )}
               </FormGroup>
               <FormGroup as={Col} controlId="formConfirmPassword">
                 <FormLabel>Confirm Password</FormLabel>
@@ -120,11 +132,30 @@ const SignUp = () => {
                   value={confirmPassword}
                   onChange={handleFieldsChange}
                 />
+                {password !== confirmPassword &&
+                  confirmPassword.length !== 0 && (
+                    <Form.Text muted>Passwords do not match</Form.Text>
+                  )}
               </FormGroup>
             </Row>
             <Button variant="primary" type="submit">
               Sign Up
             </Button>
+            <Row>
+              {alertPassword && (
+                <Alert
+                  variant="danger"
+                  onClose={() => {
+                    setAlertPassword(false);
+                  }}
+                  dismissible
+                >
+                  <Alert.Heading>
+                    Passwords must match and more than 6 characters long
+                  </Alert.Heading>
+                </Alert>
+              )}
+            </Row>
           </Form>
         </Col>
       </Row>
