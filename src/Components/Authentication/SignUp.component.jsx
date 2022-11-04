@@ -42,8 +42,9 @@ const SignUp = () => {
   const { firstName, lastName, email, password, confirmPassword } = formFields;
 
   const [alertPassword, setAlertPassword] = useState(false);
+  const [duplicateEmail,setDuplicateEmail] = useState(false)
 
-  const { signUp } = useSignUp();
+  const { signUp,isLoading,signUpError } = useSignUp();
 
   /***** Handler *****/
   const handleFieldsChange = (event) => {
@@ -60,6 +61,7 @@ const SignUp = () => {
     }
 
     await signUp(firstName, lastName, email, password);
+    if(signUpError){setDuplicateEmail(true)}
   };
   /***** End Handler *****/
 
@@ -144,7 +146,7 @@ const SignUp = () => {
                   )}
               </FormGroup>
             </Row>
-            <Button variant="primary" type="submit">
+            <Button disabled={isLoading} variant="primary" type="submit">
               Sign Up
             </Button>
             <Row>
@@ -158,6 +160,19 @@ const SignUp = () => {
                 >
                   <Alert.Heading>
                     Passwords must match and more than 6 characters long
+                  </Alert.Heading>
+                </Alert>
+              )}
+               {duplicateEmail && (
+                <Alert
+                  variant="danger"
+                  onClose={() => {
+                    setDuplicateEmail(false);
+                  }}
+                  dismissible
+                >
+                  <Alert.Heading>
+                    Email already registered
                   </Alert.Heading>
                 </Alert>
               )}
