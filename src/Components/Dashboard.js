@@ -94,10 +94,10 @@ function Dashboard() {
         </Dropdown.Menu>
       </Dropdown>
 
-      <Table responsive>
+      <Table responsive striped hover>
         <thead>
           <tr>
-            <th> Ticket</th>
+            <th>Ticket</th>
             <th>Initiative</th>
             <th>Description</th>
             <th>Submit Date</th>
@@ -127,12 +127,6 @@ function Dashboard() {
           InitiativesMockUp.map((initiatives, i) => {
             return (
               <div key={i} className="InitiativeTable">
-                {initiatives.ticket_id}
-                {initiatives.initiative}
-                {initiatives.description}
-                {initiatives.submit_date}
-                {initiatives.owner}
-                {initiatives.ice_score}
               </div>
             );
           })}
