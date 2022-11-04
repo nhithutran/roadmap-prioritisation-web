@@ -12,6 +12,8 @@ import {
   Row,
 } from "react-bootstrap";
 
+import { useSignUp } from "../../hooks/useSignUp";
+
 /**** Styles *****/
 const SignUp = () => {
   const mainRowStyle = {
@@ -41,6 +43,8 @@ const SignUp = () => {
 
   const [alertPassword, setAlertPassword] = useState(false);
 
+  const { signUp } = useSignUp();
+
   /***** Handler *****/
   const handleFieldsChange = (event) => {
     const { name, value } = event.target;
@@ -54,6 +58,8 @@ const SignUp = () => {
       setAlertPassword(true);
       event.stopPropagation();
     }
+
+    await signUp(firstName, lastName, email, password);
   };
   /***** End Handler *****/
 
