@@ -9,6 +9,7 @@ import Dashboard from "./components/Dashboard.js";
 import NoMatch from "./components/NoMatch";
 import InitiativeTopPanel from "./components/InitiativeTopPanel";
 import SignUp from "./components/Authentication/SignUp.component";
+import Login from './components/Authentication/Login.component'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Dashboard />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
             <Route element={<NoMatch />} />
           </Routes>
         </Router>
