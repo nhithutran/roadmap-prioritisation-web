@@ -22,7 +22,7 @@ function App() {
             <Route exact path="/" element={<Dashboard />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            <Route element={<NoMatch />} />
+            <Route path="*" element={<NoMatch />} />
           </Routes>
         </Router>
         <div className="footer">
