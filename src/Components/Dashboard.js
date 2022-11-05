@@ -1,7 +1,40 @@
 import React from "react";
 import InitiativesMockUp from "../initiativesList.json";
 import styled from "styled-components";
-import { Dropdown, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
+import { DataGrid } from '@mui/x-data-grid';
+
+const columns = [
+  { field: 'tiket_id', headerName: 'Ticket#', width: 90 },
+  { field: 'Initiative', headerName: 'Initiative', width: 100 },
+  { field: 'decsription', headerName: 'Description', width: 200 },
+  { field: 'submit_date', headerName: 'Submit Date', width: 90 },
+  { field: 'owner', headerName: 'Owner', width: 90 },
+  {
+    field: 'ice_score',
+    headerName: 'I.C.E. Score',
+    type: 'number',
+    width: 90,
+  },
+  {
+    field: 'priority',
+    headerName: 'Priority',
+    width: 90,
+  }
+];
+
+const rows = [
+  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
+  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
+  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
+  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
+  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
+  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+];
+
 
 const Styles = styled.div`
   .d-inline mx-2 {
@@ -53,7 +86,7 @@ function Dashboard() {
         </div>
       </div>
 
-      <Dropdown className="d-inline mx-2">
+      {/* <Dropdown className="d-inline mx-2">
         <Dropdown.Toggle variant="secondary" id="dropdown-autoclose-true">
           Season
         </Dropdown.Toggle>
@@ -64,9 +97,9 @@ function Dashboard() {
           <Dropdown.Item href="#">Autumn</Dropdown.Item>
           <Dropdown.Item href="#">Winter</Dropdown.Item>
         </Dropdown.Menu>
-      </Dropdown>
+      </Dropdown> */}
 
-      <Dropdown className="d-inline mx-2" autoClose="inside">
+      {/* <Dropdown className="d-inline mx-2" autoClose="inside">
         <Dropdown.Toggle variant="secondary" id="dropdown-autoclose-inside">
           ICE Score MIn
         </Dropdown.Toggle>
@@ -92,7 +125,17 @@ function Dashboard() {
           <Dropdown.Item href="#">27</Dropdown.Item>
           <Dropdown.Item href="#">26</Dropdown.Item>
         </Dropdown.Menu>
-      </Dropdown>
+      </Dropdown> */}
+
+<div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+      />
+    </div>
 
       <Table responsive striped hover>
         <thead>
@@ -110,7 +153,7 @@ function Dashboard() {
           {InitiativesMockUp.map((initiative, i) => {
             return (
               <tr key={i}>
-                <td>{initiative.ticket_id}</td>
+                <td>{initiative.id}</td>
                 <td>{initiative.initiative}</td>
                 <td>{initiative.description}</td>
                 <td>{initiative.submit_date}</td>
@@ -132,7 +175,7 @@ function Dashboard() {
           })}
       </div>
 
-      <div className="pagination">
+      {/* <div className="pagination">
         <a href="#">&laquo;</a>
         <a href="#">1</a>
         <a className="active" href="#">
@@ -143,7 +186,7 @@ function Dashboard() {
         <a href="#">5</a>
         <a href="#">6</a>
         <a href="#">&raquo;</a>
-      </div>
+      </div> */}
 
       {/* let active = 2;
 let items = [];

@@ -19,8 +19,9 @@ function App() {
         <Router>
           <Routes>
             <Route exact path="/" element={<Dashboard />} />
+            <Route path="/reports" element={<div>Reports</div>} />
             <Route path="/signup" element={<SignUp />} />
-            <Route element={<NoMatch />} />
+            <Route path="*" element={<NoMatch />} />
           </Routes>
         </Router>
         <div className="footer">
