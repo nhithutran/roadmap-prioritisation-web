@@ -5,22 +5,23 @@ import { Table } from "react-bootstrap";
 import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
-  { field: 'tiket_id', headerName: 'Ticket#', width: 90 },
-  { field: 'Initiative', headerName: 'Initiative', width: 100 },
-  { field: 'decsription', headerName: 'Description', width: 200 },
-  { field: 'submit_date', headerName: 'Submit Date', width: 90 },
-  { field: 'owner', headerName: 'Owner', width: 90 },
+  { field: 'id', headerName: 'Ticket#', width: 70 },
+  { field: 'initiative', headerName: 'Initiative', width: 130 },
+  { field: 'description', headerName: 'Description', width: 400 },
+  {
+    field: 'submit_date',
+    headerName: 'Submit Date',
+    type: 'Date',
+    width: 100,
+  },
+  { field: 'owner', headerName: 'Owner', width: 160 },
   {
     field: 'ice_score',
-    headerName: 'I.C.E. Score',
-    type: 'number',
-    width: 90,
+    headerName: 'I.C.E. score',
+    type: 'Number',
+    width:100,
   },
-  {
-    field: 'priority',
-    headerName: 'Priority',
-    width: 90,
-  }
+  
 ];
 
 const rows = [
@@ -34,7 +35,6 @@ const rows = [
   { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
-
 
 const Styles = styled.div`
   .d-inline mx-2 {
@@ -86,6 +86,7 @@ function Dashboard() {
         </div>
       </div>
 
+      
       {/* <Dropdown className="d-inline mx-2">
         <Dropdown.Toggle variant="secondary" id="dropdown-autoclose-true">
           Season
@@ -131,8 +132,8 @@ function Dashboard() {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        pageSize={10}
+        rowsPerPageOptions={[]}
         checkboxSelection
       />
     </div>
@@ -174,29 +175,6 @@ function Dashboard() {
             );
           })}
       </div>
-
-      {/* <div className="pagination">
-        <a href="#">&laquo;</a>
-        <a href="#">1</a>
-        <a className="active" href="#">
-          2
-        </a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
-      </div> */}
-
-      {/* let active = 2;
-let items = [];
-for (let number = 1; number <= 5; number++) {
-  items.push(
-    <Pagination.Item key={number} active={number === active}>
-      {number}
-    </Pagination.Item>,
-  );
-} */}
     </Styles>
   );
 }

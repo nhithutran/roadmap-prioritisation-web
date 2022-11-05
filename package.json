@@ -23,6 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "test-cc": "jest --coverage",
+    "test-watch": "jest --watchAll",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
