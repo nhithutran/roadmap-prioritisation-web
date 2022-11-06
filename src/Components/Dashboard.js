@@ -5,35 +5,56 @@ import { Table } from "react-bootstrap";
 import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
-  { field: 'id', headerName: 'Ticket#', width: 70 },
-  { field: 'initiative', headerName: 'Initiative', width: 130 },
-  { field: 'description', headerName: 'Description', width: 400 },
+  { field: 'id', headerName: 'Ticket#', width: 80 },
+  { field: 'initiative', headerName: 'Initiative', width: 200 },
+  { field: 'description', headerName: 'Description', width: 500 },
   {
     field: 'submit_date',
     headerName: 'Submit date',
     type: 'date',
     width: 100,
   },
-  { field: 'owner', headerName: 'Owner', width: 160 },
+  { field: 'owner', headerName: 'Owner', width: 150 },
   {
     field: 'ice_score',
     headerName: 'I.C.E. score',
     type: 'number',
     width:100,
   },
-  
+  { field: 'priority', 
+    headerName: 'Priority',
+    type: 'number',
+    width: 80 },
 ];
 
 const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  { 
+  id: 'TSM-895', 
+  initiative: 'Update sales page.',
+  description: 'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  submit_date: '03-11-2022',
+  owner: 'Spock Kor',
+  ice_score: '16',
+  priority: '3'
+  },
+  {
+  id: 'TSM-890', 
+  initiative: 'User sign up page.',
+  description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  submit_date: '03-11-2022',
+  owner: 'Paul Smith',
+  ice_score: '18',
+  priority: ''
+  },
+  {
+  id: 'TSM-885', 
+  initiative: 'Dashboard Page design.',
+  description: 'Ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  submit_date: '02-11-2022',
+  owner: 'Matt Black ',
+  ice_score: '24',
+  priority: '1'
+  },
 ];
 
 const Styles = styled.div`
@@ -138,7 +159,7 @@ function Dashboard() {
       />
     </div>
 
-      <Table responsive striped hover>
+      {/* <Table responsive striped hover>
         <thead>
           <tr>
             <th>Ticket</th>
@@ -154,7 +175,7 @@ function Dashboard() {
           {InitiativesMockUp.map((initiative, i) => {
             return (
               <tr key={i}>
-                <td>{initiative.id}</td>
+                <td>{initiative.ticket_id}</td>
                 <td>{initiative.initiative}</td>
                 <td>{initiative.description}</td>
                 <td>{initiative.submit_date}</td>
@@ -164,7 +185,7 @@ function Dashboard() {
             );
           })}
         </tbody>
-      </Table>
+      </Table> */}
 
       <div className="initative-table">
         {InitiativesMockUp &&
