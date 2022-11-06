@@ -10,15 +10,15 @@ const columns = [
   { field: 'description', headerName: 'Description', width: 400 },
   {
     field: 'submit_date',
-    headerName: 'Submit Date',
-    type: 'Date',
+    headerName: 'Submit date',
+    type: 'date',
     width: 100,
   },
   { field: 'owner', headerName: 'Owner', width: 160 },
   {
     field: 'ice_score',
     headerName: 'I.C.E. score',
-    type: 'Number',
+    type: 'number',
     width:100,
   },
   
