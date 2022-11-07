@@ -1,5 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import axios from "../../config/api";
+const REGISTER_URL = "api/v1/auth/register";
+
 import {
   Alert,
   Button,
@@ -40,8 +44,18 @@ const SignUp = () => {
   const { firstName, lastName, email, password, confirmPassword } = formFields;
 
   const [alertPassword, setAlertPassword] = useState(false);
-  const [duplicateEmail, setDuplicateEmail] = useState(false);
+  const [alertError, setAlertError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (password != confirmPassword || password.length < 6) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
+  }, [password, confirmPassword]);
   /***** Handler *****/
   const handleFieldsChange = (event) => {
     const { name, value } = event.target;
@@ -50,15 +64,26 @@ const SignUp = () => {
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
-
-    if (password != confirmPassword || password.length < 6) {
-      setAlertPassword(true);
-      event.stopPropagation();
-    }
-
-    await signUp(firstName, lastName, email, password);
-    if (signUpError) {
-      setDuplicateEmail(true);
+    setIsLoading(true);
+    try {
+      const response = await axios.post(
+        REGISTER_URL,
+        JSON.stringify({ firstName, lastName, email, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: false,
+        }
+      );
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(true);
+      if (error.code === "ERR_NETWORK") {
+        setErrorMessage("Can not connect to server");
+        setAlertError(true);
+      } else if (error?.response?.status === 409) {
+        setErrorMessage("Email already in use");
+        setAlertError(true);
+      }
     }
   };
   /***** End Handler *****/
@@ -148,28 +173,16 @@ const SignUp = () => {
               Sign Up
             </Button>
             <Row>
-              {alertPassword && (
+              {alertError && (
                 <Alert
                   variant="danger"
                   onClose={() => {
-                    setAlertPassword(false);
+                    setAlertError(false);
+                    setIsLoading(false);
                   }}
                   dismissible
                 >
-                  <Alert.Heading>
-                    Passwords must match and more than 6 characters long
-                  </Alert.Heading>
-                </Alert>
-              )}
-              {duplicateEmail && (
-                <Alert
-                  variant="danger"
-                  onClose={() => {
-                    setDuplicateEmail(false);
-                  }}
-                  dismissible
-                >
-                  <Alert.Heading>Email already registered</Alert.Heading>
+                  <Alert.Heading>{errorMessage}</Alert.Heading>
                 </Alert>
               )}
             </Row>

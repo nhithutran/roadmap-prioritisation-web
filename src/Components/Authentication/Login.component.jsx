@@ -64,7 +64,6 @@ const Login = () => {
           withCredentials: false,
         }
       );
-      console.log(JSON.stringify(response?.data));
       const token = response?.data.token;
       const approved = response?.data.approved;
       setAuth({ email, token, approved });
@@ -76,7 +75,7 @@ const Login = () => {
       } else if (error.response.status === 500) {
         setErrorMessage("Not Authorised");
       }
-      console.log(error);
+
       setErrorAlert(true);
       setFormFields(defaultFormFields);
     }

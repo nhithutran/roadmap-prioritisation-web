@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     const user = localStorage.getItem("user");
-    console.log(user);
+
     if (user != undefined) {
       const userJson = JSON.parse(user);
       setAuth(userJson);
