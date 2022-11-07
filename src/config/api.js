@@ -1,12 +1,12 @@
-// import axios from 'axios';
+import axios from "axios";
 
-// //Define an API
-// const api = axios.create({
-//     baseURL: 'http://localhost:3000'
-// });
+//Define an API
+const api = axios.create({
+    baseURL: 'http://localhost:4000'
+});
 
-// export const getInitiatives = async () => {
-//     const response = await api.get('/allInitiatives')
-//     return response.data
-// }
+export const getInitiatives = async () => {
+    const response = await axios.get('http://localhost:4000/api/v1/initiatives/')
+    return response.data
+}
 
