@@ -4,6 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState } from "react";
 import { getInitiatives } from '../config/api';
 import initiatives from "../initiativesList.json"
+import { render } from "@testing-library/react";
 
 const Styles = styled.div`
   .d-inline mx-2 {
@@ -40,7 +41,6 @@ const Styles = styled.div`
 `;
 
 const columns = [
-  { field: '_id', headerName: 'Object_id', width: 400 },
   { field: 'ticket_id', headerName: 'Ticket#', width: 80 },
   { field: 'initiative', headerName: 'Initiative', width: 200 },
   { field: 'description', headerName: 'Description', width: 500 },
@@ -66,6 +66,7 @@ const columns = [
 
 const rows = initiatives
 
+// fetching data from MongoDB initiative table and setData to res.data so it can be rendered
 function Dashboard() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState();
@@ -101,13 +102,13 @@ function Dashboard() {
             placeholder="Search.."
             onChange={(e) => setQuery(e.target.value)}
           ></input>
-          {/* <button type="submit" className="searchButton">
-            <img src="https://img.icons8.com/ios-glyphs/20/000000/search--v1.png" />
-          </button> */}
         </div>
       </div>
 
       <div style={{ height: 400, width: '100%' }}>
+        {!data || data.length === 0 ? (
+          <p>No data can be found.</p>
+        ): (
         <DataGrid
           rows={data}
           getRowId={((obj) => obj._id)}
@@ -116,6 +117,7 @@ function Dashboard() {
           rowsPerPageOptions={[20]}
           checkboxSelection
         />
+        )}
       </div>
     </Styles>
   );
