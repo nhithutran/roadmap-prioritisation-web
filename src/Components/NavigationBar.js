@@ -1,6 +1,7 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Styles = styled.div`
   .navbar {
@@ -31,13 +32,13 @@ const NavigationBar = () => (
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          <Nav.Link href="/">Dashboard</Nav.Link>
-          <Nav.Link href="/estimation">Estimation</Nav.Link>
-          <Nav.Link href="/roadmap">Roadmap</Nav.Link>
-          <Nav.Link href="/reports">Reports</Nav.Link>
-          <Nav.Link href="/logout">
+          <Link to="/">Dashboard</Link>
+          <Link to="estimation">Estimation</Link>
+          <Link to="roadmap">Roadmap</Link>
+          <Link to="reports">Reports</Link>
+          <Link to="logout">
             <button className="logout-button">Log Out</button>
-          </Nav.Link>
+          </Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

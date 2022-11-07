@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import { getInitiatives } from '../config/api';
-import initiatives from "../initiativesList.json"
+import { getInitiatives } from "../config/api";
+import initiatives from "../initiativesList.json";
 
 const Styles = styled.div`
   .d-inline mx-2 {
@@ -40,31 +40,27 @@ const Styles = styled.div`
 `;
 
 const columns = [
-  { field: '_id', headerName: 'Object_id', width: 400 },
-  { field: 'ticket_id', headerName: 'Ticket#', width: 80 },
-  { field: 'initiative', headerName: 'Initiative', width: 200 },
-  { field: 'description', headerName: 'Description', width: 500 },
+  { field: "_id", headerName: "Object_id", width: 50 },
+  { field: "ticket_id", headerName: "Ticket#", width: 80 },
+  { field: "initiative", headerName: "Initiative", width: 200 },
+  { field: "description", headerName: "Description", width: 500 },
   {
-    field: 'submit_date',
-    headerName: 'Submit date',
-    type: 'date',
+    field: "submit_date",
+    headerName: "Submit date",
+    type: "date",
     width: 100,
   },
-  { field: 'owner', headerName: 'Owner', width: 150 },
+  { field: "owner", headerName: "Owner", width: 150 },
   {
-    field: 'ice_score',
-    headerName: 'I.C.E. score',
-    type: 'number',
-    width:100,
+    field: "ice_score",
+    headerName: "I.C.E. score",
+    type: "number",
+    width: 100,
   },
-  { field: 'priority', 
-    headerName: 'Priority',
-    type: 'number',
-    width: 80 },
+  { field: "priority", headerName: "Priority", type: "number", width: 80 },
 ];
 
-
-const rows = initiatives
+const rows = initiatives;
 
 function Dashboard() {
   const [query, setQuery] = useState("");
@@ -73,15 +69,13 @@ function Dashboard() {
   useEffect(() => {
     const fetchinitiatives = async () => {
       const res = await getInitiatives();
-      const resData = res.data
+      const resData = res.data;
       setData(resData);
-      console.log(res.data);
     };
-  
-    fetchinitiatives()
-  },[]);
+    fetchinitiatives();
+  }, []);
 
-  // For search query 
+  // For search query
   // useEffect(() => {
   //   const fetchinitiatives = async () => {
   //     const res = await axios.get(`http://localhost:4000=query=${query}`)
@@ -107,15 +101,19 @@ function Dashboard() {
         </div>
       </div>
 
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid
-          rows={data}
-          getRowId={((obj) => obj._id)}
-          columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[20]}
-          checkboxSelection
-        />
+      <div style={{ height: 400, width: "100%" }}>
+        {!data || data.length === 0 ? (
+          <p>No data found</p>
+        ) : (
+          <DataGrid
+            rows={data}
+            getRowId={(obj) => obj.ticket_id}
+            columns={columns}
+            pageSize={10}
+            rowsPerPageOptions={[20]}
+            checkboxSelection
+          />
+        )}
       </div>
     </Styles>
   );
