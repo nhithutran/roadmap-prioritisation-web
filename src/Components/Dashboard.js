@@ -112,6 +112,7 @@ function Dashboard() {
       </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       <div style={{ height: 400, width: "100%" }}>
         {!data || data.length === 0 ? (
           <p>No data found</p>
@@ -126,6 +127,10 @@ function Dashboard() {
           />
 =======
       <div style={{ height: 400, width: '100%' }}>
+=======
+      <div style={{ height: 650, width: '100%' }}>
+        {/* // define length to fix TypeError when reading property */}
+>>>>>>> 89953fe (Adjusted height of table and hide object id)
         {!data || data.length === 0 ? (
           <p>No data can be found.</p>
         ): (
@@ -134,7 +139,7 @@ function Dashboard() {
           getRowId={((obj) => obj._id)}
           columns={columns}
           pageSize={10}
-          rowsPerPageOptions={[20]}
+          rowsPerPageOptions={[15]}
           checkboxSelection
         />
 >>>>>>> 7a791f6 (Anthony helped to fix initiatives table)
