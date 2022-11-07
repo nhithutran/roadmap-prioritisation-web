@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState } from "react";
 import { getInitiatives } from '../config/api';
-import { render } from "@testing-library/react";
 
 const Styles = styled.div`
   .d-inline mx-2 {
