@@ -1,8 +1,12 @@
 import React from "react";
 import { useState, useContext } from "react";
-import AuthContext from "../../context/Auth.context";
+import AuthContext from "../../context/auth.context";
+
+import axios from "../../config/api";
+const LOGIN_URL = "api/v1/auth/login";
 
 import {
+  Alert,
   Button,
   Col,
   Container,
@@ -38,6 +42,10 @@ const Login = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
+  const [errorAlert, setErrorAlert] = useState(false);
+
   /***** Handler *****/
   const handleFieldsChange = (event) => {
     const { name, value } = event.target;
@@ -46,14 +54,39 @@ const Login = () => {
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
-    setAuth({ email, password });
+    setButtonDisabled(true);
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ email, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: false,
+        }
+      );
+      console.log(JSON.stringify(response?.data));
+      const token = response?.data.token;
+      const approved = response?.data.approved;
+      setAuth({ email, token, approved });
+      localStorage.setItem("user", JSON.stringify(auth));
+      setButtonDisabled(false);
+    } catch (error) {
+      if (error.response.status === 401) {
+        setErrorMessage("Wrong Email or Password");
+      } else if (error.response.status === 500) {
+        setErrorMessage("Not Authorised");
+      }
+      console.log(error);
+      setErrorAlert(true);
+      setFormFields(defaultFormFields);
+    }
   };
 
   return (
     <Container>
       <Row style={mainRowStyle}>
         <Col xs={6} style={mainColStyle}>
-          <h1>Sign Up</h1>
+          <h1>Login</h1>
         </Col>
         <Col xs={6} style={mainColStyle}>
           <Row className="mb-3">
@@ -86,10 +119,22 @@ const Login = () => {
                 />
               </FormGroup>
             </Row>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" disabled={buttonDisabled} type="submit">
               Login
             </Button>
           </Form>
+          {errorAlert && (
+            <Alert
+              variant="danger"
+              onClose={() => {
+                setErrorAlert(false);
+                setButtonDisabled(false);
+              }}
+              dismissible
+            >
+              <p>{errorMessage}</p>
+            </Alert>
+          )}
         </Col>
       </Row>
     </Container>

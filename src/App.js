@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import { useEffect, useContext, useState } from "react";
+import AuthContext from "./context/auth.context";
 // Pages
 import Layout from "./components/Layout";
 import Dashboard from "./components/Dashboard";
@@ -10,6 +11,16 @@ import SignUp from "./components/Authentication/SignUp.component";
 import Login from "./components/Authentication/Login.component";
 
 function App() {
+  const { auth, setAuth } = useContext(AuthContext);
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    console.log(user);
+    if (user != undefined) {
+      const userJson = JSON.parse(user);
+      setAuth(userJson);
+    }
+  }, []);
   return (
     <React.Fragment>
       <Router>
