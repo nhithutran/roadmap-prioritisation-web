@@ -105,7 +105,8 @@ function Dashboard() {
         </div>
       </div>
 
-      <div style={{ height: 400, width: '100%' }}>
+      <div style={{ height: 650, width: '100%' }}>
+        {/* // define length to fix TypeError when reading property */}
         {!data || data.length === 0 ? (
           <p>No data can be found.</p>
         ): (
@@ -114,7 +115,7 @@ function Dashboard() {
           getRowId={((obj) => obj._id)}
           columns={columns}
           pageSize={10}
-          rowsPerPageOptions={[20]}
+          rowsPerPageOptions={[15]}
           checkboxSelection
         />
         )}
