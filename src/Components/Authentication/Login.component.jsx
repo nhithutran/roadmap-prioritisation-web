@@ -1,5 +1,6 @@
-import React from 'react'
-import {useState} from 'react'
+import React from "react";
+import { useState, useContext } from "react";
+import AuthContext from "../../context/Auth.context";
 
 import {
   Button,
@@ -12,8 +13,7 @@ import {
   Row,
 } from "react-bootstrap";
 
-const Login = ()=>{
-
+const Login = () => {
   const mainRowStyle = {
     height: "100vh",
   };
@@ -33,6 +33,8 @@ const Login = ()=>{
     password: "",
   };
 
+  const { auth, setAuth } = useContext(AuthContext);
+
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
@@ -44,8 +46,7 @@ const Login = ()=>{
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
-
-   
+    setAuth({ email, password });
   };
 
   return (
@@ -86,13 +87,13 @@ const Login = ()=>{
               </FormGroup>
             </Row>
             <Button variant="primary" type="submit">
-              Sign Up
+              Login
             </Button>
           </Form>
         </Col>
       </Row>
     </Container>
   );
-}
+};
 
-export default Login
+export default Login;

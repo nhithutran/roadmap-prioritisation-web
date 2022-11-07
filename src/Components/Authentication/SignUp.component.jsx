@@ -12,8 +12,6 @@ import {
   Row,
 } from "react-bootstrap";
 
-import { useSignUp } from "../../hooks/useSignUp";
-
 /**** Styles *****/
 const SignUp = () => {
   const mainRowStyle = {
@@ -42,9 +40,7 @@ const SignUp = () => {
   const { firstName, lastName, email, password, confirmPassword } = formFields;
 
   const [alertPassword, setAlertPassword] = useState(false);
-  const [duplicateEmail,setDuplicateEmail] = useState(false)
-
-  const { signUp,isLoading,signUpError } = useSignUp();
+  const [duplicateEmail, setDuplicateEmail] = useState(false);
 
   /***** Handler *****/
   const handleFieldsChange = (event) => {
@@ -61,7 +57,9 @@ const SignUp = () => {
     }
 
     await signUp(firstName, lastName, email, password);
-    if(signUpError){setDuplicateEmail(true)}
+    if (signUpError) {
+      setDuplicateEmail(true);
+    }
   };
   /***** End Handler *****/
 
@@ -163,7 +161,7 @@ const SignUp = () => {
                   </Alert.Heading>
                 </Alert>
               )}
-               {duplicateEmail && (
+              {duplicateEmail && (
                 <Alert
                   variant="danger"
                   onClose={() => {
@@ -171,9 +169,7 @@ const SignUp = () => {
                   }}
                   dismissible
                 >
-                  <Alert.Heading>
-                    Email already registered
-                  </Alert.Heading>
+                  <Alert.Heading>Email already registered</Alert.Heading>
                 </Alert>
               )}
             </Row>
