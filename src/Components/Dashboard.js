@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState } from "react";
 import { getInitiatives } from '../config/api';
-import initiatives from "../initiativesList.json"
 import { render } from "@testing-library/react";
 
 const Styles = styled.div`
@@ -64,9 +63,7 @@ const columns = [
 ];
 
 
-const rows = initiatives
-
-// fetching data from MongoDB initiative table and setData to res.data so it can be rendered
+// fetching and storing data from MongoDB initiative table. setData to res.data so it can be rendered.
 function Dashboard() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState();
@@ -76,7 +73,6 @@ function Dashboard() {
       const res = await getInitiatives();
       const resData = res.data
       setData(resData);
-      console.log(res.data);
     };
   
     fetchinitiatives()
