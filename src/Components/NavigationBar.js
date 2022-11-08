@@ -36,6 +36,7 @@ const NavigationBar = () => (
           <Link to="estimation">Estimation</Link>
           <Link to="roadmap">Roadmap</Link>
           <Link to="reports">Reports</Link>
+          <Link to="users">Users</Link>
           <Link to="logout">
             <button className="logout-button">Log Out</button>
           </Link>
