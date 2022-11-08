@@ -15,28 +15,6 @@ const Styles = styled.div`
     display: flex;
     padding: 20px;
   }
-
-  .pagination {
-    display: flex;
-    padding: 20px;
-    align-items: right;
-  }
-
-  .pagination a {
-    color: black;
-    // float: center;
-    padding: 8px 16px;
-    text-decoration: none;
-  }
-
-  .pagination a.active {
-    background-color: #7a5cfa;
-    color: white;
-  }
-
-  .pagination a:hover:not(.active) {
-    background-color: #ddd;
-  }
 `;
 
 const columns = [
@@ -62,8 +40,7 @@ const columns = [
     width: 80 },
 ];
 
-
-// fetching and storing data from MongoDB initiative table. setData to res.data so it can be rendered.
+// Fetch and store data from MongoDB initiative table. setData to res.data so it can be rendered.
 function Dashboard() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
@@ -79,13 +56,9 @@ function Dashboard() {
   },[]);
  
   console.log(query, "before")
+  // find out if ticket_id includes some text
   const displayData = data.filter(row => row.ticket_id.includes(query))
   console.log(query, "after")
-  //const result = words.filter(word => word.length > 6);
-     // find out if ticket_id includes some text
-    // Ignore search for the 1st 2 items to reduce calls
-  //   if(query.length === 0 || query.length >2) fetchinitiatives()
-  // },[query]);
 
   return (
     <Styles>
@@ -109,12 +82,6 @@ function Dashboard() {
     
 
       <div style={{ height: 650, width: '100%' }}>
-        {/* // define length to fix TypeError when reading property */}
-        {/* {!data || data.length === 0 ? (
-          <p>No data can be found.</p>
-        ): ( */}
-
-
         <DataGrid
           rows={displayData}
           getRowId={((obj) => obj._id)}
@@ -125,6 +92,8 @@ function Dashboard() {
         />
         {/* )} */}
       </div>
+
+      <button className="addToEstimate">Add to Estimation</button>
     </Styles>
   );
 }

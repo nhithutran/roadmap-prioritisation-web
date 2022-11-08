@@ -1,9 +1,9 @@
 import React from "react";
 
-const NoMatch = () => {
+const NotFound = () => {
   return (
-    <div className='noMatch'>
-      <div className='notMatch-text'>
+    <div className='notFound'>
+      <div className='notFound-text'>
         <h2>Sorry! The page you’re looking for cannot be found.</h2>
      </div>
 
@@ -16,4 +16,4 @@ const NoMatch = () => {
    
 
 
-export default NoMatch;
+export default NotFound;

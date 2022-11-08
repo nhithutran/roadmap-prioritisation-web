@@ -1,6 +1,7 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
+import Login from "../components/Authentication/Login.component";
 
 const Styles = styled.div`
   .navbar {
@@ -11,11 +12,18 @@ const Styles = styled.div`
   .navbar-nav,
   nav-link {
     color: #white;
-
     &:hover {
       color: black;
     }
   }
+
+.logout-button {
+    display: flex-end;
+    justify-content: space-between;
+    float: right;
+    // background-colour: 67748E;
+  }
+
 `;
 
 const NavigationBar = () => (
@@ -33,8 +41,6 @@ const NavigationBar = () => (
         <Nav className="ml-auto">
           <Nav.Link href="/">Dashboard</Nav.Link>
           <Nav.Link href="/estimation">Estimation</Nav.Link>
-          <Nav.Link href="/roadmap">Roadmap</Nav.Link>
-          <Nav.Link href="/reports">Reports</Nav.Link>
           <Nav.Link href="/logout">
             <button className="logout-button">Log Out</button>
           </Nav.Link>
