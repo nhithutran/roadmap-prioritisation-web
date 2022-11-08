@@ -2,8 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { getInitiatives } from "../config/api";
 import initiatives from "../initiativesList.json";
+=======
+import { getInitiatives } from '../config/api';
+import initiatives from "../initiativesList.json"
+import { render } from "@testing-library/react";
+>>>>>>> 7a791f6 (Anthony helped to fix initiatives table)
 
 const Styles = styled.div`
   .d-inline mx-2 {
@@ -40,10 +46,16 @@ const Styles = styled.div`
 `;
 
 const columns = [
+<<<<<<< HEAD
   { field: "_id", headerName: "Object_id", width: 50 },
   { field: "ticket_id", headerName: "Ticket#", width: 80 },
   { field: "initiative", headerName: "Initiative", width: 200 },
   { field: "description", headerName: "Description", width: 500 },
+=======
+  { field: 'ticket_id', headerName: 'Ticket#', width: 80 },
+  { field: 'initiative', headerName: 'Initiative', width: 200 },
+  { field: 'description', headerName: 'Description', width: 500 },
+>>>>>>> 7a791f6 (Anthony helped to fix initiatives table)
   {
     field: "submit_date",
     headerName: "Submit date",
@@ -62,6 +74,7 @@ const columns = [
 
 const rows = initiatives;
 
+// fetching data from MongoDB initiative table and setData to res.data so it can be rendered
 function Dashboard() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState();
@@ -95,12 +108,10 @@ function Dashboard() {
             placeholder="Search.."
             onChange={(e) => setQuery(e.target.value)}
           ></input>
-          {/* <button type="submit" className="searchButton">
-            <img src="https://img.icons8.com/ios-glyphs/20/000000/search--v1.png" />
-          </button> */}
         </div>
       </div>
 
+<<<<<<< HEAD
       <div style={{ height: 400, width: "100%" }}>
         {!data || data.length === 0 ? (
           <p>No data found</p>
@@ -113,6 +124,20 @@ function Dashboard() {
             rowsPerPageOptions={[20]}
             checkboxSelection
           />
+=======
+      <div style={{ height: 400, width: '100%' }}>
+        {!data || data.length === 0 ? (
+          <p>No data can be found.</p>
+        ): (
+        <DataGrid
+          rows={data}
+          getRowId={((obj) => obj._id)}
+          columns={columns}
+          pageSize={10}
+          rowsPerPageOptions={[20]}
+          checkboxSelection
+        />
+>>>>>>> 7a791f6 (Anthony helped to fix initiatives table)
         )}
       </div>
     </Styles>
