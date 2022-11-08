@@ -65,25 +65,24 @@ const columns = [
 // fetching and storing data from MongoDB initiative table. setData to res.data so it can be rendered.
 function Dashboard() {
   const [query, setQuery] = useState("");
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchinitiatives = async () => {
       const res = await getInitiatives();
       const resData = res.data
-      setData(resData);
+      setData(resData|| []); // Ensure that data not null
     };
   
     fetchinitiatives()
   },[]);
-
-  // For search query 
-  // useEffect(() => {
-  //   const fetchinitiatives = async () => {
-  //     const res = await axios.get(`http://localhost:4000=query=${query}`)
-  //     setData(res.data);
-  //   };
-  //   // Ignore search for the 1st 2 items to reduce calls
+ 
+  console.log(query, "before")
+  const displayData = data.filter(row => row.ticket_id.includes(query))
+  console.log(query, "after")
+  //const result = words.filter(word => word.length > 6);
+     // find out if ticket_id includes some text
+    // Ignore search for the 1st 2 items to reduce calls
   //   if(query.length === 0 || query.length >2) fetchinitiatives()
   // },[query]);
 
@@ -100,20 +99,29 @@ function Dashboard() {
         </div>
       </div>
 
+      {/* <button
+        onClick={(e) => setQuery(e.target.value)}
+      // >Go</button> */}
+
+      {query}    
+    
+
       <div style={{ height: 650, width: '100%' }}>
         {/* // define length to fix TypeError when reading property */}
-        {!data || data.length === 0 ? (
+        {/* {!data || data.length === 0 ? (
           <p>No data can be found.</p>
-        ): (
+        ): ( */}
+
+
         <DataGrid
-          rows={data}
+          rows={displayData}
           getRowId={((obj) => obj._id)}
           columns={columns}
           pageSize={10}
           rowsPerPageOptions={[15]}
           checkboxSelection
         />
-        )}
+        {/* )} */}
       </div>
     </Styles>
   );
