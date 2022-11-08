@@ -15,7 +15,6 @@ function App() {
   return (
     <React.Fragment>
       <NavigationBar />
-      <InitiativeTopPanel />
       <Layout>
         <Router>
           <Routes>

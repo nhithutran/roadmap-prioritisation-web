@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState } from "react";
 import { getInitiatives } from '../config/api';
+import InitiativeTopPanel from "./InitiativeTopPanel";
 
 const Styles = styled.div`
   .d-inline mx-2 {
@@ -88,6 +89,7 @@ function Dashboard() {
 
   return (
     <Styles>
+      <InitiativeTopPanel />
       <div className="searchBar">
         <div className="textInput">
           <input

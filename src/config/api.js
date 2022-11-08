@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 //Define an API
 const api = axios.create({
     baseURL: 'http://localhost:4000'
@@ -10,3 +11,4 @@ export const getInitiatives = async () => {
     return response.data
 }
 
+export default api;
