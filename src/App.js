@@ -11,6 +11,7 @@ import SignUp from "./components/Authentication/SignUp.component";
 import Login from "./components/Authentication/Login.component";
 import NotAuthorized from "./components/Authentication/NotAuthorized.component";
 import EmailRecovery from "./components/Authentication/EmailRecovery.component";
+import Users from "./components/Users/Users.components";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -31,6 +32,7 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="estimation" element={<div>Estimation</div>} />
             <Route path="roadmap" element={<div>Roadmap</div>} />
+            <Route path="users" element={<Users />} />
             <Route path="*" element={<NoMatch />} />
           </Route>
           <Route path="signup" element={<SignUp />} />
