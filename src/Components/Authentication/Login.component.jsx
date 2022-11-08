@@ -122,6 +122,7 @@ const Login = () => {
               Login
             </Button>
           </Form>
+          <a href={"forgot-password"}>Forgot Password</a>
           {errorAlert && (
             <Alert
               variant="danger"

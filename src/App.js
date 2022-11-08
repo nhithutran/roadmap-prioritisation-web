@@ -9,6 +9,8 @@ import Dashboard from "./components/Dashboard";
 import NoMatch from "./components/NoMatch";
 import SignUp from "./components/Authentication/SignUp.component";
 import Login from "./components/Authentication/Login.component";
+import NotAuthorized from "./components/Authentication/NotAuthorized.component";
+import EmailRecovery from "./components/Authentication/EmailRecovery.component";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -33,6 +35,8 @@ function App() {
           </Route>
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />
+          <Route path="not-authorized" element={<NotAuthorized />} />
+          <Route path="forgot-password" element={<EmailRecovery />} />
         </Routes>
       </Router>
     </React.Fragment>
