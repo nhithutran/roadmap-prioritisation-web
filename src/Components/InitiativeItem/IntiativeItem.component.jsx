@@ -16,6 +16,10 @@ const INITIATIVE_URL = "/api/v1/initiatives/";
 const defaultInputFields = {
   _id: "",
   ticke_id: "",
+  initiative: "",
+  description: "",
+  submit_date: "",
+  owner: "",
   impact: "",
   confidence: "",
   effort: "",
@@ -28,11 +32,15 @@ const defaultInputFields = {
 const InitiativeItem = () => {
   let params = useParams();
 
-  const [initiative, setInitiative] = useState(defaultInputFields);
+  const [initiativeData, setInitiativeData] = useState(defaultInputFields);
 
   const {
     _id,
     ticket_id,
+    initiative,
+    description,
+    submit_date,
+    owner,
     impact,
     confidence,
     effort,
@@ -42,7 +50,7 @@ const InitiativeItem = () => {
     target_launch,
     launchDate,
     comment,
-  } = initiative;
+  } = initiativeData;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,7 +58,7 @@ const InitiativeItem = () => {
       try {
         const response = await axios.get(fetchInitiativeURL);
         const responseInitiative = response.data.data;
-        setInitiative(responseInitiative);
+        setInitiativeData(responseInitiative);
       } catch (err) {
         console.log(err);
       }
@@ -58,15 +66,31 @@ const InitiativeItem = () => {
 
     fetchData();
   }, []);
-  console.log(initiative);
+
   const handleOnChange = (event) => {
     console.log(event.target.name);
     console.log(event.target.value);
   };
+
+  console.log(initiativeData);
   return (
     <Container>
       <h1>Initiatives</h1>
-      <h2>Table goes here</h2>
+      <Row>
+        <Col xs={1}>Ticket</Col>
+        <Col xs={3}>Initiative</Col>
+        <Col xs={5}>Description</Col>
+        <Col xs={2}>Submit Date</Col>
+        <Col xs={1}> Owner</Col>
+      </Row>
+      <hr />
+      <Row>
+        <Col xs={1}>{ticket_id}</Col>
+        <Col xs={3}>{initiative}</Col>
+        <Col xs={5}>{description}</Col>
+        <Col xs={2}>{submit_date}</Col>
+        <Col xs={1}> {owner}</Col>
+      </Row>
       <hr />
       <h3> Additional Information:</h3>
       <Row className="mb-3">
