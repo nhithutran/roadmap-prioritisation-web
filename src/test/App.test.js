@@ -1,5 +1,6 @@
-import { render, screen } from "@testing-library/react";
-const { App } = require('../App')
+// import { render, screen } from "@testing-library/react";
+const App  = require('../App');
+// import {axios} from "../config/api";
 
 describe("App", () => {
   it("renders without crashing", () => {

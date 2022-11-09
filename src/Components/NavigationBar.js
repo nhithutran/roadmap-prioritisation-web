@@ -1,7 +1,7 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import Login from "../components/Authentication/Login.component";
 
 const Styles = styled.div`
   .navbar {
@@ -12,11 +12,18 @@ const Styles = styled.div`
   .navbar-nav,
   nav-link {
     color: #white;
-
     &:hover {
       color: black;
     }
   }
+
+.logout-button {
+    display: flex-end;
+    justify-content: space-between;
+    float: right;
+    // background-colour: 67748E;
+  }
+
 `;
 
 const NavigationBar = () => (
@@ -32,12 +39,9 @@ const NavigationBar = () => (
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          <Link to="/">Dashboard</Link>
-          <Link to="estimation">Estimation</Link>
-          <Link to="roadmap">Roadmap</Link>
-          <Link to="reports">Reports</Link>
-          <Link to="users">Users</Link>
-          <Link to="logout">
+          <Nav.Link href="/">Dashboard</Nav.Link>
+          <Nav.Link href="/estimation">Estimation</Nav.Link>
+          <Nav.Link href="/logout">
             <button className="logout-button">Log Out</button>
           </Link>
         </Nav>

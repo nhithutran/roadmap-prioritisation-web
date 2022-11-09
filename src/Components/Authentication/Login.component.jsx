@@ -85,7 +85,7 @@ const Login = () => {
     <Container>
       <Row style={mainRowStyle}>
         <Col xs={6} style={mainColStyle}>
-          <h1>Login</h1>
+          <h1>Log In</h1>
         </Col>
         <Col xs={6} style={mainColStyle}>
           <Row className="mb-3">
