@@ -54,11 +54,20 @@ function Dashboard() {
   
     fetchinitiatives()
   },[]);
- 
-  console.log(query, "before")
-  // find out if ticket_id includes some text
-  const displayData = data.filter(row => row.ticket_id.includes(query))
-  console.log(query, "after")
+
+  // original code
+  const displayDataX = data.filter(row => row.ticket_id.includes(query));
+
+
+  // refactored code (exact same job but in two parts)
+const hasMatch = (field, query) => {
+  return field.includes(query)
+}
+    
+const displayData = data.filter(row => {
+  return hasMatch(row.ticket_id, query) ||
+         hasMatch(row.description, query)
+})
 
   return (
     <Styles>
