@@ -56,17 +56,21 @@ function Dashboard() {
   },[]);
 
   // original code
-  const displayDataX = data.filter(row => row.ticket_id.includes(query));
+  // const displayDataX = data.filter(row => row.ticket_id.includes(query));
 
 
-  // refactored code (exact same job but in two parts)
+  // refactored code (exact same job but in two parts).  hasMatch function matches query with fields in table
 const hasMatch = (field, query) => {
-  return field.includes(query)
+  // Got TypeError: Cannot read properties of undefined (reading 'includes'). Provided fallback for fields.
+  return (field || "").includes(query.toLowerCase())
 }
-    
+
+// Query search to check against fields and not case sensitive
 const displayData = data.filter(row => {
-  return hasMatch(row.ticket_id, query) ||
-         hasMatch(row.description, query)
+  return hasMatch(row.ticket_id.toLowerCase(), query) ||
+         hasMatch(row.initiative.toLowerCase(), query) ||
+         hasMatch(row.description.toLowerCase(), query) ||
+         hasMatch(row.owner.toLowerCase(), query)
 })
 
   return (
@@ -83,13 +87,6 @@ const displayData = data.filter(row => {
         </div>
       </div>
 
-      {/* <button
-        onClick={(e) => setQuery(e.target.value)}
-      // >Go</button> */}
-
-      {query}    
-    
-
       <div style={{ height: 650, width: '100%' }}>
         <DataGrid
           rows={displayData}
@@ -99,7 +96,6 @@ const displayData = data.filter(row => {
           rowsPerPageOptions={[15]}
           checkboxSelection
         />
-        {/* )} */}
       </div>
 
       <button className="addToEstimate">Add to Estimation</button>
