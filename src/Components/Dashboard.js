@@ -18,8 +18,8 @@ const Styles = styled.div`
   }
 `;
 
-const columns = [
-  { field: 'ticket_id', headerName: 'Ticket#', width: 80 },
+const columns = [ 
+  { field: 'ticket_id', headerName: 'Ticket#', width: 80, renderCell: (obj) => <a href={`http://localhost:3000/initiatives/${obj.value}`}>{obj.value}</a> },
   { field: 'initiative', headerName: 'Initiative', width: 200 },
   { field: 'description', headerName: 'Description', width: 500 },
   {
@@ -37,6 +37,27 @@ const columns = [
   },
   { field: "priority", headerName: "Priority", type: "number", width: 80 },
 ];
+
+
+// const columns: GridColDef[] = [
+//   {
+//     field: 'date',
+//     headerName: 'Year',
+//     renderCell: (params) => (
+//       <strong>
+//         {params.value.getFullYear()}
+//         <Button
+//           variant="contained"
+//           size="small"
+//           style={{ marginLeft: 16 }}
+//           tabIndex={params.hasFocus ? 0 : -1}
+//         >
+//           Open
+//         </Button>
+//       </strong>
+//     ),
+//   },
+// ];
 
 // Fetch and store data from MongoDB initiative table. setData to res.data so it can be rendered.
 function Dashboard() {
