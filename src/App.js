@@ -13,6 +13,7 @@ import Login from "./components/Authentication/Login.component";
 import NotAuthorized from "./components/Authentication/NotAuthorized.component";
 import EmailRecovery from "./components/Authentication/EmailRecovery.component";
 import Users from "./components/Users/Users.components";
+import InitiativeItem from "./components/InitiativeItem/IntiativeItem.component";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -27,22 +28,22 @@ function App() {
   }, []);
   return (
     <React.Fragment>
-      <NavigationBar />
-      <Layout>
-        <Router>
-          <Routes>
-            <Route exact path="/" element={<Dashboard />} />
-            <Route exact path="/dashboard/:ticketId" element={<InitiativeItem />} />
-            <Route path="/estimation" element={<div>Estimation</div>} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Router>
-        <div className="footer">
-          <p>©2022, made by Anthony Chung and Nhi Tran</p>
-        </div>
-      </Layout>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="/initiatives/:id" element={<InitiativeItem />} />
+            <Route path="estimation" element={<div>Estimation</div>} />
+            <Route path="roadmap" element={<div>Roadmap</div>} />
+            <Route path="users" element={<Users />} />
+            <Route path="*" element={<NoMatch />} />
+          </Route>
+          <Route path="signup" element={<SignUp />} />
+          <Route path="login" element={<Login />} />
+          <Route path="not-authorized" element={<NotAuthorized />} />
+          <Route path="forgot-password" element={<EmailRecovery />} />
+        </Routes>
+      </Router>
     </React.Fragment>
   );
 }
