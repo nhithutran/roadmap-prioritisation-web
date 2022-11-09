@@ -1,7 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import NavigationBar from "./NavigationBar";
-import InitiativeTopPanel from "./InitiativeTopPanel";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {

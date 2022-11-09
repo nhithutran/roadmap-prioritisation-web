@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { getInitiatives } from '../config/api';
+import { Container } from "react-bootstrap";
 import InitiativeTopPanel from "./InitiativeTopPanel";
 
 const Styles = styled.div`
@@ -71,6 +72,7 @@ const displayData = data.filter(row => {
 
   return (
     <Styles>
+      <Container>
       <InitiativeTopPanel />
       <div className="searchBar">
         <div className="textInput">
@@ -92,10 +94,9 @@ const displayData = data.filter(row => {
           rowsPerPageOptions={[15]}
           checkboxSelection
         />
-        )}
       </div>
-
       <button className="addToEstimate">Add to Estimation</button>
+      </Container>
     </Styles>
   );
 }
