@@ -12,6 +12,7 @@ import Login from "./components/Authentication/Login.component";
 import NotAuthorized from "./components/Authentication/NotAuthorized.component";
 import EmailRecovery from "./components/Authentication/EmailRecovery.component";
 import Users from "./components/Users/Users.components";
+import InitiativeItem from "./components/InitiativeItem/IntiativeItem.component";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -30,6 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
+            <Route path="/initiatives/:id" element={<InitiativeItem />} />
             <Route path="estimation" element={<div>Estimation</div>} />
             <Route path="roadmap" element={<div>Roadmap</div>} />
             <Route path="users" element={<Users />} />
