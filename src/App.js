@@ -6,7 +6,7 @@ import AuthContext from "./context/auth.context";
 // Pages
 import Layout from "./components/Layout";
 import Dashboard from "./components/Dashboard";
-import InitiativeItem from "./components/InitiativeItem";
+// import InitiativeItem from "./components/InitiativeItem";
 import NotFound from "./components/NotFound";
 import SignUp from "./components/Authentication/SignUp.component";
 import Login from "./components/Authentication/Login.component";
@@ -36,7 +36,7 @@ function App() {
             <Route path="estimation" element={<div>Estimation</div>} />
             <Route path="roadmap" element={<div>Roadmap</div>} />
             <Route path="users" element={<Users />} />
-            <Route path="*" element={<NoMatch />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />

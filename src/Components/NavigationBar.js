@@ -41,9 +41,10 @@ const NavigationBar = () => (
         <Nav className="ml-auto">
           <Nav.Link href="/">Dashboard</Nav.Link>
           <Nav.Link href="/estimation">Estimation</Nav.Link>
+          <Nav.Link href="/users">Users</Nav.Link>
           <Nav.Link href="/logout">
             <button className="logout-button">Log Out</button>
-          </Link>
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

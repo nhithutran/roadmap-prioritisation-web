@@ -8,7 +8,6 @@ const Layout = () => {
   return (
     <>
       <NavigationBar />
-      <InitiativeTopPanel />
       <main>
         <Outlet />
       </main>
