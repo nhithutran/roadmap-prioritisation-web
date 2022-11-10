@@ -20,15 +20,40 @@ const defaultInputFields = {
   description: "",
   submit_date: "",
   owner: "",
-  impact: "",
-  confidence: "",
-  effort: "",
-  iceScore: 0,
+  impact: "?",
+  confidence: "?",
+  effort: "?",
   priority: "",
   target: "",
   target_launch: "",
   comment: "",
 };
+
+const impactValue = ["?", "Small", "Medium", "Large", "Xlarge"];
+
+const confidenceValue = ["?", "Small", "Medium", "Large", "Xlarge"];
+
+const effortValue = ["?", "Xlarge", "Large", "Medium", "Medium"];
+
+//inputs are in strings.
+const iceScoreCalculation = (impactVar, confidenceVar, effortVar) => {
+  console.log(impactValue);
+  console.log(confidenceValue);
+  console.log(effortValue);
+  console.log(impactVar);
+  console.log(confidenceVar);
+  console.log(effortVar);
+  const impact = impactValue.findIndex((element) => impactVar === element);
+  const confidence = confidenceValue.findIndex(
+    (element) => confidenceVar === element
+  );
+  const effort = effortValue.findIndex((element) => effortVar === element);
+  console.log(impact);
+  console.log(confidence);
+  console.log(effort);
+  return impact * confidence * effort;
+};
+
 const InitiativeItem = () => {
   let params = useParams();
 
@@ -44,13 +69,14 @@ const InitiativeItem = () => {
     impact,
     confidence,
     effort,
-    ice_score,
     priority,
     target,
     target_launch,
     launchDate,
     comment,
   } = initiativeData;
+
+  const [iceScore, setIceScore] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,11 +91,23 @@ const InitiativeItem = () => {
     };
 
     fetchData();
+    setIceScore(iceScoreCalculation(impact, confidence, effort));
   }, []);
+
+  useEffect(() => {
+    setIceScore(iceScoreCalculation(impact, confidence, effort));
+    console.log(impact);
+    console.log(confidence);
+    console.log(effort);
+  }, [impact, confidence, effort]);
 
   const handleOnChange = (event) => {
     console.log(event.target.name);
     console.log(event.target.value);
+    setInitiativeData({
+      ...initiativeData,
+      [event.target.name]: event.target.value,
+    });
   };
 
   console.log(initiativeData);
@@ -98,11 +136,9 @@ const InitiativeItem = () => {
           <FormGroup controlId="formImpact" className="mx-2">
             <FormLabel>Impact</FormLabel>
             <FormSelect name="impact" value={impact} onChange={handleOnChange}>
-              <option>xSmall</option>
-              <option>Small</option>
-              <option>Medium</option>
-              <option>Large</option>
-              <option>xLarge</option>
+              {impactValue.map((item, index) => {
+                return <option key={index}>{item}</option>;
+              })}
             </FormSelect>
           </FormGroup>
         </Col>
@@ -114,11 +150,9 @@ const InitiativeItem = () => {
               value={confidence}
               onChange={handleOnChange}
             >
-              <option>xSmall</option>
-              <option>Small</option>
-              <option>Medium</option>
-              <option>Large</option>
-              <option>xLarge</option>
+              {confidenceValue.map((item, index) => {
+                return <option key={index}>{item}</option>;
+              })}
             </FormSelect>
           </FormGroup>
         </Col>
@@ -126,11 +160,9 @@ const InitiativeItem = () => {
           <FormGroup controlId="formEffort" className="mx-2">
             <FormLabel>Effort</FormLabel>
             <FormSelect name="effort" value={effort} onChange={handleOnChange}>
-              <option>xSmall</option>
-              <option>Small</option>
-              <option>Medium</option>
-              <option>Large</option>
-              <option>xLarge</option>
+              {effortValue.map((item, index) => {
+                return <option key={index}>{item}</option>;
+              })}
             </FormSelect>
           </FormGroup>
         </Col>
@@ -141,7 +173,7 @@ const InitiativeItem = () => {
               type="text"
               name="iceScore"
               xs={3}
-              value={ice_score}
+              value={iceScore}
               disabled
             />
           </FormGroup>
