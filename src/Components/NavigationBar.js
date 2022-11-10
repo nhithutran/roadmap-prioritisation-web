@@ -42,7 +42,7 @@ const NavigationBar = () => (
           <Nav.Link href="/">Dashboard</Nav.Link>
           <Nav.Link href="/estimation">Estimation</Nav.Link>
           <Nav.Link href="/users">Users</Nav.Link>
-          <Nav.Link href="/logout">
+          <Nav.Link href="/login">
             <button className="logout-button">Log Out</button>
           </Nav.Link>
         </Nav>

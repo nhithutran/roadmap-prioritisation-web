@@ -3,8 +3,10 @@ import styled from "styled-components";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { getInitiatives } from '../config/api';
-import { Container } from "react-bootstrap";
+import { Container, Row, Button, Col, } from "react-bootstrap";
 import InitiativeTopPanel from "./InitiativeTopPanel";
+import { useParams } from "react-router-dom"
+
 
 const Styles = styled.div`
   .d-inline mx-2 {
@@ -18,10 +20,18 @@ const Styles = styled.div`
   }
 `;
 
-const columns = [
-  { field: 'ticket_id', headerName: 'Ticket#', width: 80 },
+// function getObjId() {
+//   let { Object_id } = useParams();
+// };
+
+const columns = [ 
+  { 
+    field: 'ticket_id',
+    headerName: 'Ticket#', 
+    width: 80, 
+    renderCell: (obj) => <a href={`http://localhost:3000/initiatives/${obj.id}`}>{obj.value}</a> },
   { field: 'initiative', headerName: 'Initiative', width: 200 },
-  { field: 'description', headerName: 'Description', width: 500 },
+  { field: 'description', headerName: 'Description', width: 400 },
   {
     field: "submit_date",
     headerName: "Submit date",
@@ -39,7 +49,7 @@ const columns = [
 ];
 
 // Fetch and store data from MongoDB initiative table. setData to res.data so it can be rendered.
-function Dashboard() {
+function Dashboard () {
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
 
@@ -52,17 +62,13 @@ function Dashboard() {
     fetchinitiatives();
   }, []);
 
-  // original code
-  // const displayDataX = data.filter(row => row.ticket_id.includes(query));
-
-
-  // refactored code (exact same job but in two parts).  hasMatch function matches query with fields in table
+// hasMatch function matches query with fields in table
 const hasMatch = (field, query) => {
   // Got TypeError: Cannot read properties of undefined (reading 'includes'). Provided fallback for fields.
   return (field || "").includes(query.toLowerCase())
 }
 
-// Query search to check against fields and not case sensitive
+// Query search to check against fields and not case insensitive
 const displayData = data.filter(row => {
   return hasMatch(row.ticket_id.toLowerCase(), query) ||
          hasMatch(row.initiative.toLowerCase(), query) ||
@@ -70,7 +76,17 @@ const displayData = data.filter(row => {
          hasMatch(row.owner.toLowerCase(), query)
 })
 
-  return (
+// Handle change when initiative(s) is ticked
+function AddToEstimation () {
+  const [checkboxSelection, setcheckboxSelection] = useState("");
+
+  const addInitiative = () => {
+
+  }
+}
+
+
+  return <div className="container">
     <Styles>
       <Container>
       <InitiativeTopPanel />
@@ -92,13 +108,19 @@ const displayData = data.filter(row => {
           columns={columns}
           pageSize={10}
           rowsPerPageOptions={[15]}
-          checkboxSelection
+          // checkboxSelection
+          checkboxSelection columns={columns}{...data}  />  
+
         />
       </div>
-      <button className="addToEstimate">Add to Estimation</button>
+      <Row className="mb-3">
+        <Col xs={4}>
+          <Button style={{ width: "12rem" }}>Add to Estimation</Button>
+        </Col>
+      </Row>
       </Container>
     </Styles>
-  );
+    </div>
 }
 
 export default Dashboard;
