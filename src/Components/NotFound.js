@@ -1,17 +1,15 @@
 import React from "react";
 
 const NotFound = () => {
-  return (
+  return <div className="container">
     <div className='notFound'>
-      <div className='notFound-text'>
         <h2>Sorry! The page you’re looking for cannot be found.</h2>
      </div>
 
      <div className='notfound-dashboard'>
        <p>Back to <a className='linkDasboard' href='/'>Dashboard</a></p>
      </div>
-    </div> 
-  )   
+  </div>   
 };
    
 

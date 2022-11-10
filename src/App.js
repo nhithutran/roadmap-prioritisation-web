@@ -26,7 +26,7 @@ function App() {
       setAuth(userJson);
     }
   }, []);
-  return (
+  return <div className="container">
     <React.Fragment>
       <Router>
         <Routes>
@@ -45,7 +45,7 @@ function App() {
         </Routes>
       </Router>
     </React.Fragment>
-  );
+  </div>
 }
 
 export default App;
