@@ -30,10 +30,10 @@ const defaultInputFields = {
 };
 
 const impactValue = ["?", "Small", "Medium", "Large", "Xlarge"];
-
 const confidenceValue = ["?", "Small", "Medium", "Large", "Xlarge"];
-
 const effortValue = ["?", "Xlarge", "Large", "Medium", "Medium"];
+const priorityValue = ["P-0", "P-1", "P-2", "P-3", "P-4", "P-5"];
+const targetValue = ["Free", "Pro", "Team", "Education", "All", "Others"];
 
 //inputs are in strings.
 const iceScoreCalculation = (impactVar, confidenceVar, effortVar) => {
@@ -186,12 +186,9 @@ const InitiativeItem = () => {
               value={priority}
               onChange={handleOnChange}
             >
-              <option>P-0</option>
-              <option>P-1</option>
-              <option>P-2</option>
-              <option>P-3</option>
-              <option>P-4</option>
-              <option>P-5</option>
+              {priorityValue.map((element, index) => {
+                return <option key={index}>{element}</option>;
+              })}
             </FormSelect>
           </FormGroup>
         </Col>
@@ -201,12 +198,9 @@ const InitiativeItem = () => {
           <FormGroup controlId="formTarget" className="mx-2">
             <FormLabel>Target</FormLabel>
             <FormSelect name="target" value={target} onChange={handleOnChange}>
-              <option>Edu</option>
-              <option>P-1</option>
-              <option>P-2</option>
-              <option>P-3</option>
-              <option>P-4</option>
-              <option>P-5</option>
+              {targetValue.map((element, index) => {
+                return <option key={index}>{element}</option>;
+              })}
             </FormSelect>
           </FormGroup>
         </Col>
