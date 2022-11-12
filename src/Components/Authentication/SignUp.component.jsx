@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import axios from "../../config/api";
 const REGISTER_URL = "api/v1/auth/register";
@@ -18,6 +19,8 @@ import {
 
 /**** Styles *****/
 const SignUp = () => {
+  let navigate = useNavigate();
+
   const mainRowStyle = {
     height: "100vh",
   };
@@ -64,6 +67,7 @@ const SignUp = () => {
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
+    console.log(REGISTER_URL);
     setIsLoading(true);
     try {
       const response = await axios.post(
@@ -85,6 +89,8 @@ const SignUp = () => {
         setAlertError(true);
       }
     }
+
+    navigate("/signup/pendingsignup");
   };
   /***** End Handler *****/
 
