@@ -16,12 +16,14 @@ import Users from "./components/Users/Users.components";
 import InitiativeItem from "./components/InitiativeItem/IntiativeItem.component";
 import PendingSignUpComponent from "./components/Authentication/PendingSignUp.component";
 import RequireAuth from "./components/RequireAuth";
+import ChangePassword from "./components/Authentication/ChangePassword.component";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
   const userJson = null;
   useEffect(() => {
     const user = localStorage.getItem("user");
+
     if (user !== "undefined" || !user) {
       const userJson = JSON.parse(user);
       setAuth(userJson);
@@ -40,6 +42,7 @@ function App() {
               <Route path="estimation" element={<div>Estimation</div>} />
               <Route path="roadmap" element={<div>Roadmap</div>} />
               <Route path="users" element={<Users />} />
+              <Route path="changepassword" element={<ChangePassword />} />
             </Route>
             //*****public************
             <Route path="signup" element={<SignUp />} />

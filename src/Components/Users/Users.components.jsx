@@ -11,6 +11,7 @@ import {
   FormControl,
   Card,
   Button,
+  Dropdown,
 } from "react-bootstrap";
 import useBearer from "../../hooks/useBearer";
 const USERS_URL = "api/v1/users/";
@@ -75,6 +76,24 @@ const Users = () => {
     }
   };
 
+  // delete user
+  const handleDeleteUser = async (event) => {
+    const buttonId = event.target.name;
+    const userURL = USERS_URL + buttonId;
+
+    // Change/upadte the status of the user (approval)
+    try {
+      const responseUser = await axios.delete(userURL, headers);
+
+      const response = await axios.get(USERS_URL, headers);
+      const responseUsers = response.data.data;
+      setUsers(responseUsers);
+      setFilteredUsers(responseUsers);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   //initail loading fetch all users
   useEffect(() => {
     const fetchData = async () => {
@@ -100,7 +119,33 @@ const Users = () => {
         className="my-2"
       >
         <Card.Header>
-          {user.firstName} {user.lastName}
+          <Card.Title
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            {user.firstName} {user.lastName}{" "}
+            <Dropdown>
+              <Dropdown.Toggle
+                id="dropdown-button-dark-example1"
+                variant={user.approved ? "outline-primary" : "outline-warning"}
+              >
+                ...
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  as="button"
+                  name={user._id}
+                  onClick={handleDeleteUser}
+                >
+                  Delete User
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Card.Title>
+
           <Card.Subtitle>{user.email}</Card.Subtitle>
         </Card.Header>
         <Card.Body>

@@ -68,7 +68,7 @@ const Login = () => {
       const token = response?.data.token;
       const approved = response?.data.approved;
 
-      localStorage.setItem("user", JSON.stringify({ token, approved }));
+      localStorage.setItem("user", JSON.stringify({ email, token, approved }));
       setAuth({ email, token, approved });
       if (token && approved) {
         navigate("/");
