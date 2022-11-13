@@ -53,6 +53,7 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    //only activate button if passwords are equal and more than 6 char long
     if (password != confirmPassword || password.length < 6) {
       setIsLoading(true);
     } else {
