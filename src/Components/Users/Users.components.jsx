@@ -1,5 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import AuthContext from "../../context/auth.context";
 import axios from "../../config/api";
 import {
   Container,
@@ -11,6 +12,7 @@ import {
   Card,
   Button,
 } from "react-bootstrap";
+import useBearer from "../../hooks/useBearer";
 const USERS_URL = "api/v1/users/";
 
 const cardContainerStyle = {
@@ -19,10 +21,20 @@ const cardContainerStyle = {
   flexWrap: "wrap",
   justifyContent: "space-evenly",
 };
+
 const Users = () => {
   const [email, setEmail] = useState("");
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const [userToken, setUserToken] = useState(useBearer());
+
+  const headers = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${userToken}`,
+    },
+    withCredentials: false,
+  };
 
   const emailHandleChange = (event) => {
     const inputEmail = event.target.value;
@@ -37,8 +49,9 @@ const Users = () => {
     const buttonId = event.target.name;
     const userURL = USERS_URL + buttonId;
 
+    // Change/upadte the status of the user (approval)
     try {
-      const responseUser = await axios.get(userURL);
+      const responseUser = await axios.get(userURL, headers);
       let user = responseUser.data.data;
 
       let approved = user.approved;
@@ -47,12 +60,13 @@ const Users = () => {
 
       user = { ...user, approved: approved };
 
-      const responsePutUser = await axios.put(userURL, JSON.stringify(user), {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: false,
-      });
+      const responsePutUser = await axios.put(
+        userURL,
+        JSON.stringify(user),
+        headers
+      );
 
-      const response = await axios.get(USERS_URL);
+      const response = await axios.get(USERS_URL, headers);
       const responseUsers = response.data.data;
       setUsers(responseUsers);
       setFilteredUsers(responseUsers);
@@ -61,10 +75,11 @@ const Users = () => {
     }
   };
 
+  //initail loading fetch all users
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(USERS_URL);
+        const response = await axios.get(USERS_URL, headers);
         const responseUsers = response.data.data;
         setUsers(responseUsers);
         setFilteredUsers(responseUsers);

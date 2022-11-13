@@ -22,7 +22,7 @@ const SignUp = () => {
   let navigate = useNavigate();
 
   const mainRowStyle = {
-    height: "100vh",
+    height: "85vh",
   };
 
   const mainColStyle = {
@@ -67,7 +67,7 @@ const SignUp = () => {
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
-    console.log(REGISTER_URL);
+
     setIsLoading(true);
     try {
       const response = await axios.post(

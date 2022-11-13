@@ -1,7 +1,7 @@
 import React from "react";
-import { useState, useContext } from "react";
-import AuthContext from "../../context/auth.context";
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import axios from "../../config/api";
 const LOGIN_URL = "api/v1/auth/login";
 
@@ -19,7 +19,7 @@ import {
 
 const Login = () => {
   const mainRowStyle = {
-    height: "100vh",
+    height: "85vh",
   };
 
   const mainColStyle = {
@@ -37,7 +37,8 @@ const Login = () => {
     password: "",
   };
 
-  const { auth, setAuth } = useContext(AuthContext);
+  const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
@@ -66,10 +67,15 @@ const Login = () => {
       );
       const token = response?.data.token;
       const approved = response?.data.approved;
+
+      localStorage.setItem("user", JSON.stringify({ token, approved }));
       setAuth({ email, token, approved });
-      localStorage.setItem("user", JSON.stringify(auth));
+      if (token && approved) {
+        navigate("/");
+      }
       setButtonDisabled(false);
     } catch (error) {
+      console.log(error);
       if (error.response.status === 401) {
         setErrorMessage("Wrong Email or Password");
       } else if (error.response.status === 500) {
@@ -123,6 +129,7 @@ const Login = () => {
             </Button>
           </Form>
           <a href={"forgot-password"}>Forgot Password</a>
+          <a href={"signup"}>Sign Up</a>
           {errorAlert && (
             <Alert
               variant="danger"
