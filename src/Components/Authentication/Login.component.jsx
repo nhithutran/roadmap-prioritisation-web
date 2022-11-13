@@ -75,11 +75,12 @@ const Login = () => {
       }
       setButtonDisabled(false);
     } catch (error) {
-      console.log(error);
-      if (error.response.status === 401) {
+      if (error.response?.status === 401) {
         setErrorMessage("Wrong Email or Password");
-      } else if (error.response.status === 500) {
+      } else if (error.response?.status === 500) {
         setErrorMessage("Not Authorised");
+      } else if (error.message == "Network Error") {
+        setErrorMessage("can not reach server");
       }
 
       setErrorAlert(true);
