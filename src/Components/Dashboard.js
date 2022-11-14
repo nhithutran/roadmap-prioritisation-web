@@ -57,13 +57,14 @@ function Dashboard() {
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
 
+  const fetchAndSetInitiatives = async () => {
+    const res = await getInitiatives();
+    const resData = res.data;
+    setData(resData || []); // Ensure that data not null
+  };
+
   useEffect(() => {
-    const fetchinitiatives = async () => {
-      const res = await getInitiatives();
-      const resData = res.data;
-      setData(resData || []); // Ensure that data not null
-    };
-    fetchinitiatives();
+    fetchAndSetInitiatives();
   }, []);
 
   // hasMatch function matches query with fields in table
@@ -84,20 +85,21 @@ function Dashboard() {
 
   // Handle change when initiative(s) is ticked
   const handleAddToEstimation = async () => {
-    const data = { selectedData: selectedData };
+    const data = { selectedData: selectedData, moreData: "hello" };
     try {
       const response = await axios.put(
-        "/api/v1/initiatives/updatetoestimate",
+        "/api/v1/estimations/createEstimation",
         data
-      );
+      );      
       console.log(response);
+      await fetchAndSetInitiatives();
     } catch (error) {
       console.log(error);
     }
 
-    //const addInitiative = () => {};
   };
-
+    // (React) click add -> (Node) set Est in db -> db
+    // (React) req list -> (Node) return initiatives
   return (
     <div className="container">
       <Styles>
