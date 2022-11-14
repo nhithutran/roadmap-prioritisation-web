@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../config/api";
 const LOGIN_URL = "api/v1/auth/login";
 
+// CSS-file ********************
+import "./auth.style.css";
+
+// Bootstrap ********************
 import {
   Alert,
   Button,
@@ -18,19 +22,6 @@ import {
 } from "react-bootstrap";
 
 const Login = () => {
-  const mainRowStyle = {
-    height: "85vh",
-  };
-
-  const mainColStyle = {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "flex-start",
-  };
-  /***** End Styles *****/
-
   /***** Default form fields *****/
   const defaultFormFields = {
     email: "",
@@ -90,11 +81,11 @@ const Login = () => {
 
   return (
     <Container>
-      <Row style={mainRowStyle}>
-        <Col xs={6} style={mainColStyle}>
+      <Row className="auth-main-row">
+        <Col xs={6} className="auth-main-col">
           <h1>Log In</h1>
         </Col>
-        <Col xs={6} style={mainColStyle}>
+        <Col xs={6} className="auth-main-col">
           <Row className="mb-3">
             <h6> All Sign Ups require approval by an Authorised Manager</h6>
           </Row>

@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../config/api";
 const REGISTER_URL = "api/v1/auth/register";
 
+// CSS-file ********************
+import "./auth.style.css";
+
+//Bootstrap *************************
 import {
   Alert,
   Button,
@@ -20,19 +24,6 @@ import {
 /**** Styles *****/
 const SignUp = () => {
   let navigate = useNavigate();
-
-  const mainRowStyle = {
-    height: "85vh",
-  };
-
-  const mainColStyle = {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "flex-start",
-  };
-  /***** End Styles *****/
 
   /***** Default form fields *****/
   const defaultFormFields = {
@@ -97,11 +88,11 @@ const SignUp = () => {
 
   return (
     <Container>
-      <Row style={mainRowStyle}>
-        <Col xs={6} style={mainColStyle}>
+      <Row className="auth-main-row">
+        <Col xs={6} className="auth-main-col">
           <h1>Sign Up</h1>
         </Col>
-        <Col xs={6} style={mainColStyle}>
+        <Col xs={6} className="auth-main-col">
           <Row className="mb-3">
             <h6> All Sign Ups require approval by an Authorised Manager</h6>
           </Row>
