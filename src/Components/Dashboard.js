@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import { getInitiatives } from "../config/api";
+import { getInitiatives, createEstimation } from "../config/api";
 import { Container, Row, Button, Col } from "react-bootstrap";
 import InitiativeTopPanel from "./InitiativeTopPanel";
+import axios from "../config/api";
 import { useParams } from "react-router-dom";
 
 const Styles = styled.div`
@@ -54,11 +55,11 @@ const columns = [
 function Dashboard() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
+  const [selectedData, setSelectedData] = useState([]);
 
   useEffect(() => {
     const fetchinitiatives = async () => {
       const res = await getInitiatives();
-      console.log(res);
       const resData = res.data;
       setData(resData || []); // Ensure that data not null
     };
@@ -82,11 +83,20 @@ function Dashboard() {
   });
 
   // Handle change when initiative(s) is ticked
-  function AddToEstimation() {
-    const [checkboxSelection, setcheckboxSelection] = useState("");
+  const handleAddToEstimation = async () => {
+    const data = { selectedData: selectedData };
+    try {
+      const response = await axios.put(
+        "/api/v1/initiatives/updatetoestimate",
+        data
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
 
-    const addInitiative = () => {};
-  }
+    //const addInitiative = () => {};
+  };
 
   return (
     <div className="container">
@@ -113,14 +123,20 @@ function Dashboard() {
               rowsPerPageOptions={[15]}
               // checkboxSelection
               checkboxSelection
-              columns={columns}
+              onSelectionModelChange={(data) => {
+                setSelectedData(data);
+              }}
               {...data}
-            />
             />
           </div>
           <Row className="mb-3">
             <Col xs={4}>
-              <Button style={{ width: "12rem" }}>Add to Estimation</Button>
+              <Button
+                style={{ width: "12rem" }}
+                onClick={handleAddToEstimation}
+              >
+                Add to Estimation
+              </Button>
             </Col>
           </Row>
         </Container>

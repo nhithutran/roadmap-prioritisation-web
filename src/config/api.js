@@ -18,10 +18,8 @@ export const getInitiatives = async () => {
   return response.data;
 };
 
-// Post to Estimitions table
-export const createEstimation = async () => {
-  const response = await axios.post(
-    "https://roadmap-prioritisation.herokuapp.com/api/v1/estimations/"
-  );
-  return response.data;
+// update intiative to estimation
+export const createEstimation = async (selectedData) => {
+  const response = await api.put("/api/v1/initiatives/updatetoestimate");
+  return response;
 };
