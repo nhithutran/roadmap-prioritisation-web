@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import { useState, useContext } from "react";
 import AuthContext from "../../context/auth.context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // Axios data/hooks
 import axios from "../../config/api";
@@ -21,6 +21,7 @@ import {
   FormGroup,
   FormLabel,
   Row,
+  Spinner,
 } from "react-bootstrap";
 
 const Login = () => {
@@ -37,7 +38,7 @@ const Login = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const [errorAlert, setErrorAlert] = useState(false);
 
@@ -47,10 +48,10 @@ const Login = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  console.log(publicHeaders);
   const handlerSubmit = async (event) => {
     event.preventDefault();
-    setButtonDisabled(true);
+    setIsLoading(true);
+
     try {
       const response = await axios.post(
         LOGIN_URL,
@@ -64,12 +65,11 @@ const Login = () => {
       const token = response?.data.token;
       const approved = response?.data.approved;
 
-      localStorage.setItem("user", JSON.stringify({ email, token, approved }));
       setAuth({ email, token, approved });
       if (token && approved) {
         navigate("/");
       }
-      setButtonDisabled(false);
+      setIsLoading(false);
     } catch (error) {
       if (error.response?.status === 401) {
         setErrorMessage("Wrong Email or Password");
@@ -80,6 +80,7 @@ const Login = () => {
       }
 
       setErrorAlert(true);
+      setIsLoading(false);
       setFormFields(defaultFormFields);
     }
   };
@@ -121,12 +122,21 @@ const Login = () => {
                 />
               </FormGroup>
             </Row>
-            <Button variant="primary" disabled={buttonDisabled} type="submit">
-              Login
-            </Button>
+            <Row className="mb-3">
+              <Button
+                variant="primary"
+                disabled={isLoading}
+                type="submit"
+                as={Col}
+                onClick={handlerSubmit}
+              >
+                Login
+              </Button>
+              {isLoading && <Spinner animation="border" variant="primary" />}
+            </Row>
           </Form>
-          <a href={"forgot-password"}>Forgot Password</a>
-          <a href={"signup"}>Sign Up</a>
+          <Link to="/forgot-password">Forgot Password</Link>
+          <Link to="/signup">Sign Up</Link>
           {errorAlert && (
             <Alert
               variant="danger"

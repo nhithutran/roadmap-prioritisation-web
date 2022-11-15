@@ -12,6 +12,7 @@ import {
   Card,
   Button,
   Dropdown,
+  Spinner,
 } from "react-bootstrap";
 import useBearer from "../../hooks/useBearer";
 const USERS_URL = "api/v1/users/";
@@ -28,6 +29,7 @@ const Users = () => {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [userToken, setUserToken] = useState(useBearer());
+  const [isLoading, setIsLoading] = useState(false);
 
   const headers = {
     headers: {
@@ -51,7 +53,7 @@ const Users = () => {
   const handleApprovalButton = async (event) => {
     const buttonId = event.target.name;
     const userURL = USERS_URL + buttonId;
-
+    setIsLoading(true);
     // Change/upadte the status of the user (approval)
     try {
       const responseUser = await axios.get(userURL, headers);
@@ -72,6 +74,7 @@ const Users = () => {
       const response = await axios.get(USERS_URL, headers);
       const responseUsers = response.data.data;
       setUsers(responseUsers);
+      setIsLoading(false);
       setFilteredUsers(responseUsers);
     } catch (err) {
       console.log(err);
@@ -99,11 +102,13 @@ const Users = () => {
   //initail loading fetch all users
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
         const response = await axios.get(USERS_URL, headers);
         const responseUsers = response.data.data;
         setUsers(responseUsers);
         setFilteredUsers(responseUsers);
+        setIsLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -180,7 +185,11 @@ const Users = () => {
         </Row>
       </Form>
       <hr></hr>
-      <section style={cardContainerStyle}>{usersList}</section>
+      {isLoading ? (
+        <Spinner animation="border" variant="primary" />
+      ) : (
+        <section style={cardContainerStyle}>{usersList}</section>
+      )}
     </Container>
   );
 };

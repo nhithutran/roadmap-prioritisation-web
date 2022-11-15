@@ -20,14 +20,9 @@ import ChangePassword from "./components/Authentication/ChangePassword.component
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
-  const userJson = null;
-  useEffect(() => {
-    const user = localStorage.getItem("user");
 
-    if (user !== "undefined" || !user) {
-      const userJson = JSON.parse(user);
-      setAuth(userJson);
-    }
+  useEffect(() => {
+    setAuth(null);
   }, []);
 
   return (
@@ -45,11 +40,11 @@ function App() {
               <Route path="changepassword" element={<ChangePassword />} />
             </Route>
             //*****public************
-            <Route path="signup" element={<SignUp />} />
             <Route
               path="signup/pendingsignup"
               element={<PendingSignUpComponent />}
             />
+            <Route path="signup" element={<SignUp />} />
             <Route path="login" element={<Login />} />
             <Route path="not-authorized" element={<NotAuthorized />} />
             <Route path="forgot-password" element={<EmailRecovery />} />

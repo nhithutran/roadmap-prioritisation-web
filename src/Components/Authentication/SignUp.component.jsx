@@ -40,15 +40,14 @@ const SignUp = () => {
   const [alertPassword, setAlertPassword] = useState(false);
   const [alertError, setAlertError] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
-
-  const [isLoading, setIsLoading] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
 
   useEffect(() => {
     //only activate button if passwords are equal and more than 6 char long
     if (password != confirmPassword || password.length < 6) {
-      setIsLoading(true);
+      setDisableButton(true);
     } else {
-      setIsLoading(false);
+      setDisableButton(false);
     }
   }, [password, confirmPassword]);
   /***** Handler *****/
@@ -60,7 +59,7 @@ const SignUp = () => {
   const handlerSubmit = async (event) => {
     event.preventDefault();
 
-    setIsLoading(true);
+    setDisableButton(true);
     try {
       const response = await axios.post(
         REGISTER_URL,
@@ -70,9 +69,9 @@ const SignUp = () => {
           withCredentials: false,
         }
       );
-      setIsLoading(false);
+      setDisableButton(false);
     } catch (error) {
-      setIsLoading(true);
+      setDisableButton(true);
       if (error.code === "ERR_NETWORK") {
         setErrorMessage("Can not connect to server");
         setAlertError(true);
@@ -167,7 +166,7 @@ const SignUp = () => {
                   )}
               </FormGroup>
             </Row>
-            <Button disabled={isLoading} variant="primary" type="submit">
+            <Button disabled={disableButton} variant="primary" type="submit">
               Sign Up
             </Button>
             <Row>
@@ -176,7 +175,7 @@ const SignUp = () => {
                   variant="danger"
                   onClose={() => {
                     setAlertError(false);
-                    setIsLoading(false);
+                    setDisableButton(false);
                   }}
                   dismissible
                 >
