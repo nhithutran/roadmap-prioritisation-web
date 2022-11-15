@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import AuthContext from "../../context/auth.context";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 
 // Axios data/hooks
 import axios from "../../config/api";
@@ -30,7 +30,8 @@ const Login = () => {
     password: "",
   };
 
-  const { auth, setAuth } = useAuth();
+  const { auth, setAuth } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const [formFields, setFormFields] = useState(defaultFormFields);

@@ -37,6 +37,8 @@ const Users = () => {
     withCredentials: false,
   };
 
+  const { auth, setAuth } = useContext(AuthContext);
+
   const emailHandleChange = (event) => {
     const inputEmail = event.target.value;
     setEmail(inputEmail);

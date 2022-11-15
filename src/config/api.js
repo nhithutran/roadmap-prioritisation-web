@@ -13,7 +13,7 @@ const publicHeader = {
 };
 
 const api = axios.create({
-  //baseURL: "http://localhost:4000",
+  //baseURL: "http://localhost:4000/",
   baseURL: "https://roadmap-prioritisation.herokuapp.com/", // Update before deploy to Netlify
 });
 
