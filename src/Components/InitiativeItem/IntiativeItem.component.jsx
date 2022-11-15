@@ -113,7 +113,7 @@ const InitiativeItem = () => {
   console.log(initiativeData);
   return (
     <Container>
-      <h1>Initiatives</h1>
+      <h1>Initiative</h1>
       <Row>
         <Col xs={1}>Ticket</Col>
         <Col xs={3}>Initiative</Col>

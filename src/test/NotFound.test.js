@@ -1,8 +1,8 @@
-const { NoMatch } = require('../components/NoMatch')
+const { NotFound } = require('../components/NotFound')
 
-describe("NoMatch", () => {
+describe("NotFound", () => {
     test('display page heading', () => {
-        expect('NoMatch').toContain("NoMatch");  
+        expect('NotFound').toContain("NotFound");  
     }); 
 
     test('to display correct wording', () => {

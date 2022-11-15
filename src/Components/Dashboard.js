@@ -6,7 +6,6 @@ import { getInitiatives, createEstimation } from "../config/api";
 import { Container, Row, Button, Col } from "react-bootstrap";
 import InitiativeTopPanel from "./InitiativeTopPanel";
 import axios from "../config/api";
-import { useParams } from "react-router-dom";
 
 const Styles = styled.div`
   .d-inline mx-2 {
@@ -19,10 +18,6 @@ const Styles = styled.div`
     padding: 20px;
   }
 `;
-
-// function getObjId() {
-//   let { Object_id } = useParams();
-// };
 
 const columns = [
   {
@@ -90,7 +85,7 @@ function Dashboard() {
 
   // Handle change when initiative(s) is ticked
   const handleAddToEstimation = async () => {
-    const data = { selectedData: selectedData, moreData: "hello" };
+    const data = { selectedData: selectedData };
     try {
       const response = await axios.put(
         "/api/v1/estimations/createEstimation",
