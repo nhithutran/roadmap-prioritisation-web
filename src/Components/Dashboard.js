@@ -58,9 +58,14 @@ function Dashboard() {
   const [selectedData, setSelectedData] = useState([]);
 
   const fetchAndSetInitiatives = async () => {
-    const res = await getInitiatives();
+    try {
+      const res = await getInitiatives();
     const resData = res.data;
     setData(resData || []); // Ensure that data not null
+  } catch (error) {
+    console.log(error);
+  }
+    
   };
 
   useEffect(() => {
