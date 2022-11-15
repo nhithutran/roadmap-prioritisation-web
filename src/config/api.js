@@ -3,12 +3,12 @@ import axios from "axios";
 //Define an API
 export default axios.create({
   baseURL: "http://localhost:4000/",
-  //baseURL: "https://roadmap-prioritisation.herokuapp.com/", // Update before deploy to Netlify
+  // baseURL: "https://roadmap-prioritisation.herokuapp.com/", // Update before deploy to Netlify
 });
 
 const api = axios.create({
   baseURL: "http://localhost:4000",
-  //baseURL: "https://roadmap-prioritisation.herokuapp.com/", // Update before deploy to Netlify
+  // baseURL: "https://roadmap-prioritisation.herokuapp.com/", // Update before deploy to Netlify
 });
 
 export const getInitiatives = async () => {
