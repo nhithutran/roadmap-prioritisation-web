@@ -1,14 +1,15 @@
 import axios from "axios";
+import config from "./config";
 
+const cfg = config.load();
+const {baseURL} = cfg;
 //Define an API
 export default axios.create({
-  baseURL: "http://localhost:4000/",
-  // baseURL: "https://roadmap-prioritisation.herokuapp.com/", // Update before deploy to Netlify
+  baseURL,
 });
 
 const api = axios.create({
-  baseURL: "http://localhost:4000",
-  // baseURL: "https://roadmap-prioritisation.herokuapp.com/", // Update before deploy to Netlify
+  baseURL
 });
 
 export const getInitiatives = async () => {

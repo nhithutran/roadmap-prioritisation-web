@@ -25,7 +25,7 @@ const columns = [
     headerName: "Ticket#",
     width: 80,
     renderCell: (obj) => (
-      <a href={`http://localhost:3000/initiatives/${obj.id}`}>{obj.value}</a>
+      <a href={`/initiatives/${obj.id}`}>{obj.value}</a>
     ),
   },
   { field: "initiative", headerName: "Initiative", width: 200 },
