@@ -132,6 +132,7 @@ const Login = () => {
               >
                 Login
               </Button>
+              <Spinner animation="border" variant="primary" />
             </Row>
           </Form>
           <a href={"forgot-password"}>Forgot Password</a>

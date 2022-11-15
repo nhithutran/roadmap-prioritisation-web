@@ -20,14 +20,9 @@ import ChangePassword from "./components/Authentication/ChangePassword.component
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
-  const userJson = null;
-  useEffect(() => {
-    const user = localStorage.getItem("user");
 
-    if (user !== "undefined" || !user) {
-      const userJson = JSON.parse(user);
-      setAuth(userJson);
-    }
+  useEffect(() => {
+    setAuth(null);
   }, []);
 
   return (
