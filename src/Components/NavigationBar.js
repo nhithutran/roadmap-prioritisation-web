@@ -28,6 +28,7 @@ const Styles = styled.div`
 
 const NavigationBar = () => {
   const { auth, setAuth } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const handleLogOut = (event) => {

@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import { useState, useContext } from "react";
 import AuthContext from "../../context/auth.context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // Axios data/hooks
 import axios from "../../config/api";
@@ -65,7 +65,6 @@ const Login = () => {
       const token = response?.data.token;
       const approved = response?.data.approved;
 
-      localStorage.setItem("user", JSON.stringify({ email, token, approved }));
       setAuth({ email, token, approved });
       if (token && approved) {
         navigate("/");
@@ -81,6 +80,7 @@ const Login = () => {
       }
 
       setErrorAlert(true);
+      setIsLoading(false);
       setFormFields(defaultFormFields);
     }
   };
@@ -132,11 +132,11 @@ const Login = () => {
               >
                 Login
               </Button>
-              <Spinner animation="border" variant="primary" />
+              {isLoading && <Spinner animation="border" variant="primary" />}
             </Row>
           </Form>
-          <a href={"forgot-password"}>Forgot Password</a>
-          <a href={"signup"}>Sign Up</a>
+          <Link to="/forgot-password">Forgot Password</Link>
+          <Link to="/signup">Sign Up</Link>
           {errorAlert && (
             <Alert
               variant="danger"

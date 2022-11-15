@@ -40,11 +40,11 @@ function App() {
               <Route path="changepassword" element={<ChangePassword />} />
             </Route>
             //*****public************
-            <Route path="signup" element={<SignUp />} />
             <Route
               path="signup/pendingsignup"
               element={<PendingSignUpComponent />}
             />
+            <Route path="signup" element={<SignUp />} />
             <Route path="login" element={<Login />} />
             <Route path="not-authorized" element={<NotAuthorized />} />
             <Route path="forgot-password" element={<EmailRecovery />} />
