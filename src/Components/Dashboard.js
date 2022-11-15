@@ -55,12 +55,11 @@ function Dashboard() {
   const fetchAndSetInitiatives = async () => {
     try {
       const res = await getInitiatives();
-    const resData = res.data;
-    setData(resData || []); // Ensure that data not null
-  } catch (error) {
-    console.log(error);
-  }
-    
+      const resData = res.data;
+      setData(resData || []); // Ensure that data not null
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -90,16 +89,15 @@ function Dashboard() {
       const response = await axios.put(
         "/api/v1/estimations/createEstimation",
         data
-      );      
+      );
       console.log(response);
       await fetchAndSetInitiatives();
     } catch (error) {
       console.log(error);
     }
-
   };
-    // (React) click add -> (Node) set Est in db -> db
-    // (React) req list -> (Node) return initiatives
+  // (React) click add -> (Node) set Est in db -> db
+  // (React) req list -> (Node) return initiatives
   return (
     <div className="container">
       <Styles>
