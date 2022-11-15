@@ -2,7 +2,7 @@ import { useLocation, Navigate, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const RequireAuth = () => {
-  const { auth } = useAuth();
+  const { auth, setAuth } = useAuth();
   const location = useLocation();
 
   //get variables from localstorage
@@ -16,7 +16,7 @@ const RequireAuth = () => {
   };
 
   if (currentUser) {
-    const { email, token, approved } = JSON.parse(currentUser);
+    const { email, token, approved } = auth; //JSON.parse(currentUser);
     login = isLegit(email, token, approved);
   }
 
