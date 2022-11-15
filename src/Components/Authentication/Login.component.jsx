@@ -2,9 +2,11 @@ import React, { useReducer } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+
+// Axios data/hooks
 import axios from "../../config/api";
 const LOGIN_URL = "api/v1/auth/login";
-
+const { publicHeaders } = "../../config/api";
 // CSS-file ********************
 import "./auth.style.css";
 
@@ -44,6 +46,7 @@ const Login = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
+  console.log(publicHeaders);
   const handlerSubmit = async (event) => {
     event.preventDefault();
     setButtonDisabled(true);
@@ -56,6 +59,7 @@ const Login = () => {
           withCredentials: false,
         }
       );
+
       const token = response?.data.token;
       const approved = response?.data.approved;
 
