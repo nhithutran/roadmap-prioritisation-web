@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Dropdown, Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import AuthContext from "../context/auth.context";
 
 const Styles = styled.div`
   .navbar {
@@ -26,12 +27,11 @@ const Styles = styled.div`
 `;
 
 const NavigationBar = () => {
-  const currentUser = localStorage.getItem("user");
+  const { auth, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogOut = (event) => {
-    console.log(event.target.name);
-    localStorage.removeItem("user");
+    setAuth({});
     navigate("/");
   };
 
@@ -51,18 +51,18 @@ const NavigationBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            {currentUser && (
+            {auth?.email && (
               <>
-                <Nav.Link href="/">Dashboard</Nav.Link>
-                <Nav.Link href="/estimation">Estimation</Nav.Link>
-                <Nav.Link href="/users">Users</Nav.Link>
+                <Link to="/">Dashboard</Link>
+                <Link to="/estimation">Estimation</Link>
+                <Link to="/users"> Users</Link>
               </>
             )}
 
             {/* <button className="logout-button">Log Out</button> */}
           </Nav>
         </Navbar.Collapse>
-        {currentUser ? (
+        {auth?.email ? (
           <Nav.Link className="float-end">
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic" variant="outline-primary">
