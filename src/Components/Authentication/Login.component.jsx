@@ -21,6 +21,7 @@ import {
   FormGroup,
   FormLabel,
   Row,
+  Spinner,
 } from "react-bootstrap";
 
 const Login = () => {
@@ -37,7 +38,7 @@ const Login = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const [errorAlert, setErrorAlert] = useState(false);
 
@@ -47,10 +48,10 @@ const Login = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  console.log(publicHeaders);
   const handlerSubmit = async (event) => {
     event.preventDefault();
-    setButtonDisabled(true);
+    setIsLoading(true);
+
     try {
       const response = await axios.post(
         LOGIN_URL,
@@ -69,7 +70,7 @@ const Login = () => {
       if (token && approved) {
         navigate("/");
       }
-      setButtonDisabled(false);
+      setIsLoading(false);
     } catch (error) {
       if (error.response?.status === 401) {
         setErrorMessage("Wrong Email or Password");
@@ -121,9 +122,17 @@ const Login = () => {
                 />
               </FormGroup>
             </Row>
-            <Button variant="primary" disabled={buttonDisabled} type="submit">
-              Login
-            </Button>
+            <Row className="mb-3">
+              <Button
+                variant="primary"
+                disabled={isLoading}
+                type="submit"
+                as={Col}
+                onClick={handlerSubmit}
+              >
+                Login
+              </Button>
+            </Row>
           </Form>
           <a href={"forgot-password"}>Forgot Password</a>
           <a href={"signup"}>Sign Up</a>
