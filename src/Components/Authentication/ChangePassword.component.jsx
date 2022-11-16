@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../../context/auth.context";
 import {
   Container,
   Row,
@@ -13,7 +15,6 @@ import {
 
 import axios from "../../config/api";
 import useBearer from "../../hooks/useBearer";
-import useEmail from "../../hooks/useEmail";
 const CHANGE_PASSWORD_URL = "api/v1/auth/changepassword";
 
 const ChangePassword = () => {
@@ -39,12 +40,13 @@ const ChangePassword = () => {
   };
 
   const [userData, setUserData] = useState(defaultValue);
+  const { auth, setAuth } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
   const { currentPassword, email, newPassword, confirmNewPassword } = userData;
   const [userToken, setUserToken] = useState(useBearer());
   const [alertError, setAlertError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
+  const navigate = useNavigate();
   const headers = {
     headers: {
       "Content-Type": "application/json",
@@ -63,7 +65,7 @@ const ChangePassword = () => {
   }, [newPassword, confirmNewPassword]);
 
   useEffect(() => {
-    setUserData({ ...userData, email: useEmail() });
+    setUserData({ ...userData, email: auth.email });
   }, []);
 
   const handleSubmit = async (event) => {
@@ -77,6 +79,7 @@ const ChangePassword = () => {
         headers
       );
       console.log(response);
+      navigate("/");
     } catch (error) {
       setIsLoading(true);
       if (error.code === "ERR_NETWORK") {

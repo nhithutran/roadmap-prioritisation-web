@@ -21,7 +21,7 @@ import {
   Row,
 } from "react-bootstrap";
 
-/**** Styles *****/
+
 const SignUp = () => {
   let navigate = useNavigate();
 

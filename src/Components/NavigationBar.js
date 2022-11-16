@@ -54,9 +54,15 @@ const NavigationBar = () => {
           <Nav className="ml-auto">
             {auth?.email && (
               <>
-                <NavLink to="/">Dashboard</NavLink>
-                <NavLink to="/estimation">Estimation</NavLink>
-                <NavLink to="/users">Users</NavLink>
+                <div style={{ margin: "0px 10px" }}>
+                  <NavLink to="/">Dashboard</NavLink>
+                </div>
+                <div style={{ margin: "0px 10px" }}>
+                  <NavLink to="/estimation">Estimation</NavLink>
+                </div>
+                <div style={{ margin: "0px 10px" }}>
+                  <NavLink to="/users">Users</NavLink>
+                </div>
               </>
             )}
 
