@@ -6,8 +6,8 @@ const NotFound = () => {
         <h2>Sorry! The page you’re looking for cannot be found.</h2>
      </div>
 
-     <div className='notfound-dashboard'>
-       <p>Back to <a className='linkDasboard' href='/'>Dashboard</a></p>
+     <div className='notfound-InitiativePage'>
+       <p>Back to <a className='linkInitiativePage' href='/'>Initiative</a></p>
      </div>
   </div>   
 };

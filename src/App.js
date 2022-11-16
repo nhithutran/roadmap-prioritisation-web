@@ -5,7 +5,7 @@ import { useEffect, useContext, useState } from "react";
 import AuthContext from "./context/auth.context";
 // Pages
 import Layout from "./Components/Layout";
-import Dashboard from "./Components/Dashboard";
+import InitiativePage from "./Components/InitiativePage";
 import NotFound from "./Components/NotFound";
 import SignUp from "./Components/Authentication/SignUp.component";
 import Login from "./Components/Authentication/Login.component";

@@ -47,7 +47,7 @@ const columns = [
 ];
 
 // Fetch and store data from MongoDB initiative table. setData to res.data so it can be rendered.
-function Dashboard() {
+function InitiativePage() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
@@ -145,4 +145,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default InitiativePage;

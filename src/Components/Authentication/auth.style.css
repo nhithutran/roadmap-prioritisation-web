@@ -13,9 +13,13 @@
   animation: gradient 15s ease infinite;
 }
 
-h3.Signup-header {
+h3.leftpanel-text {
   margin-bottom: 80%;
   margin-left: 20%;
+}
+
+h4 {
+  font-weight: bold;
 }
 
 .auth-main-col {
@@ -26,11 +30,12 @@ h3.Signup-header {
   border-left: 10%;
 }
 
-img.logo {
+/* If add img.log it will work but it will also changes the nav bar logo */
+logo {
   width: 20%;
   height: 10%;
   position: fixed;
-  bottom: 55%;
+  bottom: 80%;
   left: 20%
 }
 

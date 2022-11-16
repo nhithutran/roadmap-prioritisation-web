@@ -2,14 +2,14 @@ import React from "react";
 import { useContext } from "react";
 import { Dropdown, Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
-import { useLocation, useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import AuthContext from "../context/auth.context";
 import brandlogoImg from "../assets/Brand-Logo.png";
 
 // CSS-file ********************
 const Styles = styled.div`
   .navbar {
-    background-color: #7d7d7d;Logo
+    background-color: #7d7d7d;
   }
 
   .navbar-brand,
@@ -19,6 +19,10 @@ const Styles = styled.div`
     &:hover {
       color: #7A5CFA;
     }
+  }
+
+  Nav.Link {
+    textDecoration: 'none';
   }
 
   .logout-button {
@@ -58,7 +62,7 @@ const NavigationBar = () => {
             {auth?.email && (
               <>
                 <div style={{ margin: "0px 10px" }}>
-                  <NavLink to="/">Dashboard</NavLink>
+                  <NavLink to="/">Initiatives</NavLink>
                 </div>
                 <div style={{ margin: "0px 10px" }}>
                   <NavLink to="/estimation">Estimation</NavLink>

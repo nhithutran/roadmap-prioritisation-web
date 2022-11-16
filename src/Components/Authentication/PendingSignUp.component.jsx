@@ -1,10 +1,17 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+// import purpleImg from "../../purple_checkmark.png";
 
 const PendingSignUp = () => {
   return (
     <Container>
-      <h3> Please wait for approval from an authorised manager</h3>
+        {/* <img
+          className="purpleCheck"
+          src={purpleImg}
+          alt="Purple Checkmark logo"
+        ></img> */}
+      <h2>Thank you for signing up!</h2>
+      <h4> Please wait for approval from an authorised manager</h4>
     </Container>
   );
 };

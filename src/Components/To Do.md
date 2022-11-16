@@ -1,6 +1,14 @@
 **TO DO** 
-ADD To ESTIMATION
-- Can't see my add-estimation branch on the origin repo only on local? Why?
+TIDY UI BRANCH
+
+Sign Up Page - auth.style.css
+* Not sure how to position logo for log
+* Left panel text not wrapped or centered
+* More space between 2 panels
+
+
+
+
 
 ESTIMATIONS PAGE
 - Add filter for Squad

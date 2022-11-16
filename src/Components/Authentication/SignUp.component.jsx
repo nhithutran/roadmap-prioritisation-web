@@ -87,13 +87,13 @@ const SignUp = () => {
     <Container>
       <Row className="auth-main-row">
         <Col xs={6} className="auth-main-col-left">
-          <h3 className="Signup-header">Getting started with Roadmap Prioritisation</h3>
-        </Col>
-        {/* <img
+          <h3 className="leftpanel-text">Getting started with Roadmap Prioritisation</h3>
+          <img
           className="logo"
           src={logoImg}
           alt="Canva logo"
-        ></img> */}
+        ></img>
+        </Col>
         <Col xs={6} className="auth-main-col">
           <Row className="left-panel heading">
             <h4>Sign Up</h4>
