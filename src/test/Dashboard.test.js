@@ -1,4 +1,4 @@
-const { Dashboard } = require('../test/Dashboard.test')
+const { Dashboard } = require('../components/Dashboard')
 
 describe("Dashboard", () => {
     test('there is a "Search" in search bar', () => {
@@ -24,6 +24,6 @@ describe("Dashboard", () => {
     test('the initiatives table has correct headername in it', () => {
     expect('I.C.E. score').toContain('I.C.E. score');    
     });
-
-
 });    
+
+// Add test for Add to Estiamtion button and search bar function???

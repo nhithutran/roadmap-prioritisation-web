@@ -6,7 +6,6 @@ import AuthContext from "./context/auth.context";
 // Pages
 import Layout from "./components/Layout";
 import Dashboard from "./components/Dashboard";
-// import InitiativeItem from "./components/InitiativeItem";
 import NotFound from "./components/NotFound";
 import SignUp from "./components/Authentication/SignUp.component";
 import Login from "./components/Authentication/Login.component";
@@ -17,6 +16,7 @@ import InitiativeItem from "./components/InitiativeItem/IntiativeItem.component"
 import PendingSignUpComponent from "./components/Authentication/PendingSignUp.component";
 import RequireAuth from "./components/RequireAuth";
 import ChangePassword from "./components/Authentication/ChangePassword.component";
+import EstimationPage from "./components/EstimationPage";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -34,7 +34,7 @@ function App() {
             <Route element={<RequireAuth />}>
               <Route path="/" element={<Dashboard />} />
               <Route path="/initiatives/:id" element={<InitiativeItem />} />
-              <Route path="estimation" element={<div>Estimation</div>} />
+              <Route path="estimation" element={<EstimationPage />} />
               <Route path="roadmap" element={<div>Roadmap</div>} />
               <Route path="users" element={<Users />} />
               <Route path="changepassword" element={<ChangePassword />} />

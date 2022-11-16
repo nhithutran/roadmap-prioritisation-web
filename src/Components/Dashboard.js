@@ -6,7 +6,6 @@ import { getInitiatives, createEstimation } from "../config/api";
 import { Container, Row, Button, Col } from "react-bootstrap";
 import InitiativeTopPanel from "./InitiativeTopPanel";
 import axios from "../config/api";
-import { useParams } from "react-router-dom";
 
 const Styles = styled.div`
   .d-inline mx-2 {
@@ -20,17 +19,13 @@ const Styles = styled.div`
   }
 `;
 
-// function getObjId() {
-//   let { Object_id } = useParams();
-// };
-
 const columns = [
   {
     field: "ticket_id",
     headerName: "Ticket#",
     width: 80,
     renderCell: (obj) => (
-      <a href={`http://localhost:3000/initiatives/${obj.id}`}>{obj.value}</a>
+      <a href={`/initiatives/${obj.id}`}>{obj.value}</a>
     ),
   },
   { field: "initiative", headerName: "Initiative", width: 200 },
@@ -60,12 +55,11 @@ function Dashboard() {
   const fetchAndSetInitiatives = async () => {
     try {
       const res = await getInitiatives();
-    const resData = res.data;
-    setData(resData || []); // Ensure that data not null
-  } catch (error) {
-    console.log(error);
-  }
-    
+      const resData = res.data;
+      setData(resData || []); // Ensure that data not null
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -90,21 +84,20 @@ function Dashboard() {
 
   // Handle change when initiative(s) is ticked
   const handleAddToEstimation = async () => {
-    const data = { selectedData: selectedData, moreData: "hello" };
+    const data = { selectedData: selectedData };
     try {
       const response = await axios.put(
         "/api/v1/estimations/createEstimation",
         data
-      );      
+      );
       console.log(response);
       await fetchAndSetInitiatives();
     } catch (error) {
       console.log(error);
     }
-
   };
-    // (React) click add -> (Node) set Est in db -> db
-    // (React) req list -> (Node) return initiatives
+  // (React) click add -> (Node) set Est in db -> db
+  // (React) req list -> (Node) return initiatives
   return (
     <div className="container">
       <Styles>
