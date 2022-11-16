@@ -1,7 +1,8 @@
 import React from "react";
 import { Dropdown, Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import logoImg from "../assets/logo.jpg"
 
 const Styles = styled.div`
   .navbar {
@@ -23,6 +24,11 @@ const Styles = styled.div`
     float: right;
     // background-colour: 67748E;
   }
+
+  img.logo {
+    width: 50px;
+    // height: 20px;
+  }
 `;
 
 const NavigationBar = () => {
@@ -43,9 +49,9 @@ const NavigationBar = () => {
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="/">
           <img
-            src="../assets/logo.jpg"
+            className="logo"
+            src={logoImg}
             alt="Canva logo"
-            width="10px height=10px"
           ></img>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
