@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { DataGrid } from "@mui/x-data-grid";
 import { Container, Dropdown } from "react-bootstrap";
 // import { useEffect, useState } from "react";
-import EstimationTopPanel from "../components/EstimationTopPanel";
+import EstimationTopPanel from "../Components/EstimationTopPanel";
 
 const Styles = styled.div`
   .d-inline mx-2 {

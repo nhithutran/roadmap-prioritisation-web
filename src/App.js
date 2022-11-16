@@ -4,19 +4,19 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 import AuthContext from "./context/auth.context";
 // Pages
-import Layout from "./components/Layout";
-import Dashboard from "./components/Dashboard";
-import NotFound from "./components/NotFound";
-import SignUp from "./components/Authentication/SignUp.component";
-import Login from "./components/Authentication/Login.component";
-import NotAuthorized from "./components/Authentication/NotAuthorized.component";
-import EmailRecovery from "./components/Authentication/EmailRecovery.component";
-import Users from "./components/Users/Users.components";
-import InitiativeItem from "./components/InitiativeItem/IntiativeItem.component";
-import PendingSignUpComponent from "./components/Authentication/PendingSignUp.component";
-import RequireAuth from "./components/RequireAuth";
-import ChangePassword from "./components/Authentication/ChangePassword.component";
-import EstimationPage from "./components/EstimationPage";
+import Layout from "./Components/Layout";
+import Dashboard from "./Components/Dashboard";
+import NotFound from "./Components/NotFound";
+import SignUp from "./Components/Authentication/SignUp.component";
+import Login from "./Components/Authentication/Login.component";
+import NotAuthorized from "./Components/Authentication/NotAuthorized.component";
+import EmailRecovery from "./Components/Authentication/EmailRecovery.component";
+import Users from "./Components/Users/Users.components";
+import InitiativeItem from "./Components/InitiativeItem/IntiativeItem.component";
+import PendingSignUpComponent from "./Components/Authentication/PendingSignUp.component";
+import RequireAuth from "./Components/RequireAuth";
+import ChangePassword from "./Components/Authentication/ChangePassword.component";
+import EstimationPage from "./Components/EstimationPage";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
