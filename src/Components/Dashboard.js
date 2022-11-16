@@ -6,6 +6,7 @@ import { getInitiatives, createEstimation } from "../config/api";
 import { Container, Row, Button, Col } from "react-bootstrap";
 import InitiativeTopPanel from "./InitiativeTopPanel";
 import axios from "../config/api";
+import { Link } from "react-router-dom";
 
 const Styles = styled.div`
   .d-inline mx-2 {
@@ -24,9 +25,7 @@ const columns = [
     field: "ticket_id",
     headerName: "Ticket#",
     width: 80,
-    renderCell: (obj) => (
-      <a href={`/initiatives/${obj.id}`}>{obj.value}</a>
-    ),
+    renderCell: (obj) => <Link to={`/initiatives/${obj.id}`}>{obj.value}</Link>,
   },
   { field: "initiative", headerName: "Initiative", width: 200 },
   { field: "description", headerName: "Description", width: 400 },
@@ -121,7 +120,6 @@ function Dashboard() {
               columns={columns}
               pageSize={10}
               rowsPerPageOptions={[15]}
-              // checkboxSelection
               checkboxSelection
               onSelectionModelChange={(data) => {
                 setSelectedData(data);
