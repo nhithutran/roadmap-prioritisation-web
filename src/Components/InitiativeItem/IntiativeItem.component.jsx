@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import AuthContext from "../../context/auth.context";
 import { useParams } from "react-router-dom";
 import {
   Container,
@@ -27,12 +28,11 @@ const defaultInputFields = {
   priority: "",
   target: "",
   target_launch: "",
-  comment: "",
 };
 
 const impactValue = ["?", "Small", "Medium", "Large", "Xlarge"];
 const confidenceValue = ["?", "Small", "Medium", "Large", "Xlarge"];
-const effortValue = ["?", "Xlarge", "Large", "Medium", "Medium"];
+const effortValue = ["?", "Xlarge", "Large", "Medium", "Samll"];
 const priorityValue = ["P-0", "P-1", "P-2", "P-3", "P-4", "P-5"];
 const targetValue = ["Free", "Pro", "Team", "Education", "All", "Others"];
 const monthsValue = [
@@ -75,6 +75,15 @@ const InitiativeItem = () => {
 
   const [initiativeData, setInitiativeData] = useState(defaultInputFields);
   const [isLoading, setIsLoading] = useState(false);
+  const { auth } = useContext(AuthContext);
+
+  const privateHeaders = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${auth.token}`,
+    },
+    withCredentials: false,
+  };
 
   const {
     _id,
@@ -99,7 +108,7 @@ const InitiativeItem = () => {
     const fetchInitiativeURL = INITIATIVE_URL + params.id;
     setIsLoading(true);
     try {
-      const response = await axios.get(fetchInitiativeURL);
+      const response = await axios.get(fetchInitiativeURL, privateHeaders);
       const responseInitiative = response.data.data;
       setInitiativeData(responseInitiative);
       setIsLoading(false);
@@ -127,6 +136,66 @@ const InitiativeItem = () => {
   const handleReset = () => {
     fetchData();
     setIceScore(iceScoreCalculation(impact, confidence, effort));
+  };
+
+  const handleUpdate = async () => {
+    setIsLoading(true);
+    const InitiativeIdURL = INITIATIVE_URL + params.id;
+    try {
+      const response = await axios.put(
+        InitiativeIdURL,
+        JSON.stringify({
+          ticket_id,
+          initiative,
+          description,
+          submit_date,
+          owner,
+          impact,
+          confidence,
+          effort,
+          priority,
+          target,
+          target_launch,
+        }),
+        privateHeaders
+      );
+
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
+  };
+
+  const handleAddToEstimation = async () => {
+    setIsLoading(true);
+    const lifecycle = "Estimation";
+    const InitiativeIdURL = INITIATIVE_URL + params.id;
+    try {
+      const response = await axios.put(
+        InitiativeIdURL,
+        JSON.stringify({
+          ticket_id,
+          initiative,
+          description,
+          submit_date,
+          owner,
+          impact,
+          confidence,
+          effort,
+          priority,
+          target,
+          target_launch,
+          lifecycle,
+        }),
+        privateHeaders
+      );
+
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
   };
   return (
     <Container>
@@ -262,8 +331,12 @@ const InitiativeItem = () => {
         </Col>
         <Col xs={4}>
           <Button style={{ width: "12rem" }} onClick={handleUpdate}>
-            {" "}
-            Save{" "}
+            Save
+          </Button>
+        </Col>
+        <Col xs={4}>
+          <Button style={{ width: "12rem" }} onClick={handleAddToEstimation}>
+            Add to Estimation
           </Button>
         </Col>
       </Row>

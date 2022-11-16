@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { DataGrid } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
-import { getInitiatives, createEstimation } from "../config/api";
+import { useEffect, useState, useContext } from "react";
+import { getInitiatives } from "../config/api";
 import { Container, Row, Button, Col } from "react-bootstrap";
 import InitiativeTopPanel from "./InitiativeTopPanel";
 import axios from "../config/api";
 import { Link } from "react-router-dom";
+import AuthContext from "../context/auth.context";
+
+const INITIATIVES_URL = "api/v1/initiatives/";
 
 const Styles = styled.div`
   .d-inline mx-2 {
@@ -50,11 +53,20 @@ function Dashboard() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
+  const { auth } = useContext(AuthContext);
+
+  const privateHeaders = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${auth.token}`,
+    },
+    withCredentials: false,
+  };
 
   const fetchAndSetInitiatives = async () => {
     try {
-      const res = await getInitiatives();
-      const resData = res.data;
+      const res = await axios.get(INITIATIVES_URL, privateHeaders);
+      const resData = res.data.data;
       setData(resData || []); // Ensure that data not null
     } catch (error) {
       console.log(error);
