@@ -16,8 +16,8 @@ const Styles = styled.div`
     box-shadow: 0.5px 0.5px;
   }
 
-  p {
-    text-weight: bold;
+  p.estAuthor {
+    
   }
 `;
 
@@ -29,7 +29,7 @@ const EstimationTopPanel = () => (
         <p>
           The key is not to prioritize what's on you schedule, but to schedule your properties.
         </p>
-        <p>Stephen Convey</p>
+        <p className="estAuthor">Stephen Convey</p>
       </div>
       <div className="EstimationImg">
       <img

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/auth.context";
+import logoImg from "../../assets/Logo.png";
 import {
   Container,
   Row,
@@ -96,8 +97,13 @@ const ChangePassword = () => {
   return (
     <Container>
       <Row style={mainRowStyle}>
-        <Col xs={6} style={mainColStyle}>
+        <Col xs={6} className="auth-main-col-left" style={mainColStyle}>
           <h1>Change Password</h1>
+          <img
+          className="logo"
+          src={logoImg}
+          alt="Canva logo"
+        ></img>
         </Col>
         <Col sx={6} style={mainColStyle}>
           <Form style={{ width: "100%" }} onSubmit={handleSubmit}>

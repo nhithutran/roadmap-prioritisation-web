@@ -14,7 +14,7 @@ const Styles = styled.div`
     box-shadow: 0.5px 0.5px;
   }
 
-  # InitiativeImg {
+  #InitiativeImg {
     border-radius: 5px;
     padding-left: 20%
   }

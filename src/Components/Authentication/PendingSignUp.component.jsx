@@ -10,7 +10,7 @@ const PendingSignUp = () => {
           src={purpleImg}
           alt="Purple Checkmark logo"
         ></img>
-      <h2>Thank you for signing up!</h2>
+      <h2>Thank you!</h2>
       <h4> Please wait for approval from an authorised manager</h4>
     </Container>
   );
