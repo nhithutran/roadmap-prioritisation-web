@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import AuthContext from "../../context/auth.context";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   Container,
   Row,
@@ -11,6 +11,7 @@ import {
   FormControl,
   Button,
   Spinner,
+  Alert,
 } from "react-bootstrap";
 
 import axios from "../../config/api";
@@ -75,7 +76,9 @@ const InitiativeItem = () => {
 
   const [initiativeData, setInitiativeData] = useState(defaultInputFields);
   const [isLoading, setIsLoading] = useState(false);
+  const [isAlert, setIsAlert] = useState(false);
   const { auth } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const privateHeaders = {
     headers: {
@@ -161,6 +164,7 @@ const InitiativeItem = () => {
       );
 
       setIsLoading(false);
+      setIsAlert(true);
     } catch (error) {
       console.log(error);
     }
@@ -192,6 +196,7 @@ const InitiativeItem = () => {
       );
 
       setIsLoading(false);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -320,22 +325,47 @@ const InitiativeItem = () => {
                 </FormSelect>
               </FormGroup>
             </Col>
+            <Col xs={2}>
+              {isAlert && (
+                <Alert
+                  variant="success"
+                  onClose={() => {
+                    setIsAlert(false);
+                  }}
+                  dismissible
+                >
+                  <Alert.Heading>Data Saved</Alert.Heading>
+                </Alert>
+              )}
+            </Col>
           </Row>
         </>
       )}
       <Row className="mb-3">
         <Col xs={4}>
-          <Button style={{ width: "12rem" }} onClick={handleReset}>
+          <Button
+            style={{ width: "12rem" }}
+            disabled={isAlert}
+            onClick={handleReset}
+          >
             Reset
           </Button>
         </Col>
         <Col xs={4}>
-          <Button style={{ width: "12rem" }} onClick={handleUpdate}>
+          <Button
+            style={{ width: "12rem" }}
+            disabled={isAlert}
+            onClick={handleUpdate}
+          >
             Save
           </Button>
         </Col>
         <Col xs={4}>
-          <Button style={{ width: "12rem" }} onClick={handleAddToEstimation}>
+          <Button
+            style={{ width: "12rem" }}
+            disabled={isAlert}
+            onClick={handleAddToEstimation}
+          >
             Add to Estimation
           </Button>
         </Col>
