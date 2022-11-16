@@ -4,12 +4,12 @@ import { Dropdown, Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
 import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import AuthContext from "../context/auth.context";
-import Logo from "../assets/logo";
+import brandlogoImg from "../assets/Brand-Logo.png";
 
 // CSS-file ********************
 const Styles = styled.div`
   .navbar {
-    background-color: #7d7d7d;
+    background-color: #7d7d7d;Logo
   }
 
   .navbar-brand,
@@ -17,7 +17,7 @@ const Styles = styled.div`
   nav-link {
     color: #white;
     &:hover {
-      color: black;
+      color: #7A5CFA;
     }
   }
 
@@ -47,9 +47,9 @@ const NavigationBar = () => {
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="/">
           <img
-            src="Logo"
+          className="logo"
+            src={brandlogoImg}
             alt="Canva logo"
-            width="10px height=10px"
           ></img>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

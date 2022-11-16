@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import publicHeaders from "../../config/publicHeaders";
 import axios from "../../config/api";
+import logoImg from "../../assets/Logo.png";
 const REGISTER_URL = "api/v1/auth/register";
 
 // CSS-file ********************
@@ -20,6 +21,7 @@ import {
   FormLabel,
   Row,
 } from "react-bootstrap";
+import { width } from "@mui/system";
 
 const SignUp = () => {
   let navigate = useNavigate();
@@ -84,14 +86,20 @@ const SignUp = () => {
   return (
     <Container>
       <Row className="auth-main-row">
-        <Col xs={6} className="auth-main-col">
-          <h3>Getting started with Roadmap Prioritisation</h3>
+        <Col xs={6} className="auth-main-col-left">
+          <h3 className="Signup-header">Getting started with Roadmap Prioritisation</h3>
         </Col>
+        {/* <img
+          className="logo"
+          src={logoImg}
+          alt="Canva logo"
+        ></img> */}
         <Col xs={6} className="auth-main-col">
           <Row className="left-panel heading">
+            <h4>Sign Up</h4>
             <h6> All Sign Ups require approval by an Authorised Manager</h6>
           </Row>
-          <Form style={{ width: "100%" }} onSubmit={handlerSubmit}>
+          <Form style={{ width: "80%", height: "6%" }} onSubmit={handlerSubmit}>
             <Row className="mb-3">
               <FormGroup as={Col} controlId="formFirstName">
                 <FormLabel>First Name</FormLabel>
@@ -162,7 +170,7 @@ const SignUp = () => {
                   )}
               </FormGroup>
             </Row>
-            <Button disabled={disableButton} type="submit">
+            <Button className="signup-button" disabled={disableButton} type="submit">
               Sign Up
             </Button>
             <Row>

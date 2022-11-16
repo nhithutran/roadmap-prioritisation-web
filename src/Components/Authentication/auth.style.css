@@ -2,10 +2,42 @@
   height: 85vh;
 }
 
-.auth-main-col {
+.auth-main-col-left {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  color: white;
+  background: linear-gradient(-45deg, #593be0, #9162F5, #ba65e9);
+  animation: gradient 15s ease infinite;
+}
+
+h3.Signup-header {
+  margin-bottom: 80%;
+  margin-left: 20%;
+}
+
+.auth-main-col {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 10%;
+}
+
+img.logo {
+  width: 20%;
+  height: 10%;
+  position: fixed;
+  bottom: 55%;
+  left: 20%
+}
+
+a {
+  color: #7A5CFA;
+}
+
+h6 {
+  margin-bottom: 5%;
 }

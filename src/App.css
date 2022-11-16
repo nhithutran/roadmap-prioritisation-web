@@ -1,3 +1,25 @@
-.button-btn {
+.btn.btn-primary {
     background-color: #7A5CFA;
+    border: #7A5CFA;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+}
+
+#dropdown-basic {
+    color: #7A5CFA;
+    outline-color: #7A5CFA;
+}
+
+a {
+    color: #7A5CFA;
+}
+
+a.hover {
+    color: black;
+}
+
+logo {
+    width: 40%;
 }
