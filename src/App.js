@@ -32,7 +32,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             //*****private******
             <Route element={<RequireAuth />}>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/" element={<InitiativePage />} />
               <Route path="/initiatives/:id" element={<InitiativeItem />} />
               <Route path="estimation" element={<EstimationPage />} />
               <Route path="roadmap" element={<div>Roadmap</div>} />

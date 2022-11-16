@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import { getInitiatives, createEstimation } from "../config/api";
+import { getInitiatives } from "../config/api";
 import { Container, Row, Button, Col } from "react-bootstrap";
 import InitiativeTopPanel from "./InitiativeTopPanel";
 import axios from "../config/api";
@@ -16,6 +16,11 @@ const Styles = styled.div`
   .searchBar {
     display: flex;
     padding: 20px;
+    outline: #7A5CFA;
+  }
+
+  .input.searchTerm {
+    color: #7A5CFA;
   }
 `;
 

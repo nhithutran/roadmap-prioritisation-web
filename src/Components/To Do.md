@@ -6,15 +6,14 @@ Sign Up Page - auth.style.css
 * Left panel text not wrapped or centered
 * More space between 2 panels
 
+PendingSingUp - image not working
 
+NavBar
+* How to override App.js a tag?
+* Change to black and hover #7A5CFA
+* Nav-Link textDecoration: 'none'
 
-
-
-ESTIMATIONS PAGE
-- Add filter for Squad
-- ??? Drop down for user to select in Squad column in table
-- Remove pagination? As there may be less items once filtered by Squad and date?
-- Span for Sub-Total, Total Estimates for Priority 1, Total Days Avialable (input field) and DIFFERENCE +/-
-Spanning tables in table component: https://v4.mui.com/components/tables/
-- Add Calculate Sub-Total, Total Estimates for Prority 1 and DIFFERNCE +/-
-- DIFFERNCE result to be color coded depending if -/+ or even
+Initiative page
+*Add to Estimation button center align
+* About Me button change color when clicked on
+* Search bar .input.searchTerm not doing anything #7A5CFA
