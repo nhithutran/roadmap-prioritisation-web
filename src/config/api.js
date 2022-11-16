@@ -2,7 +2,7 @@ import axios from "axios";
 import config from "./config";
 
 const cfg = config.load();
-const {baseURL} = cfg;
+const { baseURL } = cfg;
 //Define an API
 export default axios.create({
   baseURL,
@@ -18,13 +18,6 @@ const api = axios.create({
   baseURL: "http://localhost:4000/",
   //baseURL: "https://roadmap-prioritisation.herokuapp.com/", // Update before deploy to Netlify
 });
-
-export const getInitiatives = async () => {
-  const response = await api.get(
-    "/api/v1/initiatives/" //Update before deploy to Netlify
-  );
-  return response.data;
-};
 
 // update intiative to estimation
 export const createEstimation = async (selectedData) => {
