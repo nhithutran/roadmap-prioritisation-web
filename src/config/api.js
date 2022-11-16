@@ -7,7 +7,7 @@ export default axios.create({
 });
 
 //public headers
-const publicHeader = {
+export const publicHeaders = {
   headers: { "Content-Type": "application/json" },
   withCredentials: false,
 };

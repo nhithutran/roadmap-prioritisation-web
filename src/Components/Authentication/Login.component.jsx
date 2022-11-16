@@ -6,7 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 // Axios data/hooks
 import axios from "../../config/api";
 const LOGIN_URL = "api/v1/auth/login";
-const { publicHeaders } = "../../config/api";
+import publicHeaders from "../../config/publicHeaders";
 // CSS-file ********************
 import "./auth.style.css";
 
@@ -56,10 +56,7 @@ const Login = () => {
       const response = await axios.post(
         LOGIN_URL,
         JSON.stringify({ email, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: false,
-        }
+        publicHeaders
       );
 
       const token = response?.data.token;

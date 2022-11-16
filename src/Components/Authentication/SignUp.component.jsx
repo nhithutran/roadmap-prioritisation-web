@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import publicHeaders from "../../config/publicHeaders";
 import axios from "../../config/api";
 const REGISTER_URL = "api/v1/auth/register";
 
@@ -20,7 +20,6 @@ import {
   FormLabel,
   Row,
 } from "react-bootstrap";
-
 
 const SignUp = () => {
   let navigate = useNavigate();
@@ -64,10 +63,7 @@ const SignUp = () => {
       const response = await axios.post(
         REGISTER_URL,
         JSON.stringify({ firstName, lastName, email, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: false,
-        }
+        publicHeaders
       );
       setDisableButton(false);
     } catch (error) {
