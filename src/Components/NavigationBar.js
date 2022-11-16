@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useContext } from "react";
 import { Dropdown, Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import AuthContext from "../context/auth.context";
-
 const Styles = styled.div`
   .navbar {
     background-color: #7d7d7d;
@@ -54,9 +54,9 @@ const NavigationBar = () => {
           <Nav className="ml-auto">
             {auth?.email && (
               <>
-                <Link to="/">Dashboard</Link>
-                <Link to="/estimation">Estimation</Link>
-                <Link to="/users"> Users</Link>
+                <NavLink to="/">Dashboard</NavLink>
+                <NavLink to="/estimation">Estimation</NavLink>
+                <NavLink to="/users">Users</NavLink>
               </>
             )}
 
