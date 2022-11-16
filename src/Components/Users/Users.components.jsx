@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/auth.context";
 import axios from "../../config/api";
+
 import {
   Container,
   Form,
@@ -14,7 +15,7 @@ import {
   Dropdown,
   Spinner,
 } from "react-bootstrap";
-import useBearer from "../../hooks/useBearer";
+
 const USERS_URL = "api/v1/users/";
 
 const cardContainerStyle = {
@@ -28,18 +29,16 @@ const Users = () => {
   const [email, setEmail] = useState("");
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
-  const [userToken, setUserToken] = useState(useBearer());
   const [isLoading, setIsLoading] = useState(false);
+  const { auth } = useContext(AuthContext);
 
-  const headers = {
+  const privateHeaders = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `${userToken}`,
+      Authorization: `Bearer ${auth.token}`,
     },
     withCredentials: false,
   };
-
-  const { auth, setAuth } = useContext(AuthContext);
 
   const emailHandleChange = (event) => {
     const inputEmail = event.target.value;
@@ -54,9 +53,10 @@ const Users = () => {
     const buttonId = event.target.name;
     const userURL = USERS_URL + buttonId;
     setIsLoading(true);
+
     // Change/upadte the status of the user (approval)
     try {
-      const responseUser = await axios.get(userURL, headers);
+      const responseUser = await axios.get(userURL, privateHeaders);
       let user = responseUser.data.data;
 
       let approved = user.approved;
@@ -68,10 +68,10 @@ const Users = () => {
       const responsePutUser = await axios.put(
         userURL,
         JSON.stringify(user),
-        headers
+        privateHeaders
       );
 
-      const response = await axios.get(USERS_URL, headers);
+      const response = await axios.get(USERS_URL, privateHeaders);
       const responseUsers = response.data.data;
       setUsers(responseUsers);
       setIsLoading(false);
@@ -88,9 +88,9 @@ const Users = () => {
 
     // Change/upadte the status of the user (approval)
     try {
-      const responseUser = await axios.delete(userURL, headers);
+      const responseUser = await axios.delete(userURL, privateHeaders);
 
-      const response = await axios.get(USERS_URL, headers);
+      const response = await axios.get(USERS_URL, privateHeaders);
       const responseUsers = response.data.data;
       setUsers(responseUsers);
       setFilteredUsers(responseUsers);
@@ -104,7 +104,7 @@ const Users = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(USERS_URL, headers);
+        const response = await axios.get(USERS_URL, privateHeaders);
         const responseUsers = response.data.data;
         setUsers(responseUsers);
         setFilteredUsers(responseUsers);
