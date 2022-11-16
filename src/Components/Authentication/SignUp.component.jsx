@@ -85,10 +85,10 @@ const SignUp = () => {
     <Container>
       <Row className="auth-main-row">
         <Col xs={6} className="auth-main-col">
-          <h1>Sign Up</h1>
+          <h3>Getting started with Roadmap Prioritisation</h3>
         </Col>
         <Col xs={6} className="auth-main-col">
-          <Row className="mb-3">
+          <Row className="left-panel heading">
             <h6> All Sign Ups require approval by an Authorised Manager</h6>
           </Row>
           <Form style={{ width: "100%" }} onSubmit={handlerSubmit}>
@@ -162,7 +162,7 @@ const SignUp = () => {
                   )}
               </FormGroup>
             </Row>
-            <Button disabled={disableButton} variant="primary" type="submit">
+            <Button disabled={disableButton} type="submit">
               Sign Up
             </Button>
             <Row>
