@@ -2,8 +2,14 @@ import React from "react";
 import { useContext } from "react";
 import { Dropdown, Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
+<<<<<<< HEAD
 import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import AuthContext from "../context/auth.context";
+=======
+import { useNavigate } from "react-router-dom";
+import logoImg from "../assets/logo.jpg"
+
+>>>>>>> estimation-page
 const Styles = styled.div`
   .navbar {
     background-color: #7d7d7d;
@@ -23,6 +29,11 @@ const Styles = styled.div`
     justify-content: space-between;
     float: right;
     // background-colour: 67748E;
+  }
+
+  img.logo {
+    width: 50px;
+    // height: 20px;
   }
 `;
 
@@ -44,9 +55,9 @@ const NavigationBar = () => {
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="/">
           <img
-            src="../assets/logo.jpg"
+            className="logo"
+            src={logoImg}
             alt="Canva logo"
-            width="10px height=10px"
           ></img>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

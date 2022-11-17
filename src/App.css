@@ -1,1 +1,18 @@
 
+<<<<<<< HEAD
+=======
+a {
+    color: red;
+}
+a:hover {
+    color: blue;
+}
+
+button.btn-primary {
+    background-color: purple;
+}
+
+#dropdown-basic {
+    background-color: black;
+}
+>>>>>>> estimation-page
