@@ -7,10 +7,10 @@
     height: 60%;
 }
 
-
 #dropdown-basic {
-    color: #7A5CFA;
+    color: white;
     outline-color: #7A5CFA;
+    background-color: #7A5CFA;
 }
 
 a {
