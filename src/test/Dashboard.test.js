@@ -1,4 +1,4 @@
-const { Dashboard } = require('../components/Dashboard')
+const { Dashboard } = require('../Components/Dashboard')
 
 describe("Dashboard", () => {
     test('there is a "Search" in search bar', () => {

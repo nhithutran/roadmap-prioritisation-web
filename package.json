@@ -18,7 +18,8 @@
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-scripts-fork": "0.4.3"
   },
   "scripts": {
     "start": "react-scripts start",

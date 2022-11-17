@@ -1,6 +1,14 @@
-const { InitiativeTopPanel } = require('../components/InitiativeTopPanel')
+// const { InitiativeTopPanel } = require('../components/InitiativeTopPanel');
+import { InitiativeTopPanel } from '../Components/InitiativeTopPanel';
+import {render, fireEvent, screen} from '@testing-library/react'
+
+
 
 describe("InitiativeTopPanel", () => {
+    test('loads items eventually', async () => {
+        render(<InitiativeTopPanel />)
+    });    
+
     test('there is a heading', () => {
         expect('Initiative').toMatch(/tia/);    
     }); 
