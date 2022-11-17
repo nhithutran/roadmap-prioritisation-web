@@ -19,8 +19,13 @@ const Styles = styled.div`
     outline: #7A5CFA;
   }
 
-  .input.searchTerm {
+  .searchTerm {
     color: #7A5CFA;
+  }
+
+  .add-Estimation-button-row {
+    display: flex;
+    justify-content: center;
   }
 `;
 
@@ -134,10 +139,10 @@ function InitiativePage() {
               {...data}
             />
           </div>
-          <Row className="mb-3">
+          <Row className="add-Estimation-button-row">
             <Col xs={4}>
               <Button
-                style={{ width: "12rem" }}
+                style={{ width: "14rem" }}
                 onClick={handleAddToEstimation}
               >
                 Add to Estimation

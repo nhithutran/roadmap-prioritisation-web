@@ -21,15 +21,22 @@ const Styles = styled.div`
     }
   }
 
-  Nav.Link {
-    textDecoration: 'none';
+  a.nav-links.active {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
   }
 
-  .logout-button {
-    display: flex-end;
-    justify-content: space-between;
-    float: right;
-    // background-colour: 67748E;
+  a.nav-links {
+    text-decoration: none;
+    color: #67748E;
+    font-size: 20px;
+  }
+
+
+  .brandlogo {
+    margin-left 30px;
+    margin-right 20px;
   }
 `;
 
@@ -51,7 +58,7 @@ const NavigationBar = () => {
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="/">
           <img
-          className="logo"
+          className="brandlogo"
             src={brandlogoImg}
             alt="Canva logo"
           ></img>
@@ -62,13 +69,13 @@ const NavigationBar = () => {
             {auth?.email && (
               <>
                 <div style={{ margin: "0px 10px" }}>
-                  <NavLink to="/">Initiatives</NavLink>
+                  <NavLink className="nav-links" to="/">Initiatives</NavLink>
                 </div>
                 <div style={{ margin: "0px 10px" }}>
-                  <NavLink to="/estimation">Estimation</NavLink>
+                  <NavLink className="nav-links" to="/estimation">Estimation</NavLink>
                 </div>
                 <div style={{ margin: "0px 10px" }}>
-                  <NavLink to="/users">Users</NavLink>
+                  <NavLink className="nav-links" to="/users">Users</NavLink>
                 </div>
               </>
             )}
@@ -79,7 +86,7 @@ const NavigationBar = () => {
         {auth?.email ? (
           <Nav.Link className="float-end">
             <Dropdown>
-              <Dropdown.Toggle id="dropdown-basic" variant="outline-primary">
+              <Dropdown.Toggle id="dropdown-basic">
                 About Me
               </Dropdown.Toggle>
               <Dropdown.Menu>

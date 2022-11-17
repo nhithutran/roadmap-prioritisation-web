@@ -95,7 +95,7 @@ const SignUp = () => {
         ></img>
         </Col>
         <Col xs={6} className="auth-main-col">
-          <Row className="left-panel heading">
+          <Row>
             <h4>Sign Up</h4>
             <h6> All Sign Ups require approval by an Authorised Manager</h6>
           </Row>

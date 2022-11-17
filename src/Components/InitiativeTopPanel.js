@@ -4,19 +4,26 @@ import initiativePageImg from "../assets/InitiaitivePage.png";
 const Styles = styled.div`
   .boxed {
     display: flex;
-    align-items: right;
     margin-left: 10%;
-    width: 80%;
-    height: 140px;
-    padding: 20px;
+    width: 75%;
+    height: 150px;
+    padding-left: 18px;
+    padding-top: 5px;
     border: 1px solid #67748e;
     border-radius: 5px;
     box-shadow: 0.5px 0.5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 
-  #InitiativeImg {
-    border-radius: 5px;
-    padding-left: 20%
+  .text {
+    padding-left: 20px;
+    padding-right: 40px;
+  }
+
+  .InitiativeImg {
+    border-radius: 15px;
+    padding: 10px;
   }
 `;
 
@@ -31,13 +38,12 @@ const InitiativeTopPanel = () => (
         </p>
         <p>Barack Obama</p>
       </div>
-      <div className="InitiativeImg">
       <img
             src={initiativePageImg}
             alt="Inititaive Top Panel icon"
+            className="InitiativeImg"
           ></img>
-      </div>
-    </div>
+      </div>      
   </Styles>
 );
 

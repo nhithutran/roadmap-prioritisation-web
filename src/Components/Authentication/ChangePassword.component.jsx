@@ -16,6 +16,7 @@ import {
 
 import axios from "../../config/api";
 import useBearer from "../../hooks/useBearer";
+import { display } from "@mui/system";
 const CHANGE_PASSWORD_URL = "api/v1/auth/changepassword";
 
 const ChangePassword = () => {
@@ -28,8 +29,8 @@ const ChangePassword = () => {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "flex-start",
   };
+  
   /***** End Styles *****/
 
   /**** Default value */
@@ -98,7 +99,7 @@ const ChangePassword = () => {
     <Container>
       <Row style={mainRowStyle}>
         <Col xs={6} className="auth-main-col-left" style={mainColStyle}>
-          <h1>Change Password</h1>
+          <h1 className="change-pwd-heading">Change Password</h1>
           <img
           className="logo"
           src={logoImg}

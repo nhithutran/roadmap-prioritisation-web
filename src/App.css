@@ -1,22 +1,19 @@
-.btn.btn-primary {
-    background-color: #7A5CFA;
-    border: #7A5CFA;
-    margin: 10px;
-    justify-content: center;
-    align-items: center;
-    height: 60%;
-}
-
-#dropdown-basic {
-    color: white;
-    outline-color: #7A5CFA;
-    background-color: #7A5CFA;
-}
-
 a {
     color: #7A5CFA;
 }
+a:hover {
+    color: #7A5CFA;
+}
 
-a.hover {
-    color: black;
+.btn.btn-primary {
+    background-color: #7A5CFA;
+    outline-color: #7A5CFA;
+    padding-top: 10px;
+    margin-top: 20px
+    
+}
+
+.dropdown-basic {
+    background-color: #7A5CFA;
+    color: white;
 }
