@@ -1,14 +1,19 @@
 a {
-    color: red;
+    color: #7A5CFA;
 }
 a:hover {
-    color: blue;
+    color: #7A5CFA;
 }
 
-button.btn-primary {
-    background-color: purple;
+.btn.btn-primary {
+    background-color: #7A5CFA;
+    outline-color: #7A5CFA;
+    padding-top: 10px;
+    margin-top: 20px
+    
 }
 
-#dropdown-basic {
-    background-color: black;
+.dropdown-basic {
+    background-color: #7A5CFA;
+    color: white;
 }

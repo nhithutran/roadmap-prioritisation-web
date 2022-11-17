@@ -4,8 +4,9 @@ import { Dropdown, Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
 import { useNavigate, NavLink } from "react-router-dom";
 import AuthContext from "../context/auth.context";
-import logoImg from "../assets/logo.jpg"
+import brandlogoImg from "../assets/Brand-Logo.png";
 
+// CSS-file ********************
 const Styles = styled.div`
   .navbar {
     background-color: #7d7d7d;
@@ -16,15 +17,26 @@ const Styles = styled.div`
   nav-link {
     color: #white;
     &:hover {
-      color: black;
+      color: #7A5CFA;
     }
   }
 
-  .logout-button {
-    display: flex-end;
-    justify-content: space-between;
-    float: right;
-    // background-colour: 67748E;
+  a.nav-links.active {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+  }
+
+  a.nav-links {
+    text-decoration: none;
+    color: #67748E;
+    font-size: 20px;
+  }
+
+
+  .brandlogo {
+    margin-left 30px;
+    margin-right 20px;
   }
 
   img.logo {
@@ -51,8 +63,8 @@ const NavigationBar = () => {
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="/">
           <img
-            className="logo"
-            src={logoImg}
+          className="brandlogo"
+            src={brandlogoImg}
             alt="Canva logo"
           ></img>
         </Navbar.Brand>
@@ -62,13 +74,13 @@ const NavigationBar = () => {
             {auth?.email && (
               <>
                 <div style={{ margin: "0px 10px" }}>
-                  <NavLink to="/">Dashboard</NavLink>
+                  <NavLink className="nav-links" to="/">Initiatives</NavLink>
                 </div>
                 <div style={{ margin: "0px 10px" }}>
-                  <NavLink to="/estimation">Estimation</NavLink>
+                  <NavLink className="nav-links" to="/estimation">Estimation</NavLink>
                 </div>
                 <div style={{ margin: "0px 10px" }}>
-                  <NavLink to="/users">Users</NavLink>
+                  <NavLink className="nav-links" to="/users">Users</NavLink>
                 </div>
               </>
             )}
@@ -79,7 +91,7 @@ const NavigationBar = () => {
         {auth?.email ? (
           <Nav.Link className="float-end">
             <Dropdown>
-              <Dropdown.Toggle id="dropdown-basic" variant="outline-primary">
+              <Dropdown.Toggle id="dropdown-basic">
                 About Me
               </Dropdown.Toggle>
               <Dropdown.Menu>

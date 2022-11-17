@@ -2,6 +2,7 @@ import React, { useReducer } from "react";
 import { useState, useContext } from "react";
 import AuthContext from "../../context/auth.context";
 import { useNavigate, Link } from "react-router-dom";
+import logoImg from "../../assets/Logo.png";
 
 // Axios data/hooks
 import axios from "../../config/api";
@@ -85,12 +86,17 @@ const Login = () => {
   return (
     <Container>
       <Row className="auth-main-row">
-        <Col xs={6} className="auth-main-col">
-          <h1>Log In</h1>
+        <Col xs={6} className="auth-main-col-left">
+        <h3 className="leftpanel-text">Welcome back to Roadmap Prioritisation</h3>
+        <img
+          className="logo"
+          src={logoImg}
+          alt="Canva logo"
+        ></img>
         </Col>
         <Col xs={6} className="auth-main-col">
           <Row className="mb-3">
-            <h6> All Sign Ups require approval by an Authorised Manager</h6>
+            <h4>Log In</h4>
           </Row>
           <Form style={{ width: "100%" }} onSubmit={handlerSubmit}>
             <Row className="mb-3">

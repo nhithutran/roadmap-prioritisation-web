@@ -15,6 +15,14 @@ const Styles = styled.div`
     display: flex;
     padding: 20px;
   }
+
+  .Squad-dropdown {
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    width: 120px
+
+  }
+
 `;
 
 const columns = [
@@ -138,7 +146,7 @@ function EstimationPage() {
           </div>
 
           <Dropdown>
-            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+            <Dropdown.Toggle className="Squad-dropdown">
               Squad
             </Dropdown.Toggle>
 

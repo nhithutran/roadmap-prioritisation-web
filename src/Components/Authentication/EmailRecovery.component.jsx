@@ -54,6 +54,8 @@ const EmailRecovery = () => {
       <Form onSubmit={handlerSubmit}>
         <Row className="mb-3">
           <FormGroup controlId="formEmail">
+            <h2>Forgot Password?</h2>
+            <h6>No worries, we'll send you reset instructions.</h6>
             <FormLabel>Email</FormLabel>
             <FormControl
               required

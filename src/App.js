@@ -5,7 +5,7 @@ import { useEffect, useContext, useState } from "react";
 import AuthContext from "./context/auth.context";
 // Pages
 import Layout from "./Components/Layout";
-import Dashboard from "./Components/Dashboard";
+import InitiativePage from "./Components/InitiativePage";
 import NotFound from "./Components/NotFound";
 import SignUp from "./Components/Authentication/SignUp.component";
 import Login from "./Components/Authentication/Login.component";
@@ -32,7 +32,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             //*****private******
             <Route element={<RequireAuth />}>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/" element={<InitiativePage />} />
               <Route path="/initiatives/:id" element={<InitiativeItem />} />
               <Route path="estimation" element={<EstimationPage />} />
               <Route path="roadmap" element={<div>Roadmap</div>} />

@@ -1,6 +1,6 @@
-const { Dashboard } = require('../Components/Dashboard')
+const { InitiativePage } = require('../components/InitiativePage')
 
-describe("Dashboard", () => {
+describe("InitiativePage", () => {
     test('there is a "Search" in search bar', () => {
         expect('Search').toMatch(/../);    
     });    

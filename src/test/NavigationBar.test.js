@@ -6,7 +6,7 @@ describe("NavigationBar", () => {
     }); 
     
     test('to display correct links', () => {
-        expect('Dashboard').toContain("Dashboard");    
+        expect('Initiative').toContain("Initiative");    
         expect('Estimation').toContain("Estimation");
         expect('Users').toContain("Users");
     });  

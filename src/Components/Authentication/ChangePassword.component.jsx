@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/auth.context";
+import logoImg from "../../assets/Logo.png";
 import {
   Container,
   Row,
@@ -15,6 +16,7 @@ import {
 
 import axios from "../../config/api";
 import useBearer from "../../hooks/useBearer";
+import { display } from "@mui/system";
 const CHANGE_PASSWORD_URL = "api/v1/auth/changepassword";
 
 const ChangePassword = () => {
@@ -27,8 +29,8 @@ const ChangePassword = () => {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "flex-start",
   };
+  
   /***** End Styles *****/
 
   /**** Default value */
@@ -96,8 +98,13 @@ const ChangePassword = () => {
   return (
     <Container>
       <Row style={mainRowStyle}>
-        <Col xs={6} style={mainColStyle}>
-          <h1>Change Password</h1>
+        <Col xs={6} className="auth-main-col-left" style={mainColStyle}>
+          <h1 className="change-pwd-heading">Change Password</h1>
+          <img
+          className="logo"
+          src={logoImg}
+          alt="Canva logo"
+        ></img>
         </Col>
         <Col sx={6} style={mainColStyle}>
           <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
