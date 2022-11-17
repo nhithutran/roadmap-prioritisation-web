@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import logoImg from "../../assets/Logo.png";
 
 // Axios data/hooks
-import axios from "../../config/api";
+import axios from "../../config/api.js";
 const LOGIN_URL = "api/v1/auth/login";
 import publicHeaders from "../../config/publicHeaders";
 // CSS-file ********************

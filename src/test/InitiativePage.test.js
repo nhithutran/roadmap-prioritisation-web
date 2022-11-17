@@ -1,4 +1,4 @@
-const { InitiativePage } = require('../components/InitiativePage')
+import InitiativePage from '../components/InitiativePage'
 
 describe("InitiativePage", () => {
     test('there is a "Search" in search bar', () => {
