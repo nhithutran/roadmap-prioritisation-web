@@ -2,14 +2,10 @@ import React from "react";
 import { useContext } from "react";
 import { Dropdown, Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
-<<<<<<< HEAD
-import { useLocation, useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import AuthContext from "../context/auth.context";
-=======
-import { useNavigate } from "react-router-dom";
 import logoImg from "../assets/logo.jpg"
 
->>>>>>> estimation-page
 const Styles = styled.div`
   .navbar {
     background-color: #7d7d7d;
