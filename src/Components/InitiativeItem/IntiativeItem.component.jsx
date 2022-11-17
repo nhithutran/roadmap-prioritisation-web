@@ -96,14 +96,9 @@ const InitiativeItem = () => {
 
   useEffect(() => {
     setIceScore(iceScoreCalculation(impact, confidence, effort));
-    console.log(impact);
-    console.log(confidence);
-    console.log(effort);
   }, [impact, confidence, effort]);
 
   const handleOnChange = (event) => {
-    console.log(event.target.name);
-    console.log(event.target.value);
     setInitiativeData({
       ...initiativeData,
       [event.target.name]: event.target.value,
@@ -207,24 +202,13 @@ const InitiativeItem = () => {
         <Col className="mb-3" xs={2}>
           <FormGroup controlId="formTargetLaunchDate" className="mx-2">
             <FormLabel>Target Launch Date</FormLabel>
-            <FormSelect
+            <FormControl
+              type="date"
+              placeholder="Enter Date"
               name="target_launch"
               value={target_launch}
               onChange={handleOnChange}
-            >
-              <option>January</option>
-              <option>February</option>
-              <option>March</option>
-              <option>April</option>
-              <option>May</option>
-              <option>June</option>
-              <option>July</option>
-              <option>August</option>
-              <option>September</option>
-              <option>Octorber</option>
-              <option>November</option>
-              <option>December</option>
-            </FormSelect>
+            />
           </FormGroup>
         </Col>
       </Row>
