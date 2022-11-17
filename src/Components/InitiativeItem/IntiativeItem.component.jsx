@@ -33,8 +33,8 @@ const defaultInputFields = {
 
 const impactValue = ["?", "Small", "Medium", "Large", "Xlarge"];
 const confidenceValue = ["?", "Small", "Medium", "Large", "Xlarge"];
-const effortValue = ["?", "Xlarge", "Large", "Medium", "Samll"];
-const priorityValue = ["P-0", "P-1", "P-2", "P-3", "P-4", "P-5"];
+const effortValue = ["?", "Xlarge", "Large", "Medium", "Small"];
+const priorityValue = ["?", "P-1", "P-2", "P-3", "P-4"];
 const targetValue = ["Free", "Pro", "Team", "Education", "All", "Others"];
 const monthsValue = [
   "January",
