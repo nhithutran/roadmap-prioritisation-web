@@ -1,6 +1,8 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import AuthContext from "../../context/auth.context";
 import axios from "../../config/api";
+
 import {
   Container,
   Form,
@@ -10,7 +12,10 @@ import {
   FormControl,
   Card,
   Button,
+  Dropdown,
+  Spinner,
 } from "react-bootstrap";
+
 const USERS_URL = "api/v1/users/";
 
 const cardContainerStyle = {
@@ -19,10 +24,21 @@ const cardContainerStyle = {
   flexWrap: "wrap",
   justifyContent: "space-evenly",
 };
+
 const Users = () => {
   const [email, setEmail] = useState("");
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const { auth } = useContext(AuthContext);
+
+  const privateHeaders = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${auth.token}`,
+    },
+    withCredentials: false,
+  };
 
   const emailHandleChange = (event) => {
     const inputEmail = event.target.value;
@@ -36,9 +52,11 @@ const Users = () => {
   const handleApprovalButton = async (event) => {
     const buttonId = event.target.name;
     const userURL = USERS_URL + buttonId;
+    setIsLoading(true);
 
+    // Change/upadte the status of the user (approval)
     try {
-      const responseUser = await axios.get(userURL);
+      const responseUser = await axios.get(userURL, privateHeaders);
       let user = responseUser.data.data;
 
       let approved = user.approved;
@@ -47,12 +65,32 @@ const Users = () => {
 
       user = { ...user, approved: approved };
 
-      const responsePutUser = await axios.put(userURL, JSON.stringify(user), {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: false,
-      });
+      const responsePutUser = await axios.put(
+        userURL,
+        JSON.stringify(user),
+        privateHeaders
+      );
 
-      const response = await axios.get(USERS_URL);
+      const response = await axios.get(USERS_URL, privateHeaders);
+      const responseUsers = response.data.data;
+      setUsers(responseUsers);
+      setIsLoading(false);
+      setFilteredUsers(responseUsers);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // delete user
+  const handleDeleteUser = async (event) => {
+    const buttonId = event.target.name;
+    const userURL = USERS_URL + buttonId;
+
+    // Change/upadte the status of the user (approval)
+    try {
+      const responseUser = await axios.delete(userURL, privateHeaders);
+
+      const response = await axios.get(USERS_URL, privateHeaders);
       const responseUsers = response.data.data;
       setUsers(responseUsers);
       setFilteredUsers(responseUsers);
@@ -61,13 +99,16 @@ const Users = () => {
     }
   };
 
+  //initail loading fetch all users
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
-        const response = await axios.get(USERS_URL);
+        const response = await axios.get(USERS_URL, privateHeaders);
         const responseUsers = response.data.data;
         setUsers(responseUsers);
         setFilteredUsers(responseUsers);
+        setIsLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -85,7 +126,33 @@ const Users = () => {
         className="my-2"
       >
         <Card.Header>
-          {user.firstName} {user.lastName}
+          <Card.Title
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            {user.firstName} {user.lastName}{" "}
+            <Dropdown>
+              <Dropdown.Toggle
+                id="dropdown-button-dark-example1"
+                variant={user.approved ? "outline-primary" : "outline-warning"}
+              >
+                ...
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  as="button"
+                  name={user._id}
+                  onClick={handleDeleteUser}
+                >
+                  Delete User
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Card.Title>
+
           <Card.Subtitle>{user.email}</Card.Subtitle>
         </Card.Header>
         <Card.Body>
@@ -118,7 +185,11 @@ const Users = () => {
         </Row>
       </Form>
       <hr></hr>
-      <section style={cardContainerStyle}>{usersList}</section>
+      {isLoading ? (
+        <Spinner animation="border" variant="primary" />
+      ) : (
+        <section style={cardContainerStyle}>{usersList}</section>
+      )}
     </Container>
   );
 };

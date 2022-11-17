@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { useState, useContext } from "react";
 import AuthContext from "../../context/auth.context";
+import { useNavigate, Link } from "react-router-dom";
 
+// Axios data/hooks
 import axios from "../../config/api";
 const LOGIN_URL = "api/v1/auth/login";
+import publicHeaders from "../../config/publicHeaders";
+// CSS-file ********************
+import "./auth.style.css";
 
+// Bootstrap ********************
 import {
   Alert,
   Button,
@@ -15,22 +21,10 @@ import {
   FormGroup,
   FormLabel,
   Row,
+  Spinner,
 } from "react-bootstrap";
 
 const Login = () => {
-  const mainRowStyle = {
-    height: "100vh",
-  };
-
-  const mainColStyle = {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "flex-start",
-  };
-  /***** End Styles *****/
-
   /***** Default form fields *****/
   const defaultFormFields = {
     email: "",
@@ -39,10 +33,12 @@ const Login = () => {
 
   const { auth, setAuth } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const [errorAlert, setErrorAlert] = useState(false);
 
@@ -54,40 +50,45 @@ const Login = () => {
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
-    setButtonDisabled(true);
+    setIsLoading(true);
+
     try {
       const response = await axios.post(
         LOGIN_URL,
         JSON.stringify({ email, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: false,
-        }
+        publicHeaders
       );
+
       const token = response?.data.token;
       const approved = response?.data.approved;
+
       setAuth({ email, token, approved });
-      localStorage.setItem("user", JSON.stringify(auth));
-      setButtonDisabled(false);
+      if (token && approved) {
+        navigate("/");
+      }
+      setIsLoading(false);
     } catch (error) {
-      if (error.response.status === 401) {
+      if (error.response?.status === 401) {
         setErrorMessage("Wrong Email or Password");
-      } else if (error.response.status === 500) {
+      } else if (error.response?.status === 500) {
         setErrorMessage("Not Authorised");
+      } else if (error.message == "Network Error") {
+        setErrorMessage("can not reach server");
       }
 
       setErrorAlert(true);
+      setIsLoading(false);
       setFormFields(defaultFormFields);
     }
   };
 
   return (
     <Container>
-      <Row style={mainRowStyle}>
-        <Col xs={6} style={mainColStyle}>
+      <Row className="auth-main-row">
+        <Col xs={6} className="auth-main-col">
           <h1>Log In</h1>
         </Col>
-        <Col xs={6} style={mainColStyle}>
+        <Col xs={6} className="auth-main-col">
           <Row className="mb-3">
             <h6> All Sign Ups require approval by an Authorised Manager</h6>
           </Row>
@@ -118,11 +119,21 @@ const Login = () => {
                 />
               </FormGroup>
             </Row>
-            <Button variant="primary" disabled={buttonDisabled} type="submit">
-              Login
-            </Button>
+            <Row className="mb-3">
+              <Button
+                variant="primary"
+                disabled={isLoading}
+                type="submit"
+                as={Col}
+                onClick={handlerSubmit}
+              >
+                Login
+              </Button>
+              {isLoading && <Spinner animation="border" variant="primary" />}
+            </Row>
           </Form>
-          <a href={"forgot-password"}>Forgot Password</a>
+          <Link to="/forgot-password">Forgot Password</Link>
+          <Link to="/signup">Sign Up</Link>
           {errorAlert && (
             <Alert
               variant="danger"

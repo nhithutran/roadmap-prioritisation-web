@@ -1,17 +1,26 @@
 import axios from "axios";
+import config from "./config";
 
+const cfg = config.load();
+const { baseURL } = cfg;
 //Define an API
 export default axios.create({
-  baseURL: "https://roadmap-prioritisation.herokuapp.com/",
+  baseURL,
 });
+
+//public headers
+export const publicHeaders = {
+  headers: { "Content-Type": "application/json" },
+  withCredentials: false,
+};
 
 const api = axios.create({
-  baseURL: "https://roadmap-prioritisation.herokuapp.com/",
+  baseURL: "http://localhost:4000/",
+  //baseURL: "https://roadmap-prioritisation.herokuapp.com/", // Update before deploy to Netlify
 });
 
-export const getInitiatives = async () => {
-  const response = await axios.get(
-    "https://roadmap-prioritisation.herokuapp.com/api/v1/initiatives/"
-  );
-  return response.data;
+// update intiative to estimation
+export const createEstimation = async (selectedData) => {
+  const response = await api.put("/api/v1/initiatives/updatetoestimate");
+  return response;
 };

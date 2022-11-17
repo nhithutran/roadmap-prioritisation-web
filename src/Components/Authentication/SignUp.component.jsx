@@ -1,9 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
+import publicHeaders from "../../config/publicHeaders";
 import axios from "../../config/api";
 const REGISTER_URL = "api/v1/auth/register";
 
+// CSS-file ********************
+import "./auth.style.css";
+
+//Bootstrap *************************
 import {
   Alert,
   Button,
@@ -16,20 +21,8 @@ import {
   Row,
 } from "react-bootstrap";
 
-/**** Styles *****/
 const SignUp = () => {
-  const mainRowStyle = {
-    height: "100vh",
-  };
-
-  const mainColStyle = {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "flex-start",
-  };
-  /***** End Styles *****/
+  let navigate = useNavigate();
 
   /***** Default form fields *****/
   const defaultFormFields = {
@@ -46,14 +39,14 @@ const SignUp = () => {
   const [alertPassword, setAlertPassword] = useState(false);
   const [alertError, setAlertError] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
-
-  const [isLoading, setIsLoading] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
 
   useEffect(() => {
+    //only activate button if passwords are equal and more than 6 char long
     if (password != confirmPassword || password.length < 6) {
-      setIsLoading(true);
+      setDisableButton(true);
     } else {
-      setIsLoading(false);
+      setDisableButton(false);
     }
   }, [password, confirmPassword]);
   /***** Handler *****/
@@ -64,19 +57,17 @@ const SignUp = () => {
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
-    setIsLoading(true);
+
+    setDisableButton(true);
     try {
       const response = await axios.post(
         REGISTER_URL,
         JSON.stringify({ firstName, lastName, email, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: false,
-        }
+        publicHeaders
       );
-      setIsLoading(false);
+      setDisableButton(false);
     } catch (error) {
-      setIsLoading(true);
+      setDisableButton(true);
       if (error.code === "ERR_NETWORK") {
         setErrorMessage("Can not connect to server");
         setAlertError(true);
@@ -85,16 +76,18 @@ const SignUp = () => {
         setAlertError(true);
       }
     }
+
+    navigate("/signup/pendingsignup");
   };
   /***** End Handler *****/
 
   return (
     <Container>
-      <Row style={mainRowStyle}>
-        <Col xs={6} style={mainColStyle}>
+      <Row className="auth-main-row">
+        <Col xs={6} className="auth-main-col">
           <h1>Sign Up</h1>
         </Col>
-        <Col xs={6} style={mainColStyle}>
+        <Col xs={6} className="auth-main-col">
           <Row className="mb-3">
             <h6> All Sign Ups require approval by an Authorised Manager</h6>
           </Row>
@@ -169,7 +162,7 @@ const SignUp = () => {
                   )}
               </FormGroup>
             </Row>
-            <Button disabled={isLoading} variant="primary" type="submit">
+            <Button disabled={disableButton} variant="primary" type="submit">
               Sign Up
             </Button>
             <Row>
@@ -178,7 +171,7 @@ const SignUp = () => {
                   variant="danger"
                   onClose={() => {
                     setAlertError(false);
-                    setIsLoading(false);
+                    setDisableButton(false);
                   }}
                   dismissible
                 >

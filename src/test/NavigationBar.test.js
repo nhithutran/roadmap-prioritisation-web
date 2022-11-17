@@ -8,6 +8,6 @@ describe("NavigationBar", () => {
     test('to display correct links', () => {
         expect('Dashboard').toContain("Dashboard");    
         expect('Estimation').toContain("Estimation");
-        expect('Log Out').toContain("Log Out");
+        expect('Users').toContain("Users");
     });  
 });

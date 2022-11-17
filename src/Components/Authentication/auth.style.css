@@ -1,0 +1,11 @@
+.auth-main-row {
+  height: 85vh;
+}
+
+.auth-main-col {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
