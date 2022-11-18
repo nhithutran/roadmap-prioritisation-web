@@ -10,8 +10,8 @@ afterEach(cleanup)
 describe("EstimationTopPanel", () => {
 
     test('should display initiative multiple times', () => {
-        expect(comp.queryAllByText(/Estimation/i)).toBeTruthy();
-        expect(comp.queryAllByText(/Estimation/i).length).toBe(1);
+        expect(comp.queryAllByText("Estimation")).toBeTruthy();
+        expect(comp.queryAllByText("Estimation").length).toBe(1);
     }); 
     
     test('to display correct text', () => {
