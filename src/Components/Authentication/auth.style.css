@@ -5,11 +5,10 @@
 .auth-main-col-left {
   height: 100%;
   display: flex;
-  justify-content: row;
-  justify-content: space-around;
-  margin-top: 405;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
-  padding-top: 20%;
   background: linear-gradient(-45deg, #593be0, #9162F5, #ba65e9);
   animation: gradient 15s ease infinite;
 }
@@ -19,11 +18,9 @@ h4 {
 }
 
 img.logo {
-  width: 20%;
-  height: 10%;
-  position: absolute;
-  bottom: 50%;
-  left: 22%
+  width: 50%; 
+  height: 32%;
+  justify-content: center;
 }
 
 .col {
@@ -35,6 +32,7 @@ img.logo {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 2rem;
 }
 
 a {
