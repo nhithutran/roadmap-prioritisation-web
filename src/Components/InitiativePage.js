@@ -66,6 +66,7 @@ function Dashboard() {
     try {
       const res = await axios.get(INITIATIVES_URL, privateHeaders);
       const resData = res.data.data;
+      console.log(resData)
       setData(resData || []); // Ensure that data not null
     } catch (error) {
       console.log(error);
