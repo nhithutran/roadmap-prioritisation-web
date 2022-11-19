@@ -7,6 +7,7 @@ import axios from "../config/api";
 import EstimationTopPanel from "../Components/EstimationTopPanel";
 import AuthContext from "../context/auth.context";
 const ESTIMATION_URL = "/api/v1/estimations/";
+import { privateHeaders } from "../config/api";
 
 const Styles = styled.div`
   .d-inline mx-2 {
@@ -90,17 +91,9 @@ function EstimationPage() {
   const [selectedData, setSelectedData] = useState([]);
   const { auth } = useContext(AuthContext);
 
-  const privateHeaders = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${auth.token}`,
-    },
-    withCredentials: false,
-  };
-
   const fetchEstimation = async () => {
       try {
-        const res = await axios.get(ESTIMATION_URL, privateHeaders);
+        const res = await axios.get(ESTIMATION_URL, privateHeaders(auth.token));
       const resData = res.data.data;
       setData(resData || []); // Ensure that data not null
       console.log(resData)  

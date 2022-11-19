@@ -13,6 +13,7 @@ import {
   Spinner,
   Alert,
 } from "react-bootstrap";
+import { privateHeaders } from "../../config/api";
 
 import axios from "../../config/api";
 const INITIATIVE_URL = "/api/v1/initiatives/";
@@ -80,14 +81,6 @@ const InitiativeItem = () => {
   const { auth } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const privateHeaders = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${auth.token}`,
-    },
-    withCredentials: false,
-  };
-
   const {
     _id,
     ticket_id,
@@ -111,7 +104,7 @@ const InitiativeItem = () => {
     const fetchInitiativeURL = INITIATIVE_URL + params.id;
     setIsLoading(true);
     try {
-      const response = await axios.get(fetchInitiativeURL, privateHeaders);
+      const response = await axios.get(fetchInitiativeURL, privateHeaders(auth.token));
       const responseInitiative = response.data.data;
       setInitiativeData(responseInitiative);
       setIsLoading(false);
@@ -160,7 +153,7 @@ const InitiativeItem = () => {
           target,
           target_launch,
         }),
-        privateHeaders
+        privateHeaders(auth.token)
       );
 
       setIsLoading(false);
