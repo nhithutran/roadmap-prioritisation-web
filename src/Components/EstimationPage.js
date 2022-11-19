@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { DataGrid } from "@mui/x-data-grid";
 import { Container, Dropdown } from "react-bootstrap";
-// import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import axios from "../config/api";
 import EstimationTopPanel from "../Components/EstimationTopPanel";
+import AuthContext from "../context/auth.context";
+const ESTIMATION_URL = "/api/v1/estimations/";
 
 const Styles = styled.div`
   .d-inline mx-2 {
@@ -72,21 +75,6 @@ const columns = [
   },
 ];
 
-const rows = [
-  {
-    ticket_id: "TSM-888",
-    initiative: "What is this initiative",
-    description: "wedfghjkl",
-    submit_date: "2022-11-15",
-    owner: "Nhi Tran",
-    squad: "Substriptions",
-    eng_est: "",
-    design_est: "",
-    pm_est: "",
-    estimationPriority: "",
-  },
-];
-
 const squadValue = [
   "Teams/B2B",
   "Company",
@@ -97,37 +85,49 @@ const squadValue = [
 ];
 
 function EstimationPage() {
-  // const [query, setQuery] = useState("");
-  // const [data, setData] = useState([]);
+  const [query, setQuery] = useState("");
+  const [data, setData] = useState([]);
+  const [selectedData, setSelectedData] = useState([]);
+  const { auth } = useContext(AuthContext);
 
-  // const fetchEstimation = async () => {
-  //     try {
-  //       const res = await getEstimation();
-  //     const resData = res.data;
-  //     setData(resData || []); // Ensure that data not null
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //     fetchEstimation();
-  //   }, []);
+  const privateHeaders = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${auth.token}`,
+    },
+    withCredentials: false,
+  };
 
-  //   // hasMatch function matches query with fields in table
-  //   const hasMatch = (field, query) => {
-  //     // Got TypeError: Cannot read properties of undefined (reading 'includes'). Provided fallback for fields.
-  //     return (field || "").includes(query.toLowerCase());
-  //   };
+  const fetchEstimation = async () => {
+      try {
+        const res = await axios.get(ESTIMATION_URL, privateHeaders);
+      const resData = res.data.data;
+      setData(resData || []); // Ensure that data not null
+      console.log(resData)  
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+      fetchEstimation();
+      console.log("testing")
+    }, []);
 
-  //   // Query search to check against fields and not case insensitive
-  //   const displayData = data.filter((row) => {
-  //     return (
-  //       hasMatch(row.ticket_id.toLowerCase(), query) ||
-  //       hasMatch(row.initiative.toLowerCase(), query) ||
-  //       hasMatch(row.description.toLowerCase(), query) ||
-  //       hasMatch(row.owner.toLowerCase(), query)
-  //     );
-  //   });
+    // hasMatch function matches query with fields in table
+    const hasMatch = (field, query) => {
+      // Got TypeError: Cannot read properties of undefined (reading 'includes'). Provided fallback for fields.
+      return (field || "").includes(query.toLowerCase());
+    };
+
+    // Query search to check against fields and not case insensitive
+    const displayData = data.filter((row) => {
+      return (
+        hasMatch(row.ticket_id.toLowerCase(), query) ||
+        hasMatch(row.initiative.toLowerCase(), query) ||
+        hasMatch(row.description.toLowerCase(), query) ||
+        hasMatch(row.owner.toLowerCase(), query)
+      );
+    });
 
   return (
     <div className="container">
@@ -161,8 +161,8 @@ function EstimationPage() {
 
           <div style={{ height: 400, width: "100%" }}>
             <DataGrid
-              rows={rows}
-              getRowId={(obj) => obj.ticket_id}
+              rows={displayData}
+              getRowId={(obj) => obj._id}
               columns={columns}
               pageSize={5}
               rowsPerPageOptions={[5]}

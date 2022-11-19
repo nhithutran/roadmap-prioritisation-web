@@ -20,16 +20,6 @@ const Styles = styled.div`
   .searchBar {
     display: flex;
     padding: 20px;
-    outline: #7A5CFA;
-  }
-
-  .searchTerm {
-    color: #7A5CFA;
-  }
-
-  .add-Estimation-button-row {
-    display: flex;
-    justify-content: center;
   }
 `;
 
@@ -59,7 +49,7 @@ const columns = [
 ];
 
 // Fetch and store data from MongoDB initiative table. setData to res.data so it can be rendered.
-function InitiativePage() {
+function Dashboard() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
@@ -149,10 +139,10 @@ function InitiativePage() {
               {...data}
             />
           </div>
-          <Row className="add-Estimation-button-row">
+          <Row className="mb-3">
             <Col xs={4}>
               <Button
-                style={{ width: "14rem" }}
+                style={{ width: "12rem" }}
                 onClick={handleAddToEstimation}
               >
                 Add to Estimation
@@ -165,4 +155,4 @@ function InitiativePage() {
   );
 }
 
-export default InitiativePage;
+export default Dashboard;
