@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState, useContext } from "react";
-import { getInitiatives } from "../config/api";
 import { Container, Row, Button, Col } from "react-bootstrap";
 import InitiativeTopPanel from "./InitiativeTopPanel";
 import axios from "../config/api";
@@ -139,16 +138,17 @@ function Dashboard() {
               {...data}
             />
           </div>
-          <Row className="mb-3">
-            <Col xs={4}>
+          {/* <Row className="mb-3"> */}
+            {/* <Col xs={4}> */}
               <Button
+                className="initAddEstButton"
                 style={{ width: "12rem" }}
                 onClick={handleAddToEstimation}
               >
                 Add to Estimation
               </Button>
-            </Col>
-          </Row>
+            {/* </Col> */}
+          {/* </Row> */}
         </Container>
       </Styles>
     </div>

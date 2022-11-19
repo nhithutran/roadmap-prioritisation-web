@@ -9,8 +9,8 @@ a:hover {
     background-color: #7A5CFA;
     outline-color: #7A5CFA;
     padding-top: 10px;
-    margin-top: 20px
-    
+    margin-top: 20px;
+    justify-content: center;
 }
 
 .dropdown-basic {
