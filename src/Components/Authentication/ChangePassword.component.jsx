@@ -28,8 +28,12 @@ const ChangePassword = () => {
     height: "100%",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
   };
+
+  const rightColStyle = {
+    ...mainColStyle,
+    justifyContent: "center",
+  }
   
   /***** End Styles *****/
 
@@ -106,7 +110,7 @@ const ChangePassword = () => {
           alt="Canva logo"
         ></img>
         </Col>
-        <Col sx={6} style={mainColStyle}>
+        <Col sx={6} style={rightColStyle}>
           <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
             <Row className="mb-3">
               <FormGroup controlId="formCurrentPassword">

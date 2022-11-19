@@ -110,7 +110,7 @@ function Dashboard() {
   // (React) click add -> (Node) set Est in db -> db
   // (React) req list -> (Node) return initiatives
   return (
-    <div className="container">
+    <div className="container" data-testid="initpage">
       <Styles>
         <Container>
           <InitiativeTopPanel />
@@ -126,7 +126,7 @@ function Dashboard() {
           </div>
 
           <div style={{ height: 650, width: "100%" }}>
-            <DataGrid
+            <DataGrid data-testid="gridtable"
               rows={displayData}
               getRowId={(obj) => obj._id}
               columns={columns}

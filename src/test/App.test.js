@@ -11,7 +11,6 @@ beforeEach(() => {
     </AuthContext.Provider>)
 })
 
-
 afterEach(cleanup)
 
 describe("App", () => {

@@ -1,11 +1,14 @@
-const { NotFound } = require('../components/NotFound')
+import React from "react"
+import NotFound from '../Components/NotFound';
+import {render, cleanup} from '@testing-library/react'
+
+let comp = null;
+beforeEach(() => comp = render(<NotFound />))
+
+afterEach(cleanup)
 
 describe("NotFound", () => {
-    test('display page heading', () => {
-        expect('NotFound').toContain("NotFound");  
+    test('display page not found message', () => {
+        expect(comp.queryByText(/looking for cannot be/i)).toBeTruthy();
     }); 
-
-    test('to display correct wording', () => {
-        expect('Sorry! The page you’re looking for cannot be found').toContain("cannot be found");    
-    });  
 });

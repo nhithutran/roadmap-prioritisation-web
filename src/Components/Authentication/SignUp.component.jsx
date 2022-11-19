@@ -99,7 +99,7 @@ const SignUp = () => {
             <h4>Sign Up</h4>
             <h6> All Sign Ups require approval by an Authorised Manager</h6>
           </Row>
-          <Form style={{ width: "80%", height: "6%" }} onSubmit={handlerSubmit}>
+          <Form style={{ width: "80%" }} onSubmit={handlerSubmit}>
             <Row className="mb-3">
               <FormGroup as={Col} controlId="formFirstName">
                 <FormLabel>First Name</FormLabel>
