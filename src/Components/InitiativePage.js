@@ -119,7 +119,7 @@ function Dashboard() {
               getRowId={(obj) => obj._id}
               columns={columns}
               pageSize={10}
-              rowsPerPageOptions={[15]}
+              rowsPerPageOptions={[15,10]}
               checkboxSelection
               onSelectionModelChange={(data) => {
                 setSelectedData(data);
