@@ -136,7 +136,7 @@ function InitiativePage() {
           </div>
 
           <div style={{ height: 650, width: "100%" }}>
-            <DataGrid
+            <DataGrid data-testid="gridtable"
               rows={displayData}
               getRowId={(obj) => obj._id}
               columns={columns}

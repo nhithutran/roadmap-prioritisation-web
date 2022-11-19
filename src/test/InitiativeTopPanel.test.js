@@ -8,7 +8,6 @@ beforeEach(() => comp = render(<InitiativeTopPanel />))
 afterEach(cleanup)
 
 describe("InitiativeTopPanel", () => {
-
     test('should display Initiative multiple times', () => {
         expect(comp.queryAllByText("Initiative")).toBeTruthy();
         expect(comp.queryAllByText("Initiative").length).toBe(1);

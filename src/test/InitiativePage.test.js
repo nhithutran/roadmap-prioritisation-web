@@ -13,11 +13,13 @@ beforeEach(() => {
 afterEach(cleanup)
 
 describe("InitiativePage", () => {
-
     test('search bar placeholder text display', () => {
         expect(comp.getByTestId("initpage")).toBeTruthy();
-        // expect(comp.queryAllByText(/Estimation/i).length).toBe(1);
-    }); 
-});    
+        expect(comp.queryAllByText(/Initiative/i).length).toBe(3);
+    });
+});     
 
-// Add test for Add to Estiamtion button and search bar function???
+    // test('initiatives table should have 6 columns', () => {
+    //     const linkE
+    //     expect(comp.getByTestId("gridtable")).length).toEqual(6);
+    // });      

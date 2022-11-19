@@ -35,7 +35,6 @@ function App() {
               <Route path="/" element={<InitiativePage />} />
               <Route path="/initiatives/:id" element={<InitiativeItem />} />
               <Route path="estimation" element={<EstimationPage />} />
-              <Route path="roadmap" element={<div>Roadmap</div>} />
               <Route path="users" element={<Users />} />
               <Route path="changepassword" element={<ChangePassword />} />
             </Route>
