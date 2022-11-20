@@ -120,7 +120,7 @@ function InitiativePage() {
               getRowId={(obj) => obj._id}
               columns={columns}
               pageSize={10}
-              rowsPerPageOptions={[15,10]}
+              rowsPerPageOptions={[10]}
               checkboxSelection
               onSelectionModelChange={(data) => {
                 setSelectedData(data);
@@ -128,8 +128,6 @@ function InitiativePage() {
               {...data}
             />
           </div>
-          {/* <Row className="mb-3"> */}
-            {/* <Col xs={4}> */}
               <Button
                 data-testid="estimationbtn"
                 className="initAddEstButton"
@@ -138,8 +136,6 @@ function InitiativePage() {
               >
                 Add to Estimation
               </Button>
-            {/* </Col> */}
-          {/* </Row> */}
         </Container>
       </Styles>
     </div>
