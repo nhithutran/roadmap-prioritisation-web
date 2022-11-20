@@ -123,7 +123,7 @@ function EstimationPage() {
     });
 
   return (
-    <div className="container">
+    <div className="container" data-testid="estpage">
       <Styles>
         <Container>
           <EstimationTopPanel />

@@ -3,7 +3,6 @@ import { act } from 'react-dom/test-utils';
 import {render, fireEvent, screen, cleanup} from '@testing-library/react'
 import AuthContext from "../context/auth.context";
 import { BrowserRouter } from "react-router-dom";
-
 import InitiativeItemComponent from "../Components/InitiativeItem/IntiativeItem.component"
 import axios from "axios";
 

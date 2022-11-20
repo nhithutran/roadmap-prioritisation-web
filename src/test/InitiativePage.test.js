@@ -49,7 +49,6 @@ describe("InitiativePage", () => {
 });
 
 describe("InitiativePage Data", () => {
-
     test('should fetch initatives on load and display in datagrid', async () => {
         await act(async () => {
             comp = await render(<AuthContext.Provider value={{auth:{ token: "fake_token"}}}>
@@ -76,9 +75,4 @@ describe("InitiativePage Data", () => {
         // expect(axiosSpy).toHaveBeenCalledWith('http://localhost:4000/api/v1/estimations/createEstimation');
         // check spy2
     });
-});     
-
-    // test('initiatives table should have 6 columns', () => {
-    //     const linkE
-    //     expect(comp.getByTestId("gridtable")).length).toEqual(6);
-    // });      
+});    
