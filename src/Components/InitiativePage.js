@@ -131,6 +131,7 @@ function InitiativePage() {
           {/* <Row className="mb-3"> */}
             {/* <Col xs={4}> */}
               <Button
+                data-testid="estimationbtn"
                 className="initAddEstButton"
                 style={{ width: "12rem" }}
                 onClick={handleAddToEstimation}
