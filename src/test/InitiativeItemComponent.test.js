@@ -1,33 +1,29 @@
-const { InitiativeItem } = require('../components/InitiativeItem/IntiativeItem.component')
+import React from "react";
+import { act } from 'react-dom/test-utils';
+import {render, fireEvent, screen, cleanup} from '@testing-library/react'
+import AuthContext from "../context/auth.context";
+import { BrowserRouter } from "react-router-dom";
 
-describe("InitiativeItem", () => {
-    test('there is a heading', () => {
-        expect('Initiative').toMatch(/tiat/);    
-    }); 
+import InitiativeItemComponent from "../Components/InitiativeItem/IntiativeItem.component"
+import axios from "axios";
+
+jest.spyOn(axios, 'get').mockReturnValue(
+    Promise.resolve({
+        data: { data: { _id: "fakeMongoId", ticket_id:"blah", description: "fakedescription"} }
+    })
+);
+
+let comp = null;
+
+describe("InitiativeItemComponent", () => {
+    test('should fetch and display data', async () => {
+        await act(async () => {
+            comp = await render(<AuthContext.Provider value={{auth:{ token: "fake_token"}}}>
+                <InitiativeItemComponent />
+            </AuthContext.Provider>, {wrapper: BrowserRouter})
+        })
+        expect(comp.queryAllByText("fakedescription")).not.toBeNull()
+    });
+
+}); 
     
-    test('the initiative has correct headername', () => {
-        expect('Ticket').toContain('Ticket');
-        expect('Initiative').toContain('Initiative');    
-        expect('Description').toContain('Description');    
-        expect('Submit Date').toContain('Submit Date');    
-        expect('Owner').toContain('Owner');       
-        }); 
-    });        
-
-describe("Initiative Item sub-heading", () => {
-    test('corect sub-heading is displayed', () => {
-        expect('Additional Information:').toMatch(/Add/);    
-    }); 
-            
-    test('the initiative has correct headername', () => {
-        expect('Impact').toContain('Impact');
-        expect('Confidence').toContain('Confidence');    
-        expect('Effort').toContain('Effort');    
-        expect('ICE Score').toContain('ICE Score');    
-        expect('Priority').toContain('Priority');
-        expect('Target').toContain('Target'); 
-        expect('Target Launch Date').toContain('Target Launch Date');
-        });    
-        
-        // Display Button Clear and Save
-});
