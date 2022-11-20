@@ -25,7 +25,7 @@ const columns = [
     field: "ticket_id",
     headerName: "Ticket#",
     width: 80,
-    renderCell: (obj) => <Link to={`/initiatives/${obj.id}`}>{obj.value}</Link>,
+    renderCell: (obj) => <Link data-testid={obj.id} to={`/initiatives/${obj.id}`}>{obj.value}</Link>,
   },
   { field: "initiative", headerName: "Initiative", width: 200 },
   { field: "description", headerName: "Description", width: 400 },
@@ -46,7 +46,7 @@ const columns = [
 ];
 
 // Fetch and store data from MongoDB initiative table. setData to res.data so it can be rendered.
-function Dashboard() {
+function InitiativePage() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
@@ -55,6 +55,7 @@ function Dashboard() {
   const fetchAndSetInitiatives = async () => {
     try {
       const data = await fetchInitiatives(auth.token)
+      console.log({data})
       setData(data || []); // Ensure that data not null
     } catch (error) {
       console.log(error);
@@ -144,4 +145,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default InitiativePage;
