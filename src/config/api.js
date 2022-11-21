@@ -26,13 +26,12 @@ export const publicHeaders = {
 
 const api = axios.create({
   baseURL: "http://localhost:4000/",
-  //baseURL: "https://roadmap-prioritisation.herokuapp.com/", // Update before deploy to Netlify
+  // baseURL: "https://roadmap-prioritisation.herokuapp.com/", // Update before deploy to Netlify
 });
 
 export const fetchInitiatives = async (authToken) => {
   const res = await api.get("/api/v1/initiatives", privateHeaders(authToken));
   const resData = res.data.data;
-  // console.log(resData)
   return resData
 }
 

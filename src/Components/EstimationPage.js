@@ -76,15 +76,15 @@ const columns = [
   },
 ];
 
-// Squad values for drop down
-const squadValue = [
-  "Teams/B2B",
-  "Company",
-  "CRO Foundations",
-  "Foundations",
-  "CRO PerMar Brand",
-  "Subscriptions",
-];
+// Disabled button as this feature is for MVP2
+// const squadValue = [
+//   "Teams/B2B",
+//   "Company",
+//   "CRO Foundations",
+//   "Foundations",
+//   "CRO PerMar Brand",
+//   "Subscriptions",
+// ];
 
 function EstimationPage() {
   const [query, setQuery] = useState("");
@@ -139,15 +139,16 @@ function EstimationPage() {
           </div>
 
           <Dropdown>
-            <Dropdown.Toggle className="Squad-dropdown">
+            {/* Removed drop down as this is part of feature 2 */}
+            {/* <Dropdown.Toggle className="Squad-dropdown">
               Squad
-            </Dropdown.Toggle>
+            </Dropdown.Toggle> */}
 
             <Dropdown.Menu>
               <Dropdown.Item>
-                {squadValue.map((element, index) => {
+                {/* {squadValue.map((element, index) => {
                   return <option key={index}>{element}</option>;
-                })}
+                })} */}
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
