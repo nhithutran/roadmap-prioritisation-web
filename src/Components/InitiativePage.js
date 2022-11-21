@@ -96,8 +96,7 @@ function InitiativePage() {
       console.log(error);
     }
   };
-  // (React) click add -> (Node) set Est in db -> db
-  // (React) req list -> (Node) return initiatives
+
   return (
     <div className="container" data-testid="initpage">
       <Styles>
@@ -109,7 +108,7 @@ function InitiativePage() {
                 type="text"
                 className="searchTerm"
                 placeholder="Search.."
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => setQuery(e.target.value)} // Store which initiative user selects on checkbox
               ></input>
             </div>
           </div>

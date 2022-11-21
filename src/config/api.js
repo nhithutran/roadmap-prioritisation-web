@@ -38,6 +38,6 @@ export const fetchInitiatives = async (authToken) => {
 
 // update intiative to estimation
 export const createEstimation = async (selectedData) => {
-  const response = await api.put("/api/v1/initiatives/updatetoestimate");
+  const response = await api.put("/api/v1/initiatives/updatetoestimate", privateHeaders(authToken));
   return response;
 };

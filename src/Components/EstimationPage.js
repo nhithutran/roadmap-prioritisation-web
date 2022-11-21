@@ -76,6 +76,7 @@ const columns = [
   },
 ];
 
+// Squad values for drop down
 const squadValue = [
   "Teams/B2B",
   "Company",
@@ -103,7 +104,6 @@ function EstimationPage() {
   };
   useEffect(() => {
       fetchEstimation();
-      console.log("testing")
     }, []);
 
     // hasMatch function matches query with fields in table
