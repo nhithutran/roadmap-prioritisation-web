@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/auth.context";
 import axios from "../../config/api";
-import { privateHeaders } from "../../config/api";
 
 import {
   Container,
@@ -33,6 +32,16 @@ const Users = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { auth } = useContext(AuthContext);
 
+  const userToken = auth.token;
+  console.log(userToken)
+  const privateHeaders = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${userToken}`,
+    },
+    withCredentials: false,
+  };
+
   const emailHandleChange = (event) => {
     const inputEmail = event.target.value;
     setEmail(inputEmail);
@@ -49,7 +58,7 @@ const Users = () => {
 
     // Change/upadte the status of the user (approval)
     try {
-      const responseUser = await axios.get(userURL, privateHeaders(auth.token));
+      const responseUser = await axios.get(userURL, privateHeaders);
       let user = responseUser.data.data;
 
       let approved = user.approved;
@@ -64,7 +73,7 @@ const Users = () => {
         privateHeaders
       );
 
-      const response = await axios.get(USERS_URL, privateHeaders);
+      const response = await axios.get(USERS_URL, privateHeaders(auth.token));
       const responseUsers = response.data.data;
       setUsers(responseUsers);
       setIsLoading(false);
