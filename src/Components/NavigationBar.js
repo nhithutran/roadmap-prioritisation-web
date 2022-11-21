@@ -85,7 +85,6 @@ const NavigationBar = () => {
               </>
             )}
 
-            {/* <button className="logout-button">Log Out</button> */}
           </Nav>
         </Navbar.Collapse>
         {auth?.email ? (
@@ -109,7 +108,7 @@ const NavigationBar = () => {
             </Dropdown>
           </Nav.Link>
         ) : (
-          <Nav.Link href="/login">Login </Nav.Link>
+          <Nav.Link href="/">Log In </Nav.Link>
         )}
       </Navbar>
     </Styles>
