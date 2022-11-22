@@ -25,8 +25,8 @@ export const publicHeaders = {
 };
 
 const api = axios.create({
-  // baseURL: "http://localhost:4000/",
-  baseURL: "https://roadmap-prioritisation.herokuapp.com/", // Update before deploy to Netlify
+  baseURL: "http://localhost:4000/",
+  // baseURL: "https://roadmap-prioritisation.herokuapp.com/", // Update before deploy to Netlify
 });
 
 export const fetchInitiatives = async (authToken) => {
@@ -37,6 +37,7 @@ export const fetchInitiatives = async (authToken) => {
 
 // update intiative to estimation
 export const createEstimation = async (selectedData) => {
+  console.log("test")
   const response = await api.put("/api/v1/initiatives/updatetoestimate", privateHeaders(authToken));
   return response;
 };
