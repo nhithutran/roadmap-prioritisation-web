@@ -88,7 +88,7 @@ function InitiativePage() {
     try {
       const response = await axios.put(
         "/api/v1/estimations/createEstimation",
-        data
+        data, auth.token
       );
       console.log(response);
       await fetchAndSetInitiatives();
