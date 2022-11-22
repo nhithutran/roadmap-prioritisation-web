@@ -5,7 +5,7 @@ const production = {
 }
 
 const development = {
-    baseURL: "http://localhost:4000",
+    baseURL: "https://roadmap-prioritisation.herokuapp.com/",
 }
 
 const config = {
