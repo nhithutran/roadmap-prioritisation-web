@@ -47,26 +47,22 @@ const Styles = styled.div`
 
 const NavigationBar = () => {
   const { auth, setAuth } = useContext(AuthContext);
-
   const navigate = useNavigate();
-
   const handleLogOut = (event) => {
     setAuth({});
     navigate("/");
   };
 
   const handleChangePassword = (event) => {
+    event.preventDefault();
+    console.log("changepassword");
     navigate("/changepassword");
   };
   return (
     <Styles>
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="/">
-          <img
-          className="brandlogo"
-            src={brandlogoImg}
-            alt="Canva logo"
-          ></img>
+          <img className="brandlogo" src={brandlogoImg} alt="Canva logo"></img>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -74,25 +70,28 @@ const NavigationBar = () => {
             {auth?.email && (
               <>
                 <div style={{ margin: "0px 10px" }}>
-                  <Link className="nav-links" to="/">Initiatives</Link>
+                  <Link className="nav-links" to="/">
+                    Initiatives
+                  </Link>
                 </div>
                 <div style={{ margin: "0px 10px" }}>
-                  <Link className="nav-links" to="/estimation">Estimation</Link>
+                  <Link className="nav-links" to="/estimation">
+                    Estimation
+                  </Link>
                 </div>
                 <div style={{ margin: "0px 10px" }}>
-                  <Link className="nav-links" to="/users">Users</Link>
+                  <Link className="nav-links" to="/users">
+                    Users
+                  </Link>
                 </div>
               </>
             )}
-
           </Nav>
         </Navbar.Collapse>
         {auth?.email ? (
           <Link className="float-end">
             <Dropdown>
-              <Dropdown.Toggle id="dropdown-basic">
-                About Me
-              </Dropdown.Toggle>
+              <Dropdown.Toggle id="dropdown-basic">About Me</Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item
                   as="button"
@@ -108,7 +107,7 @@ const NavigationBar = () => {
             </Dropdown>
           </Link>
         ) : (
-          <Link href="/">Log In </Link>
+          <Link to="/login">Log In </Link>
         )}
       </Navbar>
     </Styles>

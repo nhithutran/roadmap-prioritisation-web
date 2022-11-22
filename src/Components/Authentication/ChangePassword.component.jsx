@@ -12,6 +12,7 @@ import {
   FormLabel,
   FormControl,
   Button,
+  Alert,
 } from "react-bootstrap";
 
 import axios from "../../config/api";
@@ -33,8 +34,8 @@ const ChangePassword = () => {
   const rightColStyle = {
     ...mainColStyle,
     justifyContent: "center",
-  }
-  
+  };
+
   /***** End Styles *****/
 
   /**** Default value */
@@ -52,6 +53,7 @@ const ChangePassword = () => {
   const [userToken, setUserToken] = useState(useBearer());
   const [alertError, setAlertError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [alertPasswordChanged, setAlertPasswordChanged] = useState(false);
   const navigate = useNavigate();
   const headers = {
     headers: {
@@ -84,8 +86,7 @@ const ChangePassword = () => {
         JSON.stringify(userData),
         headers
       );
-      console.log(response);
-      navigate("/");
+      setAlertPasswordChanged(true);
     } catch (error) {
       setIsLoading(true);
       if (error.code === "ERR_NETWORK") {
@@ -104,11 +105,7 @@ const ChangePassword = () => {
       <Row style={mainRowStyle}>
         <Col xs={6} className="auth-main-col-left" style={mainColStyle}>
           <h1 className="change-pwd-heading">Change Password</h1>
-          <img
-          className="logo"
-          src={logoImg}
-          alt="Canva logo"
-        ></img>
+          <img className="logo" src={logoImg} alt="Canva logo"></img>
         </Col>
         <Col sx={6} style={rightColStyle}>
           <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
@@ -174,6 +171,18 @@ const ChangePassword = () => {
                   dismissible
                 >
                   <Alert.Heading>{errorMessage}</Alert.Heading>
+                </Alert>
+              )}
+              {alertPasswordChanged && (
+                <Alert
+                  variant="success"
+                  onClose={() => {
+                    setAlertPasswordChanged(false);
+                    navigate("/");
+                  }}
+                  dismissible
+                >
+                  <Alert.Heading>Password successfully changed</Alert.Heading>
                 </Alert>
               )}
             </Row>
