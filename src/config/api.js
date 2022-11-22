@@ -30,8 +30,13 @@ const api = axios.create({
 });
 
 export const fetchInitiatives = async (authToken) => {
-  console.log(privateHeaders)
-  const res = await api.get("api/v1/initiatives", privateHeaders(authToken));
+  const res = await api.get("api/v1/initiatives", {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
+    },
+    withCredentials: false,
+  });
   const resData = res.data.data;
   return resData
 }
