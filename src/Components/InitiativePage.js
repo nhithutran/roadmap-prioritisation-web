@@ -25,7 +25,11 @@ const columns = [
     field: "ticket_id",
     headerName: "Ticket#",
     width: 80,
-    renderCell: (obj) => <Link data-testid={obj.id} to={`/initiatives/${obj.id}`}>{obj.value}</Link>,
+    renderCell: (obj) => (
+      <Link data-testid={obj.id} to={`/initiatives/${obj.id}`}>
+        {obj.value}
+      </Link>
+    ),
   },
   { field: "initiative", headerName: "Initiative", width: 200 },
   { field: "description", headerName: "Description", width: 400 },
@@ -52,10 +56,18 @@ function InitiativePage() {
   const [selectedData, setSelectedData] = useState([]);
   const { auth } = useContext(AuthContext);
 
+  const privateHeaders = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${auth.token}`,
+    },
+    withCredentials: false,
+  };
+
   const fetchAndSetInitiatives = async () => {
     try {
-      const data = await fetchInitiatives(auth.token)
-      console.log({data})
+      const data = await fetchInitiatives(auth.token);
+      console.log({ data });
       setData(data || []); // Ensure that data not null
     } catch (error) {
       console.log(error);
@@ -88,7 +100,8 @@ function InitiativePage() {
     try {
       const response = await axios.put(
         "/api/v1/estimations/createEstimation",
-        data
+        data,
+        privateHeaders
       );
       console.log(response);
       await fetchAndSetInitiatives();
@@ -114,7 +127,8 @@ function InitiativePage() {
           </div>
 
           <div style={{ height: 650, width: "100%" }}>
-            <DataGrid data-testid="gridtable"
+            <DataGrid
+              data-testid="gridtable"
               rows={displayData}
               getRowId={(obj) => obj._id}
               columns={columns}
@@ -127,14 +141,14 @@ function InitiativePage() {
               {...data}
             />
           </div>
-              <Button
-                data-testid="estimationbtn"
-                className="initAddEstButton"
-                style={{ width: "12rem" }}
-                onClick={handleAddToEstimation}
-              >
-                Add to Estimation
-              </Button>
+          <Button
+            data-testid="estimationbtn"
+            className="initAddEstButton"
+            style={{ width: "12rem" }}
+            onClick={handleAddToEstimation}
+          >
+            Add to Estimation
+          </Button>
         </Container>
       </Styles>
     </div>
