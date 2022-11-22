@@ -134,25 +134,14 @@ const InitiativeItem = () => {
     setIceScore(iceScoreCalculation(impact, confidence, effort));
   };
 
+  
   const handleUpdate = async () => {
     setIsLoading(true);
     const InitiativeIdURL = INITIATIVE_URL + params.id;
     try {
       const response = await axios.put(
         InitiativeIdURL,
-        JSON.stringify({
-          ticket_id,
-          initiative,
-          description,
-          submit_date,
-          owner,
-          impact,
-          confidence,
-          effort,
-          priority,
-          target,
-          target_launch,
-        }),
+        initiativeData,
         privateHeaders(auth.token)
       );
 
@@ -165,27 +154,15 @@ const InitiativeItem = () => {
   };
 
   const handleAddToEstimation = async () => {
+    console.log("test")
     setIsLoading(true);
     const lifecycle = "Estimation";
     const InitiativeIdURL = INITIATIVE_URL + params.id;
     try {
       const response = await axios.put(
         InitiativeIdURL,
-        JSON.stringify({
-          ticket_id,
-          initiative,
-          description,
-          submit_date,
-          owner,
-          impact,
-          confidence,
-          effort,
-          priority,
-          target,
-          target_launch,
-          lifecycle,
-        }),
-        privateHeaders
+        {...initiativeData, lifecycle: "Estimation"},
+        privateHeaders(auth.token)
       );
 
       setIsLoading(false);

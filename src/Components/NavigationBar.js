@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { Dropdown, Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../context/auth.context";
 import brandlogoImg from "../assets/Brand-Logo.png";
 
@@ -74,13 +74,13 @@ const NavigationBar = () => {
             {auth?.email && (
               <>
                 <div style={{ margin: "0px 10px" }}>
-                  <NavLink className="nav-links" to="/">Initiatives</NavLink>
+                  <Link className="nav-links" to="/">Initiatives</Link>
                 </div>
                 <div style={{ margin: "0px 10px" }}>
-                  <NavLink className="nav-links" to="/estimation">Estimation</NavLink>
+                  <Link className="nav-links" to="/estimation">Estimation</Link>
                 </div>
                 <div style={{ margin: "0px 10px" }}>
-                  <NavLink className="nav-links" to="/users">Users</NavLink>
+                  <Link className="nav-links" to="/users">Users</Link>
                 </div>
               </>
             )}
@@ -88,7 +88,7 @@ const NavigationBar = () => {
           </Nav>
         </Navbar.Collapse>
         {auth?.email ? (
-          <Nav.Link className="float-end">
+          <Link className="float-end">
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic">
                 About Me
@@ -106,9 +106,9 @@ const NavigationBar = () => {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-          </Nav.Link>
+          </Link>
         ) : (
-          <Nav.Link href="/">Log In </Nav.Link>
+          <Link href="/">Log In </Link>
         )}
       </Navbar>
     </Styles>
