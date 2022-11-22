@@ -67,7 +67,6 @@ function InitiativePage() {
   const fetchAndSetInitiatives = async () => {
     try {
       const data = await fetchInitiatives(auth.token);
-      console.log({ data });
       setData(data || []); // Ensure that data not null
     } catch (error) {
       console.log(error);
@@ -103,7 +102,7 @@ function InitiativePage() {
         data,
         privateHeaders
       );
-      console.log(response);
+
       await fetchAndSetInitiatives();
     } catch (error) {
       console.log(error);
