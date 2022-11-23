@@ -36,7 +36,7 @@ function App() {
               <Route path="/initiatives/:id" element={<InitiativeItem />} />
               <Route path="estimation" element={<EstimationPage />} />
               <Route path="users" element={<Users />} />
-              <Route path="changepassword" element={<ChangePassword />} />
+              {/* <Route path="changepassword" element={<ChangePassword />} /> */}
             </Route>
             //*****public************
             <Route
@@ -46,6 +46,7 @@ function App() {
             <Route path="signup" element={<SignUp />} />
             <Route path="login" element={<Login />} />
             <Route path="not-authorized" element={<NotAuthorized />} />
+            <Route path="changepassword" element={<ChangePassword />} />
             <Route path="forgot-password" element={<EmailRecovery />} />
             //Not found
             <Route path="*" element={<NotFound />} />

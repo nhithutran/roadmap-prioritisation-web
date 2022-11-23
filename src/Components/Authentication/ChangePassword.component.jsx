@@ -46,17 +46,16 @@ const ChangePassword = () => {
   };
 
   const [userData, setUserData] = useState(defaultValue);
-  const { auth, setAuth } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
   const { currentPassword, email, newPassword, confirmNewPassword } = userData;
-  const [userToken, setUserToken] = useState(useBearer());
   const [alertError, setAlertError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-  const headers = {
+  const privateHeaders = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `${userToken}`,
+      Authorization: `Bearer ${auth.token}`,
     },
     withCredentials: false,
   };
@@ -82,7 +81,7 @@ const ChangePassword = () => {
       const response = await axios.put(
         CHANGE_PASSWORD_URL,
         JSON.stringify(userData),
-        headers
+        privateHeaders
       );
       console.log(response);
       navigate("/");

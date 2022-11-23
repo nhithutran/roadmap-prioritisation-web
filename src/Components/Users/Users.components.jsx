@@ -73,7 +73,7 @@ const Users = () => {
         privateHeaders
       );
 
-      const response = await axios.get(USERS_URL, privateHeaders(auth.token));
+      const response = await axios.get(USERS_URL, privateHeaders);
       const responseUsers = response.data.data;
       setUsers(responseUsers);
       setIsLoading(false);

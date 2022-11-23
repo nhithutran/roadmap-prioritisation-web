@@ -158,8 +158,8 @@ function EstimationPage() {
               rows={displayData}
               getRowId={(obj) => obj._id}
               columns={columns}
-              pageSize={5}
-              rowsPerPageOptions={[5]}
+              pageSize={10}
+              rowsPerPageOptions={[10]}
             />
           </div>
         </Container>

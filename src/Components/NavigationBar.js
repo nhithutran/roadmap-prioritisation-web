@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { Dropdown, Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, redirect } from "react-router-dom";
 import AuthContext from "../context/auth.context";
 import brandlogoImg from "../assets/Brand-Logo.png";
 
@@ -56,6 +56,7 @@ const NavigationBar = () => {
   };
 
   const handleChangePassword = (event) => {
+    event.preventDefault();
     navigate("/changepassword");
   };
   return (
@@ -108,7 +109,7 @@ const NavigationBar = () => {
             </Dropdown>
           </Link>
         ) : (
-          <Link href="/">Log In </Link>
+          <Link to="/">Log In </Link>
         )}
       </Navbar>
     </Styles>
