@@ -8,6 +8,8 @@ import {
   FormLabel,
   Row,
   Button,
+  Alert,
+  Spinner,
 } from "react-bootstrap";
 
 import axios from "../../config/api";
@@ -19,6 +21,9 @@ const EmailRecovery = () => {
   const [emailValue, setEmailValue] = useState(defaultEmail);
   const [isLoading, setIsLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState();
+  const [errorAlert, setErrorAlert] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [alertEmailSent, setAlertEmailSent] = useState(false);
 
   const { email, value } = emailValue;
 
@@ -43,9 +48,12 @@ const EmailRecovery = () => {
       );
 
       setResponseMessage(response?.data?.data);
+      setAlertEmailSent(true);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setErrorMessage(error.response.data.error);
+      setErrorAlert(true);
     }
   };
 
@@ -71,9 +79,36 @@ const EmailRecovery = () => {
           <Button variant="primary" type="submit" disabled={isLoading}>
             Send
           </Button>
+          {isLoading && <Spinner variant="primary" />}
         </Row>
         <p>{responseMessage}</p>
       </Form>
+      <Row>
+        {errorAlert && (
+          <Alert
+            variant="danger"
+            onClose={() => {
+              setErrorAlert(false);
+              setIsLoading(false);
+            }}
+            dismissible
+          >
+            <Alert.Heading>{errorMessage}</Alert.Heading>
+          </Alert>
+        )}
+        {alertEmailSent && (
+          <Alert
+            variant="success"
+            onClose={() => {
+              setAlertEmailSent(false);
+              navigate("/");
+            }}
+            dismissible
+          >
+            <Alert.Heading>{responseMessage}</Alert.Heading>
+          </Alert>
+        )}
+      </Row>
     </Container>
   );
 };
