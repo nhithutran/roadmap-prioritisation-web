@@ -139,7 +139,7 @@ function EstimationPage() {
           </div>
 
           <Dropdown>
-            {/* Removed drop down as this is part of feature 2 */}
+            {/* Removed drop down as this is part of MVP2 need it for later*/}
             {/* <Dropdown.Toggle className="Squad-dropdown">
               Squad
             </Dropdown.Toggle> */}
@@ -148,7 +148,7 @@ function EstimationPage() {
               <Dropdown.Item>
                 {/* {squadValue.map((element, index) => {
                   return <option key={index}>{element}</option>;
-                })} */}
+                })} */} 
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
